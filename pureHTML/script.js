@@ -37,7 +37,7 @@ const DATA = {
       { name: "Reader entrypoint", detail: "All reader plugins register a common Python entrypoint. NOMAD and user code can discover and invoke any installed reader with a single unified API call.", tags: ["entrypoint", "API", "discovery"] },
     ],
     pynxPlugins: [
-      { name: "pynxtools-spm",      desc: "Scanning probe microscopy",         detail: "Reads Nanonis .sxm/.dat and Bruker .spm formats, converts to NXsts/NXafm application definitions. Supports STM and AFM modalities.", tags: ["STM", "AFM", "Nanonis"] },
+      { name: "pynxtools-spm",      desc: "Scanning probe microscopy",         isPynxSpm: true, detail: "Reads Nanonis .sxm/.dat and Bruker .spm formats, converts to NXsts/NXafm application definitions. Supports STM and AFM modalities.", tags: ["STM", "AFM", "Nanonis"] },
       { name: "pynxtools-xps",      desc: "X-ray photoelectron spectroscopy",  detail: "Parses SPECS, Kratos, and ULVAC-PHI vendor formats into NXxps. Handles binding energy calibration and survey/region scan structures.", tags: ["XPS", "SPECS", "NXxps"] },
       { name: "pynxtools-apm",      desc: "Atom probe microscopy",             detail: "Converts APT/LEAP reconstruction files (.pos, .epos, .apt) into NXapm. Preserves detector hit data, ranging tables, and reconstructed ion positions.", tags: ["APT", "LEAP", "NXapm"] },
       { name: "pynxtools-em",       desc: "Electron microscopy",               detail: "Handles TEM and SEM data from FEI/Thermo, JEOL, and Zeiss. Reads .dm3/.dm4, .bcf, .emd and maps metadata to NXem.", tags: ["TEM", "SEM", "dm4", "NXem"] },
@@ -99,7 +99,9 @@ function makeRail(label) {
 
 function makePluginCard(p, list, idx) {
   const card = document.createElement('div');
-  card.className = 'plugin-card' + (p.isPynx ? ' pynx-card' : '');
+  card.className = 'plugin-card' + (p.isPynx ? ' pynx-card' : '') + (p.isPynxSpm ? ' pynx-spm-card' : ''); // add 'plugin-card' class to both for consistent styling, and 'pynx-card' for any pynxtools-specific overrides within the
+  
+  // card.
 
   const nameEl = document.createElement('div');
   nameEl.className = 'pcard-name';
@@ -118,9 +120,9 @@ function makePluginCard(p, list, idx) {
     btn.textContent = 'explore →';
     btn.onclick = () => showView('pynxtools');
     actions.appendChild(btn);
-  } else {
+  }  else {
     const btn = document.createElement('button');
-    btn.className = 'btn-info';
+    btn.className = 'btn-info'; // different styling for info button if it's a pynxtools plugin
     btn.textContent = 'ⓘ info';
     btn.onclick = () => openPanel('plugin', list, idx);
     actions.appendChild(btn);
@@ -222,6 +224,24 @@ function buildHub(hubId, centralEl, leftPlugins, rightPlugins, pluginList, inter
   hub.appendChild(rightCol);
 }
 
+function equalizeSatelliteColumns(hub) {
+  const columns = hub.querySelectorAll('.satellites-col');
+  if (columns.length !== 2 || hub.offsetParent === null) return;
+
+  columns.forEach(col => {
+    col.style.minHeight = '';
+  });
+
+  const tallest = Math.max(...Array.from(columns, col => col.offsetHeight));
+  columns.forEach(col => {
+    col.style.minHeight = tallest + 'px';
+  });
+}
+
+function equalizeVisibleSatelliteColumns() {
+  document.querySelectorAll('.view.active .hub').forEach(equalizeSatelliteColumns);
+}
+
 function buildNomad() {
   const plugins = DATA.nomad.nomadPlugins;
   const mid = Math.ceil(plugins.length / 2);
@@ -250,9 +270,12 @@ function showView(name) {
   document.getElementById('crumb-pyn').classList.toggle('active', isPynx);
   document.getElementById('crumb-nomad').classList.toggle('active', !isPynx);
   document.getElementById('back-btn').classList.toggle('visible', isPynx);
+  requestAnimationFrame(equalizeVisibleSatelliteColumns);
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 /* ── INIT ── */
 buildNomad();
 buildPynx();
+requestAnimationFrame(equalizeVisibleSatelliteColumns);
+window.addEventListener('resize', equalizeVisibleSatelliteColumns);
