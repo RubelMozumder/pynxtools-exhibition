@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>NOMAD & pynxtools Explorer</title>
+<link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <span class="brand">research data explorer</span>
+  <div class="breadcrumb">
+    <span class="crumb active" id="crumb-nomad" onclick="showView('nomad')">NOMAD</span>
+    <span class="crumb-sep" id="crumb-sep" style="display:none">›</span>
+    <span class="crumb" id="crumb-pyn" style="display:none">pynxtools</span>
+  </div>
+  <button class="back-btn" id="back-btn" onclick="showView('nomad')">← back to NOMAD</button>
+</div>
+
+<!-- VIEW: NOMAD -->
+<div class="view active" id="view-nomad">
+  <div class="hub" id="hub-nomad"></div>
+</div>
+
+<!-- VIEW: PYNXTOOLS -->
+<div class="view" id="view-pynxtools">
+  <div class="hub" id="hub-pynx"></div>
+</div>
+
+<!-- SIDE PANEL (shared, outside views) -->
+<div class="panel-overlay" id="panel-overlay" onclick="closePanel()"></div>
+<div class="side-panel" id="side-panel">
+  <div class="panel-head">
+    <div>
+      <div class="panel-badge" id="p-badge">feature</div>
+      <div class="panel-title" id="p-title">—</div>
+    </div>
+    <button class="panel-close" onclick="closePanel()">✕</button>
+  </div>
+  <div class="panel-body" id="p-body"></div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
