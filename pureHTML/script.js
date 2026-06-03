@@ -7,16 +7,182 @@ const DATA = {
     title: "NOMAD",
     subtitle: "Research Data Management Platform",
     nomadFeatures: [
-      { name: "Metainfo schema",      detail: "Define scientific schemas using sections, subsections, and quantities. Schemas are reusable and composable across plugins for experiments, simulations, and crystal growth data.", tags: ["section", "subsection", "quantity"] },
-      { name: "Search & filter",      detail: "Every metainfo quantity is indexed and searchable via the NOMAD web UI, REST API, or Python client. Combine filters across all published entries.", tags: ["full-text", "range", "API"] },
-      { name: "Analytics dashboard",  detail: "Build drag-and-drop dashboards with charts, tables, and scatter plots pulling live data from the NOMAD search engine — no data export needed.", tags: ["charts", "scatter", "live data"] },
-      { name: "DOI publishing",       detail: "Uploads and individual entries can be assigned persistent DOIs upon publication for citation in papers and reproducibility workflows.", tags: ["DOI", "FAIR", "open data"] },
-      { name: "Central database",     detail: "Stores original raw input files and processed entries in a central versioned database. Entries are structured JSON/HDF5 objects built from input files.", tags: ["HDF5", "versioned", "raw files"] },
-      { name: "JupyterHub",           detail: "Every NOMAD installation includes JupyterHub. Launch notebooks that connect directly to the NOMAD API without extra credentials needed.", tags: ["notebook", "Python", "analytics"] },
-      { name: "NOMAD Action",         detail: "Define executable workflows attached to entries — trigger parsing, validation, transformation, or external computation steps from within the NOMAD UI.", tags: ["workflow", "automation"] },
-      { name: "NORTHtool",            detail: "Docker-based Jupyter containers tailored to a specific research domain, shipping with domain-specific packages, notebooks, and pre-loaded NOMAD API clients.", tags: ["Docker", "Jupyter", "custom env"] },
-     { name: "NOMAD Parser",          detail: "A Python library for writing custom file parsers as NOMAD plugins. Provides a common entry point and utilities for parsing, validation, and error reporting.", tags: ["parser", "Python", "plugin"] },
-    ],  
+      {
+        name: "Metainfo schema",
+        detail: [
+          "NOMAD uses the Metainfo schema system to describe research data in a structured and machine-readable way. Instead of storing only files, NOMAD represents experiments, simulations, instruments, samples, workflows, and results as sections and quantities with units, descriptions, and references.",
+          "This makes data easier to search, compare, reuse, and connect across different scientific domains and research communities. Details: <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/explanation/data.md'>Data structure</a>, <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/reference/glossary.md#metainfo'>Metainfo</a>."
+        ].join(" "),
+        tags: ["schema", "metainfo", "interoperability"]
+      },
+      {
+        name: "Upload, share & access",
+        detail: [
+          "Users can upload raw research files, organize them into folders, inspect generated entries, edit metadata, reprocess data, and download files again. Uploads can stay private during active research, be shared with selected collaborators, made visible for review, or published permanently.",
+          "This supports both everyday project work and formal publication workflows for individual researchers, groups, and shared projects. Details: <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/tutorial/upload_publish.md'>Upload and publish</a>, <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/howto/manage/gui/upload.md'>Upload guide</a>."
+        ].join(" "),
+        tags: ["uploads", "sharing", "access control"]
+      },
+      {
+        name: "Automatic parsing",
+        detail: [
+          "When files are uploaded, NOMAD checks whether their format is supported by an available parser. If a parser matches, NOMAD automatically creates structured entries from the raw files and extracts scientific metadata and results.",
+          "This turns heterogeneous file formats into comparable data objects that can be searched, inspected, reused, and connected. Details: <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/reference/parsers.md'>Supported parsers</a>, <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/explanation/processing.md'>Processing</a>."
+        ].join(" "),
+        tags: ["parsers", "file formats", "structured entries"]
+      },
+      {
+        name: "Processing & normalizing",
+        detail: [
+          "After parsing, NOMAD further processes the data through normalization. Normalizers can clean, complete, or enrich entries by adding derived quantities, standardized values, and searchable summaries.",
+          "This processing chain makes uploaded data more consistent and useful for large-scale exploration across many entries and uploads. Details: <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/explanation/processing.md'>Processing</a>, <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/reference/glossary.md#normalizer'>Normalizer</a>."
+        ].join(" "),
+        tags: ["normalization", "derived data", "indexing"]
+      },
+      {
+        name: "Search & filter",
+        detail: [
+          "NOMAD provides search across published data and data accessible to the logged-in user. Search can be based on materials, elements, methods, properties, datasets, upload metadata, or any indexed schema quantity.",
+          "Users can combine filters and range queries to narrow down complex scientific datasets during interactive exploration sessions. Details: <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/tutorial/explore.md'>Explore data</a>."
+        ].join(" "),
+        tags: ["search", "filters", "metadata"]
+      },
+      {
+        name: "Analytics dashboards",
+        detail: [
+          "The Explore interface includes interactive dashboards for scientific data analysis. Users can create terms plots, histograms, scatter plots, and periodic-table filters directly from indexed NOMAD data.",
+          "This allows quick visual exploration without first downloading or manually preparing the data in separate analysis tools. Details: <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/tutorial/explore.md#custom-widgets-for-advanced-searches'>Custom widgets</a>."
+        ].join(" "),
+        tags: ["dashboards", "plots", "visual analytics"]
+      },
+      {
+        name: "Publishing & DOI",
+        detail: [
+          "NOMAD supports publication of uploads and curated datasets. Published data becomes findable and accessible, while datasets can receive persistent DOIs for citation in papers and reuse by other researchers.",
+          "Embargo options allow data to be prepared for publication while delaying public access when needed by projects or publishers. Details: <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/tutorial/upload_publish.md#create-datasets-and-get-a-doi'>Datasets and DOI</a>."
+        ].join(" "),
+        tags: ["DOI", "publication", "FAIR"]
+      },
+      {
+        name: "Central database",
+        detail: [
+          "The central NOMAD installation acts as a public research data platform for materials science. It stores raw files, processed entries, metadata, and searchable scientific results from many different domains.",
+          "This makes NOMAD both a repository and an analysis-ready database for FAIR research data management across materials-science domains. Details: <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/index.md'>NOMAD documentation</a>."
+        ].join(" "),
+        tags: ["repository", "open data", "materials science"]
+      },
+      {
+        name: "Datasets",
+        detail: [
+          "Datasets allow users to group related entries from one or more uploads into curated collections. This is useful for organizing results belonging to a publication, project, benchmark, or shared scientific question.",
+          "Datasets are also the main object for DOI assignment and make curated result collections easier to cite, share, and revisit. Details: <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/reference/glossary.md#dataset'>Dataset</a>."
+        ].join(" "),
+        tags: ["datasets", "curation", "collections"]
+      },
+      {
+        name: "ELNs & integration",
+        detail: [
+          "NOMAD includes Electronic Lab Notebook entries that can be edited through structured forms and widgets. These ELNs are schema-based, so entered data is immediately structured and searchable.",
+          "The documentation also describes integration paths for external ELN systems such as elabFTW, Labfolder, Chemotion, and Openbis. Details: <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/howto/manage/gui/eln.md'>ELNs</a>, <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/tutorial/eln/built_in_templates.md'>Built-in ELN templates</a>."
+        ].join(" "),
+        tags: ["ELN", "lab data", "integration"]
+      },
+      {
+        name: "Workflows",
+        detail: [
+          "NOMAD can represent scientific workflows as connected tasks and results. Workflows may be simple, nested, or custom, and can reference data across entries and uploads.",
+          "Workflow graphs help users understand provenance and the relationship between processing steps, intermediate results, and final outputs. Details: <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/howto/manage/gui/workflows.md'>Custom workflows</a>, <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/explanation/workflows.md'>Workflow explanation</a>."
+        ].join(" "),
+        tags: ["workflows", "provenance", "task graph"]
+      },
+      {
+        name: "NOMAD Actions",
+        detail: [
+          "Actions provide a way to define executable workflows inside NOMAD. They are useful for long-running tasks, external API calls, advanced processing, or computations that need dedicated resources such as CPU or GPU queues.",
+          "This extends NOMAD from data management toward controlled automation for processing tasks that should be launched, tracked, and documented inside the platform. Details: <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/howto/plugins/types/actions.md'>Actions</a>."
+        ].join(" "),
+        tags: ["actions", "automation", "CPU/GPU"]
+      },
+      {
+        name: "NORTH & Jupyter",
+        detail: [
+          "NORTH, the NOMAD Remote Tools Hub, lets users run analysis tools in isolated browser-accessible containers. These tools can access NOMAD data directly, avoiding manual downloads of large datasets.",
+          "NORTH is especially useful for Jupyter notebooks, domain-specific analysis tools, and reproducible remote environments. Details: <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/explanation/north.md'>NORTH</a>, <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/howto/manage/gui/north.md'>Analyze data in NORTH</a>."
+        ].join(" "),
+        tags: ["NORTH", "JupyterHub", "containers"]
+      },
+      {
+        name: "Programmatic API",
+        detail: [
+          "NOMAD can be accessed programmatically through REST APIs, Python requests, curl, wget, and the NOMAD Python package. Users can search data, download files, inspect processed entries, update metadata, and publish data through scripts.",
+          "This supports automation and integration into research workflows where repeated search, metadata updates, publication, or download steps should be scripted. Details: <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/howto/manage/program/api.md'>API overview</a>."
+        ].join(" "),
+        tags: ["REST API", "Python", "automation"]
+      },
+      {
+        name: "Graph-style API",
+        detail: [
+          "The graph-style API provides flexible access to nested NOMAD data structures. Users can fetch selected parts of entries, follow references, access archive data, query schema definitions, and control the depth of returned data.",
+          "This is useful when working with complex structured datasets where only selected nested fields, references, or archive sections are needed. Details: <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/howto/manage/program/graph_api.md'>Graph-style API</a>."
+        ].join(" "),
+        tags: ["graph API", "nested data", "references"]
+      },
+      {
+        name: "Download data",
+        detail: [
+          "NOMAD supports downloading raw files, whole uploads, datasets, and selected processed data. This enables researchers to reuse published data, run external analyses, or archive project data locally.",
+          "Both GUI and programmatic download workflows are documented, supporting lightweight manual access as well as scripted data retrieval for analysis pipelines. Details: <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/howto/manage/program/download.md'>Download data</a>."
+        ].join(" "),
+        tags: ["download", "raw files", "reuse"]
+      },
+      {
+        name: "Processed data access",
+        detail: [
+          "Each parsed NOMAD entry has processed data that follows a defined schema. This structured data can be accessed through the GUI, APIs, or downloaded as JSON.",
+          "It allows users to work with normalized scientific information instead of manually interpreting raw files for every analysis task. Details: <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/howto/manage/program/archive_query.md'>Access processed data</a>."
+        ].join(" "),
+        tags: ["processed data", "archives", "JSON"]
+      },
+      {
+        name: "Authentication",
+        detail: [
+          "NOMAD supports authenticated access through Keycloak, personal access tokens, app tokens, scopes, and user groups. This enables secure private work, controlled sharing, and programmatic access to protected data.",
+          "Authentication is important for both central NOMAD and local Oasis deployments, especially when private data or automation tokens are involved. Details: <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/explanation/auth.md'>Authentication</a>, <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/howto/manage/program/auth.md'>Programmatic auth</a>."
+        ].join(" "),
+        tags: ["authentication", "tokens", "authorization"]
+      },
+      {
+        name: "Oasis & federation",
+        detail: [
+          "NOMAD Oasis allows institutions, labs, and companies to run their own NOMAD installation. This supports private data management, local infrastructure, custom plugins, and domain-specific workflows.",
+          "Oasis installations can also participate in federated data transfer using upload bundles between trusted NOMAD environments. Details: <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/explanation/oasis.md'>Federation and Oasis</a>, <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/howto/oasis/install.md'>Install Oasis</a>."
+        ].join(" "),
+        tags: ["Oasis", "self-hosting", "federation"]
+      },
+      {
+        name: "Plugin system",
+        detail: [
+          "NOMAD is extensible through plugins. Plugins can add parsers, schemas, apps, APIs, normalizers, actions, example data, and NORTH tools for NOMAD installations.",
+          "This makes NOMAD adaptable to new instruments, communities, file formats, and scientific workflows without changing the core platform. Details: <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/explanation/plugin_system.md'>Plugin system</a>, <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/howto/plugins/plugins.md'>Plugin guide</a>."
+        ].join(" "),
+        tags: ["plugins", "extensions", "customization"]
+      },
+      {
+        name: "Domain-specific apps",
+        detail: [
+          "NOMAD apps provide tailored interfaces for specific research domains or use cases. They can define specialized filters, dashboards, units, highlighted properties, and views that make domain data easier to understand.",
+          "This helps communities build focused portals on top of the same NOMAD infrastructure while keeping data management consistent. Details: <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/howto/plugins/types/apps.md'>Apps</a>, <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/reference/glossary.md#app'>App glossary</a>."
+        ].join(" "),
+        tags: ["apps", "domain views", "dashboards"]
+      },
+      {
+        name: "Domain support",
+        detail: [
+          "NOMAD supports a broad range of computational and experimental materials-science data. The documentation includes examples for DFT, many-body calculations, molecular dynamics, electron microscopy, photoemission, XPS, optical spectroscopy, atom probe tomography, scanning probe microscopy, NeXus/pynxtools workflows, catalysis, and NEB workflows. Details: <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/examples/overview.md'>Domain-specific examples</a>."
+        ].join(" "),
+        tags: ["simulations", "experiments", "materials science"]
+      }
+    ],
     nomadPlugins: [
       { name: "pynxtools",             desc: "NeXus converter & validator",       isPynx: true },
       { name: "nomad-simulations",     desc: "Computational simulation schemas",  detail: "Metainfo schemas for DFT, MD, and ab initio workflows. Defines quantities for basis sets, k-points, and geometry optimisation.", tags: ["DFT", "MD", "ab initio"] },
@@ -59,9 +225,10 @@ function openPanel(type, list, idx) {
   document.getElementById('p-badge').textContent = type;
   document.getElementById('p-title').textContent = item.name;
   const tags = item.tags || [];
+  const detail = item.detail || item.desc;
   document.getElementById('p-body').innerHTML =
     '<p class="psec">description</p>' +
-    '<p class="ptxt">' + (item.detail || item.desc) + '</p>' +
+    '<p class="ptxt">' + detail + '</p>' +
     (tags.length
       ? '<p class="psec">tags</p>' + tags.map(t => '<span class="ptag">' + t + '</span>').join('')
       : '');
