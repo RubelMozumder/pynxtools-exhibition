@@ -337,3 +337,174 @@ body {
   margin: 3px 3px 0 0; background: var(--surface2);
   border: 0.5px solid var(--border); color: var(--text-secondary);
 }
+
+/* panel steps list (rendered when item.steps exists) */
+.psteps {
+  margin: 0; padding-left: 18px;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.pstep { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+.pstep-name { font-weight: 600; color: var(--text-primary); display: block; margin-bottom: 2px; }
+.pstep-detail { font-size: 12px; color: var(--text-secondary); display: block; }
+.psubsteps {
+  margin: 6px 0 0 12px; padding-left: 14px;
+  display: flex; flex-direction: column; gap: 4px;
+}
+.psubsteps li { font-size: 12px; color: var(--text-muted); }
+
+/* ── EXPLORE ECOSYSTEM VIEW ── */
+#explore-content {
+  width: min(var(--diagram-width), calc(100% - 40px));
+  margin: 28px auto 60px;
+}
+
+.explore-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.explore-section {
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 22px 24px 26px;
+}
+
+.esec-header {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 0.5px solid var(--border);
+}
+.esec-title {
+  font-size: 14px; font-weight: 600; color: var(--pynx-accent); flex: 1;
+}
+
+/* ── STEPPER ── */
+.stepper { display: flex; flex-direction: column; gap: 0; }
+
+.step-row {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 8px 0;
+}
+.step-circle {
+  width: 26px; height: 26px; border-radius: 50%; flex-shrink: 0;
+  background: var(--pynx-bg-light); border: 1.5px solid var(--pynx-border);
+  color: var(--pynx-accent); font-size: 11px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  margin-top: 1px;
+}
+.step-circle-decision {
+  background: var(--surface2); border-color: var(--border-strong);
+  color: var(--text-secondary); font-size: 13px;
+}
+.step-label {
+  font-size: 13px; color: var(--text-primary); line-height: 1.5; flex: 1;
+}
+.step-label-wrap {
+  display: flex; align-items: center; gap: 8px; flex: 1; flex-wrap: wrap;
+}
+
+/* step card (YES path leaf) */
+.step-card {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--success-bg); border: 0.5px solid var(--success-border);
+  border-radius: var(--radius-md); padding: 7px 12px;
+  margin-top: 2px; transition: border-color 0.2s;
+}
+.step-card:hover { border-color: var(--success-text); }
+.step-card-name { font-size: 12px; font-weight: 600; color: var(--success-text); flex: 1; }
+
+/* ── BRANCHES ── */
+.step-branches {
+  margin-left: 13px; /* align with circle centre */
+  padding-left: 23px;
+  border-left: 1.5px solid var(--border);
+  display: flex; flex-direction: column; gap: 8px;
+  padding-top: 4px; padding-bottom: 4px;
+}
+.branch { display: flex; flex-direction: column; gap: 4px; padding: 10px 0 6px; }
+.branch + .branch { border-top: 0.5px dashed var(--border); }
+
+.branch-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; padding: 2px 8px; border-radius: 20px;
+  display: inline-block; margin-bottom: 6px; width: fit-content;
+}
+.branch-label-yes {
+  background: var(--success-bg); color: var(--success-text);
+  border: 0.5px solid var(--success-border);
+}
+.branch-label-no {
+  background: var(--info-bg); color: var(--info-text);
+  border: 0.5px solid var(--info-border);
+}
+
+/* ── SUB-STEPS (indented under a step) ── */
+.sub-steps {
+  margin-left: 36px;
+  padding-left: 16px;
+  border-left: 1px dashed var(--border);
+  display: flex; flex-direction: column; gap: 2px;
+  margin-top: 2px;
+}
+.sub-step {
+  display: flex; align-items: center; gap: 8px;
+  padding: 5px 0;
+}
+.sub-bullet {
+  font-size: 16px; color: var(--text-muted); line-height: 1; flex-shrink: 0;
+  width: 14px; text-align: center;
+}
+
+/* ── USAGES TWO-TRACK ── */
+.usages-tracks {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+@media (max-width: 600px) {
+  .usages-tracks { grid-template-columns: 1fr; }
+}
+
+.usage-track {
+  background: var(--surface2);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  display: flex; flex-direction: column; gap: 10px;
+}
+
+.track-header {
+  display: flex; align-items: center; gap: 8px;
+  padding-bottom: 10px;
+  border-bottom: 0.5px solid var(--border);
+}
+.track-title {
+  font-size: 13px; font-weight: 600; color: var(--pynx-accent); flex: 1;
+}
+.track-desc {
+  font-size: 12px; color: var(--text-secondary); line-height: 1.55;
+}
+
+.demo-card {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--surface); border: 0.5px solid var(--border);
+  border-radius: var(--radius-md); padding: 8px 12px;
+  transition: border-color 0.15s;
+}
+.demo-card:hover { border-color: var(--pynx-border); }
+.demo-name {
+  font-size: 12px; font-weight: 600; flex: 1; color: var(--text-primary);
+}
+
+/* explore ecosystem button on the pynxtools central box */
+.btn-explore-eco {
+  margin-top: 14px; width: 100%;
+  font-size: 11px; padding: 7px 0; border-radius: var(--radius-md); cursor: pointer;
+  background: var(--pynx-bg-light); border: 1px solid var(--pynx-border);
+  color: var(--pynx-accent); font-weight: 600; transition: filter 0.15s;
+  letter-spacing: 0.02em;
+}
+.btn-explore-eco:hover { filter: brightness(0.92); }

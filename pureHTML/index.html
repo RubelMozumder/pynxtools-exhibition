@@ -14,7 +14,9 @@
   <div class="breadcrumb">
     <span class="crumb active" id="crumb-nomad" onclick="showView('nomad')">NOMAD</span>
     <span class="crumb-sep" id="crumb-sep" style="display:none">›</span>
-    <span class="crumb" id="crumb-pyn" style="display:none">pynxtools</span>
+    <span class="crumb" id="crumb-pyn" style="display:none" onclick="showView('pynxtools')">pynxtools</span>
+    <span class="crumb-sep" id="crumb-sep2" style="display:none">›</span>
+    <span class="crumb" id="crumb-explore" style="display:none">explore ecosystem</span>
   </div>
   <button class="back-btn" id="back-btn" onclick="showView('nomad')">← back to NOMAD</button>
 </div>
@@ -35,6 +37,15 @@
     <p>This demo text introduces the pynxtools reader plugin diagram and can describe how conversion and validation connect to NOMAD.</p>
   </div>
   <div class="hub" id="hub-pynx"></div>
+</div>
+
+<!-- VIEW: EXPLORE ECOSYSTEM -->
+<div class="view" id="view-explore">
+  <div class="view-note">
+    <div class="view-note-label">explore pynxtools ecosystem</div>
+    <p>Pynxtools converts experimental raw files into standardised NeXus/HDF5 files. Use the paths below to find or build a plugin for your technique, then choose how to run it.</p>
+  </div>
+  <div id="explore-content"></div>
 </div>
 
 <!-- SIDE PANEL (shared, outside views) -->

@@ -215,6 +215,111 @@ const DATA = {
       { name: "pynxtools-mpes-nxs", desc: "NeXus MPES file tools",             detail: "Companion to pynxtools-mpes providing NeXus-native read/write utilities for pipelines that already produce .nxs files and need validation.", tags: ["MPES", ".nxs", "pipeline"] },
     ],
   },
+
+  /* ── EXPLORE PYNXTOOLS ECOSYSTEM ── */
+  explore: {
+    page: {
+      name: "Explore pynxtools ecosystem",
+      detail: "Pynxtools is a framework for converting experimental raw data files into standardised NeXus/HDF5 files. This page walks you through finding or building a plugin for your technique, and how to run plugins either as a standalone CLI tool or integrated with the NOMAD research data management system.",
+      tags: ["pynxtools", "NeXus", "HDF5", "FAIR", "FAIRmat"]
+    },
+    utilize: {
+      name: "Utilize or build a plugin",
+      detail: "The starting point is always the same: does a NeXus datamodel and a pynxtools plugin already exist for your experimental technique? Browse the FAIRmat-NFDI organisation on GitHub and search for pynxtools-<your-technique> to find out. The answer determines your path.",
+      tags: ["plugins", "NeXus", "FAIRmat-NFDI", "GitHub"],
+      yesPath: {
+        name: "Use an existing plugin",
+        detail: "A plugin already exists for your technique. Each FAIRmat plugin ships with full documentation covering its code design, CLI usage, ELN schema, config file format, and connection to NOMAD. For example, pynxtools-spm covers scanning probe microscopy data from Nanonis and Bruker instruments.",
+        tags: ["documentation", "CLI", "pynxtools-spm", "pynxtools-xps"],
+        link: "https://github.com/FAIRmat-NFDI"
+      },
+      noPath: {
+        name: "Build your own plugin",
+        detail: "No plugin exists for your technique yet. You will need to design a NeXus datamodel and build a reader plugin using the pynxtools-plugin-template repository as your scaffold.",
+        tags: ["custom plugin", "NeXus datamodel", "plugin-template"],
+        steps: [
+          {
+            name: "Write a NeXus datamodel",
+            detail: "Design application definitions and base classes for your experiment using NXDL (NeXus Definition Language). Application definitions specify the mandatory and optional groups, fields, and attributes a conformant NeXus file must contain for your technique.",
+            tags: ["NXDL", "application definition", "base class", "NeXus"]
+          },
+          {
+            name: "Build from pynxtools-template",
+            detail: "Clone the pynxtools-plugin-template as your starting point. It provides the plugin scaffold, Python entrypoint registration, and a test harness. You fill in four components: a file parser, an ELN schema, a config mapping file, and a call to the multiformat reader.",
+            tags: ["pynxtools-plugin-template", "scaffold", "entrypoint", "pytest"],
+            link: "https://github.com/FAIRmat-NFDI/pynxtools-plugin-template",
+            steps: [
+              {
+                name: "Write a file parser",
+                detail: "Implement a parser for your raw data format, or find an existing open-source parser. The parser should extract all metadata and data arrays from the vendor file into a Python dictionary that downstream code can address by key.",
+                tags: ["parser", "raw data", "Python", "vendor format"]
+              },
+              {
+                name: "Structure your ELN",
+                detail: "Design an Electronic Lab Notebook YAML schema that captures sample, instrument, and experiment metadata according to the NeXus datamodel you wrote in step ①. The ELN fills in fields that are not present in the raw vendor file.",
+                tags: ["ELN", "YAML", "metadata", "schema"]
+              },
+              {
+                name: "Write the config mapping file",
+                detail: "Create a JSON config file that maps raw data keys to pynxtools template paths. Each key is a slash-separated NeXus path such as /entry/instrument/detector/data and its value points to the corresponding field in your parsed data dictionary.",
+                tags: ["config", "JSON", "path mapping", "template keys"]
+              },
+              {
+                name: "Use the multiformat reader",
+                detail: "Invoke the MultiFormatReader provided by pynxtools to read and merge your raw data file, ELN YAML, and config JSON into the pynxtools template dictionary. The framework then serialises this merged dictionary into a conformant NeXus HDF5 file.",
+                tags: ["MultiFormatReader", "template", "HDF5", "merge"]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    usages: {
+      name: "Usages of pynxtools plugins",
+      detail: "Once a plugin is available, you can use it in two ways: as a standalone command-line tool running in any Python environment, or fully integrated into the NOMAD research data management system for storage, sharing, search, and publication.",
+      tags: ["CLI", "NOMAD", "workflow", "standalone"],
+      tracks: [
+        {
+          name: "Standalone CLI",
+          detail: "Install pynxtools and the plugin in a Python environment. Use the CLI command provided by the plugin to convert raw files to NeXus locally. You are responsible for tracking your raw files, ELN YAML, config JSON, and output NeXus file per experiment.",
+          tags: ["pip", "CLI", "Python environment", "local"],
+          demos: [
+            {
+              name: "pynxtools-spm (CLI)",
+              detail: "Convert Nanonis .sxm scanning probe microscopy data to NXsts via command line.\n\nInstall: pip install pynxtools-spm\n\nRun: dataconverter --reader spm --nxdl NXsts --input scan.sxm eln.yaml config.json --output scan.nxs",
+              tags: ["pynxtools-spm", "STM", "Nanonis", "CLI"],
+              link: "https://github.com/FAIRmat-NFDI/pynxtools-spm"
+            },
+            {
+              name: "pynxtools-xps (CLI)",
+              detail: "Convert SPECS or Kratos XPS spectra to NXxps via command line.\n\nInstall: pip install pynxtools-xps\n\nRun: dataconverter --reader xps --nxdl NXxps --input spectrum.xy eln.yaml config.json --output spectrum.nxs",
+              tags: ["pynxtools-xps", "XPS", "SPECS", "CLI"],
+              link: "https://github.com/FAIRmat-NFDI/pynxtools-xps"
+            }
+          ]
+        },
+        {
+          name: "With NOMAD RDM",
+          detail: "Include pynxtools and the relevant plugin in a NOMAD Oasis deployment. Upload raw files and an ELN through the NOMAD interface. NOMAD automatically detects the format, runs the plugin reader, creates structured NeXus entries, and makes them searchable, shareable, and citable with a DOI.",
+          tags: ["NOMAD Oasis", "upload", "automated parsing", "DOI", "FAIR"],
+          demos: [
+            {
+              name: "pynxtools-spm in NOMAD",
+              detail: "Upload Nanonis .sxm files to a NOMAD instance with pynxtools-spm installed. NOMAD automatically detects the SPM format, runs the reader, creates a structured NXsts entry, indexes it, and makes it searchable and shareable. Full tutorial in the pynxtools-spm documentation.",
+              tags: ["pynxtools-spm", "NOMAD", "NXsts", "automated upload"],
+              link: "https://github.com/FAIRmat-NFDI/pynxtools-spm"
+            },
+            {
+              name: "pynxtools-xps in NOMAD",
+              detail: "Upload XPS raw files to a NOMAD instance with pynxtools-xps installed. The plugin parses binding energy spectra into NXxps entries automatically. A full usage tutorial is available at the pynxtools-xps documentation site.",
+              tags: ["pynxtools-xps", "NOMAD", "NXxps", "tutorial"],
+              link: "https://fairmat-nfdi.github.io/pynxtools-xps/tutorial/nomad_usage.html"
+            }
+          ]
+        }
+      ]
+    }
+  },
 };
 
 /* ============================================================
@@ -225,13 +330,34 @@ function openPanel(type, list, idx) {
   document.getElementById('p-badge').textContent = type;
   document.getElementById('p-title').textContent = item.name;
   const tags = item.tags || [];
-  const detail = item.detail || item.desc;
-  document.getElementById('p-body').innerHTML =
-    '<p class="psec">description</p>' +
-    '<p class="ptxt">' + detail + '</p>' +
-    (tags.length
-      ? '<p class="psec">tags</p>' + tags.map(t => '<span class="ptag">' + t + '</span>').join('')
-      : '');
+  const detail = item.detail || item.desc || '';
+
+  let html = '<p class="psec">description</p><p class="ptxt">' + detail + '</p>';
+
+  if (item.steps && item.steps.length) {
+    html += '<p class="psec">steps</p><ol class="psteps">';
+    item.steps.forEach(s => {
+      html += '<li class="pstep"><span class="pstep-name">' + s.name + '</span>';
+      if (s.detail) html += '<span class="pstep-detail">' + s.detail + '</span>';
+      if (s.steps && s.steps.length) {
+        html += '<ul class="psubsteps">';
+        s.steps.forEach(ss => { html += '<li>' + ss.name + '</li>'; });
+        html += '</ul>';
+      }
+      html += '</li>';
+    });
+    html += '</ol>';
+  }
+
+  if (item.link) {
+    html += '<p class="psec">link</p><p class="ptxt"><a href="' + item.link + '" target="_blank" rel="noopener noreferrer">' + item.link + '</a></p>';
+  }
+
+  if (tags.length) {
+    html += '<p class="psec">tags</p>' + tags.map(t => '<span class="ptag">' + t + '</span>').join('');
+  }
+
+  document.getElementById('p-body').innerHTML = html;
   document.getElementById('side-panel').classList.add('open');
   document.getElementById('panel-overlay').classList.add('open');
 }
@@ -306,7 +432,7 @@ function makePluginCard(p, list, idx) {
   return card;
 }
 
-function makeCentralBox(cls, title, subtitle, features, featureList, standalone) {
+function makeCentralBox(cls, title, subtitle, features, featureList, standalone, onExplore) {
   const box = document.createElement('div');
   box.className = 'central-box ' + cls;
 
@@ -344,14 +470,13 @@ function makeCentralBox(cls, title, subtitle, features, featureList, standalone)
   });
   box.appendChild(chips);
 
-  // plugs where each side's rail taps into the box (always at the box's vertical
-  // center, which lines up with the rail midpoint)
-  // ['left', 'right'].forEach(side => {
-  //   const plug = document.createElement('div');
-  //   plug.className = 'box-plug ' + side;
-  //   // plug.textContent = '⚡';
-  //   box.appendChild(plug);
-  // });
+  if (onExplore) {
+    const exploreBtn = document.createElement('button');
+    exploreBtn.className = 'btn-explore-eco';
+    exploreBtn.textContent = 'explore ecosystem →';
+    exploreBtn.onclick = onExplore;
+    box.appendChild(exploreBtn);
+  }
 
   return box;
 }
@@ -419,8 +544,181 @@ function buildNomad() {
 function buildPynx() {
   const plugins = DATA.pynxtools.pynxPlugins;
   const mid = Math.ceil(plugins.length / 2);
-  const central = makeCentralBox(DATA.pynxtools.className, DATA.pynxtools.title, DATA.pynxtools.subtitle, DATA.pynxtools.pynxFeatures, DATA.pynxtools.pynxFeatures, true);
+  const central = makeCentralBox(DATA.pynxtools.className, DATA.pynxtools.title, DATA.pynxtools.subtitle, DATA.pynxtools.pynxFeatures, DATA.pynxtools.pynxFeatures, true, () => showView('explore'));
   buildHub('hub-pynx', central, plugins.slice(0, mid), plugins.slice(mid), plugins, DATA.pynxtools.title + ' plugin interface');
+}
+
+/* ── helper: small ⓘ button that opens panel with a single item ── */
+function infoBtn(item, type) {
+  const btn = document.createElement('button');
+  btn.className = 'btn-info';
+  btn.textContent = 'ⓘ info';
+  btn.onclick = () => openPanel(type, [item], 0);
+  return btn;
+}
+
+/* ── EXPLORE ECOSYSTEM VIEW ── */
+function buildExplore() {
+  const content = document.getElementById('explore-content');
+  content.innerHTML = '';
+
+  const layout = document.createElement('div');
+  layout.className = 'explore-layout';
+
+  /* ── SECTION A: Utilize / Build stepper ── */
+  const sectionA = document.createElement('div');
+  sectionA.className = 'explore-section';
+
+  const secAHead = document.createElement('div');
+  secAHead.className = 'esec-header';
+  const secATitle = document.createElement('span');
+  secATitle.className = 'esec-title';
+  secATitle.textContent = DATA.explore.utilize.name;
+  secAHead.appendChild(secATitle);
+  secAHead.appendChild(infoBtn(DATA.explore.utilize, 'section'));
+  sectionA.appendChild(secAHead);
+
+  const stepper = document.createElement('div');
+  stepper.className = 'stepper';
+
+  /* decision node */
+  const decideRow = document.createElement('div');
+  decideRow.className = 'step-row';
+  const decideCircle = document.createElement('span');
+  decideCircle.className = 'step-circle step-circle-decision';
+  decideCircle.textContent = '?';
+  const decideLabel = document.createElement('span');
+  decideLabel.className = 'step-label';
+  decideLabel.textContent = 'Plugin already available for your technique?';
+  decideRow.appendChild(decideCircle);
+  decideRow.appendChild(decideLabel);
+  stepper.appendChild(decideRow);
+
+  /* branch wrapper */
+  const branches = document.createElement('div');
+  branches.className = 'step-branches';
+
+  /* YES branch */
+  const yesBranch = document.createElement('div');
+  yesBranch.className = 'branch branch-yes';
+  const yesTag = document.createElement('span');
+  yesTag.className = 'branch-label branch-label-yes';
+  yesTag.textContent = '✓ YES';
+  yesBranch.appendChild(yesTag);
+  const yesCard = document.createElement('div');
+  yesCard.className = 'step-card';
+  const yesCardName = document.createElement('span');
+  yesCardName.className = 'step-card-name';
+  yesCardName.textContent = DATA.explore.utilize.yesPath.name;
+  yesCard.appendChild(yesCardName);
+  yesCard.appendChild(infoBtn(DATA.explore.utilize.yesPath, 'step'));
+  yesBranch.appendChild(yesCard);
+  branches.appendChild(yesBranch);
+
+  /* NO branch */
+  const noBranch = document.createElement('div');
+  noBranch.className = 'branch branch-no';
+  const noTag = document.createElement('span');
+  noTag.className = 'branch-label branch-label-no';
+  noTag.textContent = '✗ NO';
+  noBranch.appendChild(noTag);
+
+  DATA.explore.utilize.noPath.steps.forEach((step, si) => {
+    const stepNum = ['A', 'B'][si];
+    const stepRow = document.createElement('div');
+    stepRow.className = 'step-row';
+    const circle = document.createElement('span');
+    circle.className = 'step-circle step-circle-decision';
+    circle.textContent = stepNum;
+    const labelWrap = document.createElement('span');
+    labelWrap.className = 'step-label-wrap';
+    const lbl = document.createElement('span');
+    lbl.className = 'step-label';
+    lbl.textContent = step.name;
+    labelWrap.appendChild(lbl);
+    labelWrap.appendChild(infoBtn(step, 'step'));
+    stepRow.appendChild(circle);
+    stepRow.appendChild(labelWrap);
+    noBranch.appendChild(stepRow);
+
+    if (step.steps && step.steps.length) {
+      const subWrap = document.createElement('div');
+      subWrap.className = 'sub-steps';
+      step.steps.forEach(sub => {
+        const subRow = document.createElement('div');
+        subRow.className = 'sub-step';
+        const bullet = document.createElement('span');
+        bullet.className = 'sub-bullet';
+        bullet.textContent = '·';
+        const subLabel = document.createElement('span');
+        subLabel.className = 'step-label';
+        subLabel.textContent = sub.name;
+        subRow.appendChild(bullet);
+        subRow.appendChild(subLabel);
+        subRow.appendChild(infoBtn(sub, 'step'));
+        subWrap.appendChild(subRow);
+      });
+      noBranch.appendChild(subWrap);
+    }
+  });
+
+  branches.appendChild(noBranch);
+  stepper.appendChild(branches);
+  sectionA.appendChild(stepper);
+  layout.appendChild(sectionA);
+
+  /* ── SECTION B: Usages two-track ── */
+  const sectionB = document.createElement('div');
+  sectionB.className = 'explore-section';
+
+  const secBHead = document.createElement('div');
+  secBHead.className = 'esec-header';
+  const secBTitle = document.createElement('span');
+  secBTitle.className = 'esec-title';
+  secBTitle.textContent = DATA.explore.usages.name;
+  secBHead.appendChild(secBTitle);
+  secBHead.appendChild(infoBtn(DATA.explore.usages, 'section'));
+  sectionB.appendChild(secBHead);
+
+  const tracks = document.createElement('div');
+  tracks.className = 'usages-tracks';
+
+  DATA.explore.usages.tracks.forEach(track => {
+    const trackEl = document.createElement('div');
+    trackEl.className = 'usage-track';
+
+    const trackHead = document.createElement('div');
+    trackHead.className = 'track-header';
+    const trackTitle = document.createElement('span');
+    trackTitle.className = 'track-title';
+    trackTitle.textContent = track.name;
+    trackHead.appendChild(trackTitle);
+    trackHead.appendChild(infoBtn(track, 'usage'));
+    trackEl.appendChild(trackHead);
+
+    const trackDesc = document.createElement('p');
+    trackDesc.className = 'track-desc';
+    trackDesc.textContent = track.detail;
+    trackEl.appendChild(trackDesc);
+
+    track.demos.forEach(demo => {
+      const demoCard = document.createElement('div');
+      demoCard.className = 'demo-card';
+      const demoName = document.createElement('span');
+      demoName.className = 'demo-name';
+      demoName.textContent = demo.name;
+      demoCard.appendChild(demoName);
+      demoCard.appendChild(infoBtn(demo, 'demo'));
+      trackEl.appendChild(demoCard);
+    });
+
+    tracks.appendChild(trackEl);
+  });
+
+  sectionB.appendChild(tracks);
+  layout.appendChild(sectionB);
+
+  content.appendChild(layout);
 }
 
 /* ============================================================
@@ -429,20 +727,33 @@ function buildPynx() {
 function showView(name) {
   closePanel();
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-  document.getElementById(name === 'nomad' ? 'view-nomad' : 'view-pynxtools').classList.add('active');
+  const viewMap = { nomad: 'view-nomad', pynxtools: 'view-pynxtools', explore: 'view-explore' };
+  document.getElementById(viewMap[name]).classList.add('active');
 
-  const isPynx = name === 'pynxtools';
-  document.getElementById('crumb-sep').style.display    = isPynx ? 'inline' : 'none';
-  document.getElementById('crumb-pyn').style.display    = isPynx ? 'inline' : 'none';
+  const isNomad   = name === 'nomad';
+  const isPynx    = name === 'pynxtools';
+  const isExplore = name === 'explore';
+
+  document.getElementById('crumb-sep').style.display     = (isPynx || isExplore) ? 'inline' : 'none';
+  document.getElementById('crumb-pyn').style.display     = (isPynx || isExplore) ? 'inline' : 'none';
+  document.getElementById('crumb-sep2').style.display    = isExplore ? 'inline' : 'none';
+  document.getElementById('crumb-explore').style.display = isExplore ? 'inline' : 'none';
+
+  document.getElementById('crumb-nomad').classList.toggle('active', isNomad);
   document.getElementById('crumb-pyn').classList.toggle('active', isPynx);
-  document.getElementById('crumb-nomad').classList.toggle('active', !isPynx);
-  document.getElementById('back-btn').classList.toggle('visible', isPynx);
-  requestAnimationFrame(equalizeVisibleSatelliteColumns);
+  document.getElementById('crumb-explore').classList.toggle('active', isExplore);
+
+  const backBtn = document.getElementById('back-btn');
+  backBtn.classList.toggle('visible', isPynx || isExplore);
+  backBtn.onclick = isExplore ? () => showView('pynxtools') : () => showView('nomad');
+
+  if (!isExplore) requestAnimationFrame(equalizeVisibleSatelliteColumns);
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 /* ── INIT ── */
 buildNomad();
 buildPynx();
+buildExplore();
 requestAnimationFrame(equalizeVisibleSatelliteColumns);
 window.addEventListener('resize', equalizeVisibleSatelliteColumns);
