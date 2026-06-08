@@ -8,9 +8,9 @@
   --nomad-border:      #185FA5;
 
   /* pynxtools */
-  --pynx-accent:       #3B6D11;
-  --pynx-bg-light:     #EAF3DE;
-  --pynx-border:       #3B6D11;
+  --pynx-accent:       #55af31;
+  --pynx-bg-light:     #EBF6E2;
+  --pynx-border:       #55af31;
 
   /* global light mode */
   --bg:                #f5f5f3;
@@ -24,20 +24,24 @@
   --info-bg:           #E6F1FB;
   --info-border:       #B5D4F4;
   --info-text:         #185FA5;
-  --success-bg:        #EAF3DE;
-  --success-border:    #C0DD97;
-  --success-text:      #3B6D11;
+  --success-bg:        #EBF6E2;
+  --success-border:    #B5E191;
+  --success-text:      #55af31;
   --panel-bg:          #ffffff;
   --overlay-bg:        rgba(0,0,0,0.2);
+  --link-color:        #185FA5;
+  --link-hover-color:  #0D3F70;
   --font: system-ui, -apple-system, 'Segoe UI', sans-serif;
   --radius-md: 8px;
   --radius-lg: 12px;
-  --central-box-width: 270px;
+  --central-box-width:       270px;   /* pynxtools view */
+  --nomad-central-box-width: 324px;   /* NOMAD view — 20% wider to fit 22 feature chips */
   --plugin-card-width: 175px;
   --connector-width: 36px;
   --rail-width: 30px;
   --satellite-col-width: calc(var(--plugin-card-width) + var(--connector-width) + var(--rail-width));
-  --diagram-width: calc((var(--satellite-col-width) * 2) + var(--central-box-width));
+  --diagram-width:       calc((var(--satellite-col-width) * 2) + var(--central-box-width));
+  --nomad-diagram-width: calc((var(--satellite-col-width) * 2) + var(--nomad-central-box-width));
 }
 
 @media (prefers-color-scheme: dark) {
@@ -54,13 +58,16 @@
     --info-border:     #0C447C;
     --info-text:       #85B7EB;
     --success-bg:      #173404;
-    --success-border:  #27500A;
-    --success-text:    #97C459;
+    --success-border:  #2E6009;
+    --success-text:    #78CC4A;
     --panel-bg:        #1a1a17;
+    --link-color:      #78C1F5;
+    --link-hover-color: #A5D7FF;
     --nomad-accent:    #378ADD;
-    --pynx-accent:     #639922;
     --nomad-border:    #378ADD;
-    --pynx-border:     #639922;
+    --pynx-accent:     #78CC4A;
+    --pynx-border:     #78CC4A;
+    --pynx-bg-light:   #1A3D08;
   }
 }
 
@@ -107,9 +114,11 @@ body {
   margin: 28px auto 0;
   padding: 14px 16px;
   background: var(--surface);
-  /* background: var(--success-bg); */
   border: 0.5px solid var(--border);
   border-radius: var(--radius-md);
+}
+#view-nomad .view-note {
+  width: min(var(--nomad-diagram-width), calc(100% - 40px));
 }
 .view-note-label {
   font-size: 10px; color: var(--text-muted); letter-spacing: 0.08em;
@@ -140,7 +149,10 @@ body {
   position: relative;
   z-index: 2;
 }
-.central-box.nomad { border: 1.5px solid var(--nomad-border); }
+.central-box.nomad {
+  border: 1.5px solid var(--nomad-border);
+  width: var(--nomad-central-box-width);
+}
 .central-box.pynx  { border: 1.5px solid var(--pynx-border); }
 
 /* plug where each rail taps into the box — sits at the box's vertical center,
@@ -169,6 +181,13 @@ body {
   text-transform: uppercase; margin-bottom: 8px;
 }
 .chips { display: flex; flex-wrap: wrap; gap: 5px; }
+/* Prevent the NOMAD box (22 features) from overflowing satellite columns */
+.nomad .chips {
+  max-height: 260px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-strong) transparent;
+}
 .chip {
   font-size: 11px; padding: 4px 10px; border-radius: 20px; cursor: pointer;
   background: var(--surface2); border: 0.5px solid var(--border);
@@ -332,6 +351,19 @@ body {
 }
 .psec:first-child { margin-top: 0; }
 .ptxt { font-size: 13px; color: var(--text-secondary); line-height: 1.65; }
+.ptxt a,
+.pstep-detail a,
+.track-desc a {
+  color: var(--link-color);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+.ptxt a:hover,
+.pstep-detail a:hover,
+.track-desc a:hover {
+  color: var(--link-hover-color);
+}
 .ptag {
   display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px;
   margin: 3px 3px 0 0; background: var(--surface2);
