@@ -250,56 +250,124 @@ const DATA = {
       {
         name: "NeXus datamodel",
         detail: [
-          "pynxtools embeds the official NeXus definitions repository as a Git submodule — every NXDL application definition and base class is versioned and available at import time.",
-          "Within FAIRmat, new application definitions are actively developed for experimental techniques in materials science, extending the NeXus standard to cover SPM, XPS, electron microscopy, atom probe, Raman, ellipsometry, and more.",
-          "Learn more: <a href='https://fairmat-nfdi.github.io/pynxtools/learn/pynxtools/nexus-definitions.html' target='_blank' rel='noopener noreferrer'>NeXus definitions in pynxtools</a>, <a href='https://fairmat-nfdi.github.io/nexus_definitions/' target='_blank' rel='noopener noreferrer'>NeXus-FAIRmat definitions</a>."
-        ].join(" "),
-        tags: ["NeXus", "NXDL", "submodule", "FAIRmat"]
+          "NeXus is an HDF5-based scientific data standard: a semantic layer that defines <em>how</em> experimental data must be named, structured, and documented inside a file.",
+          "<br><br>",
+          "<strong>Two definition types</strong><br>",
+          "&#8226; <strong>Base classes</strong> — reusable building blocks (e.g. NXdetector, NXsample) that define the <em>complete</em> vocabulary for a component.<br>",
+          "&#8226; <strong>Application definitions</strong> — technique-specific schemas that define the <em>minimum required</em> set of fields for a given experiment.",
+          "<br><br>",
+          "<strong>NXDL</strong> — NeXus Definition Language: the XML grammar used to write both base classes and application definitions. It encodes field names, data types, physical units, and optionality (required / recommended / optional).",
+          "<br><br>",
+          "<strong>FAIRmat contributions</strong> — actively extended to cover materials-science techniques:<br>",
+          "SPM &bull; XPS &bull; MPES/ARPES &bull; Electron Microscopy &bull; Atom Probe &bull; Ellipsometry &bull; XRD &bull; Raman",
+          "<br><br>",
+          "The definitions are pinned as a <strong>versioned Git submodule</strong> inside pynxtools, so every conversion is tied to an exact schema version and is fully reproducible.",
+          "<br><br>",
+          "Learn more: <a href='https://fairmat-nfdi.github.io/pynxtools/learn/pynxtools/nexus-definitions.html' target='_blank' rel='noopener noreferrer'>NeXus definitions in pynxtools</a> &nbsp;|&nbsp; <a href='https://fairmat-nfdi.github.io/nexus_definitions/' target='_blank' rel='noopener noreferrer'>NeXus-FAIRmat definitions</a>."
+        ].join(""),
+        tags: ["NeXus", "NXDL", "base class", "application definition", "FAIRmat"]
       },
       {
         name: "Dataconverter CLI",
         detail: [
-          "The <code>dataconverter</code> command-line tool is the main entry point for converting raw experimental data to NeXus/HDF5 files.",
-          "It accepts a reader name, an NXDL application definition, one or more input files (raw data, ELN YAML, config JSON), and an output path. All installed reader plugins are auto-discovered through Python entrypoints.",
-          "Learn more: <a href='https://fairmat-nfdi.github.io/pynxtools/learn/pynxtools/dataconverter-and-readers.html' target='_blank' rel='noopener noreferrer'>Data conversion in pynxtools</a>, <a href='https://fairmat-nfdi.github.io/pynxtools/reference/cli-api.html' target='_blank' rel='noopener noreferrer'>CLI & API reference</a>."
-        ].join(" "),
-        tags: ["CLI", "dataconverter", "HDF5", "entrypoints"]
+          "<strong>pynx convert</strong> — the single entry point for converting raw experimental data into NeXus/HDF5 files.",
+          "<br><br>",
+          "<strong>Typical command</strong><br>",
+          "<code>pynx convert --reader &lt;reader&gt; --nxdl &lt;NXdef&gt; data.raw eln.yaml --output out.nxs</code>",
+          "<br><br>",
+          "<strong>Key options</strong><br>",
+          "&#8226; <code>--reader</code> — name of the technique reader (auto-discovered from installed plugins)<br>",
+          "&#8226; <code>--nxdl</code> — NeXus application definition to target (e.g. <code>NXxps</code>, <code>NXsts</code>)<br>",
+          "&#8226; <code>--params-file</code> — pass all arguments via a YAML config file<br>",
+          "&#8226; <code>generate-template</code> — print all fillable NeXus paths for a given definition<br>",
+          "&#8226; <code>get-readers</code> — list all readers available in the current environment",
+          "<br><br>",
+          "Validation runs automatically before writing. Legacy <code>dataconverter</code> alias still works but is deprecated.",
+          "<br><br>",
+          "Learn more: <a href='https://fairmat-nfdi.github.io/pynxtools/learn/pynxtools/dataconverter-and-readers.html' target='_blank' rel='noopener noreferrer'>Data conversion in pynxtools</a> &nbsp;|&nbsp; <a href='https://fairmat-nfdi.github.io/pynxtools/reference/cli-api.html' target='_blank' rel='noopener noreferrer'>CLI reference</a>."
+        ].join(""),
+        tags: ["CLI", "pynx convert", "HDF5", "reader", "template"]
       },
       {
         name: "Validator",
         detail: [
-          "The built-in validator checks a parsed HDF5/NeXus file against its application definition. It verifies that required groups and fields exist, data types match NXDL specifications, and physical units are compatible.",
-          "Validation can be run standalone or as part of a conversion pipeline to ensure output files are fully conformant.",
-          "Learn more: <a href='https://fairmat-nfdi.github.io/pynxtools/how-tos/pynxtools/validate-nexus-files.html' target='_blank' rel='noopener noreferrer'>Validation how-to guide</a>, <a href='https://fairmat-nfdi.github.io/pynxtools/learn/pynxtools/nexus-validation.html' target='_blank' rel='noopener noreferrer'>Validation explanation</a>."
-        ].join(" "),
-        tags: ["NXDL", "dtype", "units", "HDF5"]
+          "Checks a NeXus/HDF5 file against its declared application definition. Runs automatically during conversion and is also available as a standalone tool.",
+          "<br><br>",
+          "<strong>What is checked</strong><br>",
+          "&#8226; <strong>Required concepts</strong> — warns if mandatory groups, fields, or attributes are missing<br>",
+          "&#8226; <strong>Data types</strong> — values are checked against NXDL-specified NeXus types<br>",
+          "&#8226; <strong>Physical units</strong> — unit dimensionality validated against NeXus unit categories via <code>pint</code><br>",
+          "&#8226; <strong>Enumerations</strong> — warns for closed enums, info for open enums<br>",
+          "&#8226; <strong>NXdata</strong> — signal and axes dimensionality checked across v1/v2/v3 plotting conventions<br>",
+          "&#8226; <strong>HDF5 links</strong> — resolved and validated; broken links reported<br>",
+          "&#8226; <strong>Symbol consistency</strong> — shared dimension symbols verified across fields",
+          "<br><br>",
+          "<strong>Standalone commands</strong><br>",
+          "<code>pynx validate myfile.nxs</code> — validate an existing NeXus file<br>",
+          "<code>pynx read myfile.nxs</code> — annotate every node with its NXDL documentation",
+          "<br><br>",
+          "Learn more: <a href='https://fairmat-nfdi.github.io/pynxtools/learn/pynxtools/nexus-validation.html' target='_blank' rel='noopener noreferrer'>Validation in pynxtools</a> &nbsp;|&nbsp; <a href='https://fairmat-nfdi.github.io/pynxtools/how-tos/pynxtools/validate-nexus-files.html' target='_blank' rel='noopener noreferrer'>How-to guide</a>."
+        ].join(""),
+        tags: ["validation", "required fields", "units", "NXdata", "pynx validate"]
       },
       {
         name: "MultiFormatReader",
         detail: [
-          "The <code>MultiFormatReader</code> is a superclass provided by pynxtools that plugin developers subclass to build their readers. It handles merging data from multiple input sources — raw vendor file, ELN YAML, and config JSON — into the pynxtools template dictionary.",
-          "The framework then serializes the merged dictionary into a conformant NeXus HDF5 file, so plugin authors only need to implement the format-specific parsing logic.",
-          "Learn more: <a href='https://fairmat-nfdi.github.io/pynxtools/learn/pynxtools/multi-format-reader.html' target='_blank' rel='noopener noreferrer'>MultiFormatReader explanation</a>, <a href='https://fairmat-nfdi.github.io/pynxtools/how-tos/pynxtools/use-multi-format-reader.html' target='_blank' rel='noopener noreferrer'>How to use MultiFormatReader</a>."
-        ].join(" "),
-        tags: [".nxs", "HDF5", "ELN", "YAML", "merge"]
+          "The recommended superclass for building pynxtools reader plugins. It manages multi-source merging so plugin authors only implement the format-specific parsing logic.",
+          "<br><br>",
+          "<strong>Three input sources merged automatically</strong><br>",
+          "&#8226; <strong>Raw vendor file</strong> — instrument output in any proprietary format<br>",
+          "&#8226; <strong>ELN YAML</strong> — sample &amp; experiment metadata from the lab notebook<br>",
+          "&#8226; <strong>Config JSON</strong> — maps data keys to NeXus paths using <code>@attrs</code>, <code>@data</code>, <code>@eln</code> prefixes",
+          "<br><br>",
+          "<strong>What the framework handles for you</strong><br>",
+          "&#8226; File ordering and overwrite priority<br>",
+          "&#8226; Template population and config-to-path resolution<br>",
+          "&#8226; Wildcard notation for repeated fields (e.g. multiple detectors)<br>",
+          "&#8226; Post-processing hook for derived or dynamic entries<br>",
+          "&#8226; Serialization into a validated NeXus/HDF5 file",
+          "<br><br>",
+          "Learn more: <a href='https://fairmat-nfdi.github.io/pynxtools/learn/pynxtools/multi-format-reader.html' target='_blank' rel='noopener noreferrer'>MultiFormatReader explanation</a> &nbsp;|&nbsp; <a href='https://fairmat-nfdi.github.io/pynxtools/how-tos/pynxtools/use-multi-format-reader.html' target='_blank' rel='noopener noreferrer'>How-to guide</a>."
+        ].join(""),
+        tags: ["ELN", "YAML", "config JSON", "template", "merge", "plugin"]
       },
       {
         name: "Test framework",
         detail: [
-          "A pytest-based test harness that every reader plugin can import. It provides fixtures for loading reference files, assertions for NeXus tree structure, and round-trip validation helpers.",
-          "This standardizes testing across all FAIRmat-supported plugins and makes it easy to add regression tests when new vendor formats are supported.",
+          "A shared pytest-based harness from <code>pynxtools.testing</code> that any plugin imports to test its reader integration — no knowledge of pynxtools internals required.",
+          "<br><br>",
+          "<strong>Two core test steps</strong><br>",
+          "&#8226; <code>test.convert_to_nexus()</code> — runs the full conversion pipeline and checks for errors<br>",
+          "&#8226; <code>test.check_reproducibility_of_nexus()</code> — compares output against a stored reference file",
+          "<br><br>",
+          "<strong>What it covers</strong><br>",
+          "&#8226; Plugin integration with pynxtools core<br>",
+          "&#8226; Round-trip conversion correctness<br>",
+          "&#8226; Regression detection when vendor formats or definitions change<br>",
+          "&#8226; CI/CD-ready: runs in both the plugin repo and pynxtools core CI",
+          "<br><br>",
           "Learn more: <a href='https://fairmat-nfdi.github.io/pynxtools/how-tos/pynxtools/using-pynxtools-test-framework.html' target='_blank' rel='noopener noreferrer'>Using the pynxtools test framework</a>."
-        ].join(" "),
-        tags: ["pytest", "fixtures", "CI", "regression"]
+        ].join(""),
+        tags: ["pytest", "ReaderTest", "CI/CD", "regression", "reproducibility"]
       },
       {
         name: "Plugin entrypoint",
         detail: [
-          "All reader plugins register a common Python entrypoint. NOMAD and user code can discover and invoke any installed reader with a single unified API call — no manual import or configuration needed.",
-          "This makes pynxtools a true plugin framework: adding a new technique is as simple as installing a new Python package.",
+          "Plugins register via a standard Python entrypoint in <code>pyproject.toml</code> — once installed, pynxtools and NOMAD discover and invoke them automatically.",
+          "<br><br>",
+          "<strong>Register a reader</strong><br>",
+          "<code>[project.entry-points.&quot;pynxtools.reader&quot;]</code><br>",
+          "<code>myreader = &quot;pynxtools_myplugin.reader:MyReader&quot;</code>",
+          "<br><br>",
+          "<strong>What this gives you</strong><br>",
+          "&#8226; Auto-discovery by <code>pynx convert</code> and <code>pynx convert get-readers</code><br>",
+          "&#8226; Zero-config NOMAD integration — NOMAD picks up the reader on upload<br>",
+          "&#8226; Multiple readers per package are supported (one entrypoint each)<br>",
+          "&#8226; Install with <code>pip install pynxtools-myplugin</code> — no code changes needed",
+          "<br><br>",
           "Learn more: <a href='https://fairmat-nfdi.github.io/pynxtools/how-tos/pynxtools/build-a-plugin.html' target='_blank' rel='noopener noreferrer'>Build a pynxtools plugin</a>."
-        ].join(" "),
-        tags: ["entrypoint", "API", "discovery", "pip"]
+        ].join(""),
+        tags: ["entrypoint", "pyproject.toml", "auto-discovery", "pip", "NOMAD"]
       },
     ],
     pynxPlugins: [
@@ -308,91 +376,188 @@ const DATA = {
         desc: "Scanning probe microscopy",
         isPynxSpm: true,
         detail: [
-          "Converts raw data from Scanning Probe Microscopy (SPM) experiments — including Scanning Tunneling Microscopy (STM), Scanning Tunneling Spectroscopy (STS), and Atomic Force Microscopy (AFM) — into standardized NeXus files.",
-          "Supports Nanonis .sxm/.dat files (the dominant SPM control software) and Bruker .spm format. Outputs comply with FAIRmat-developed application definitions: <a href='https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/NXspm.html' target='_blank' rel='noopener noreferrer'>NXspm</a> (root), <a href='https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/NXstm.html' target='_blank' rel='noopener noreferrer'>NXstm</a>, <a href='https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/NXsts.html' target='_blank' rel='noopener noreferrer'>NXsts</a>, and <a href='https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/NXafm.html' target='_blank' rel='noopener noreferrer'>NXafm</a>.",
-          "Full documentation: <a href='https://fairmat-nfdi.github.io/pynxtools-spm/' target='_blank' rel='noopener noreferrer'>pynxtools-spm docs</a> | <a href='https://github.com/FAIRmat-NFDI/pynxtools-spm' target='_blank' rel='noopener noreferrer'>GitHub</a>."
-        ].join(" "),
-        tags: ["STM", "AFM", "STS", "Nanonis", "NXspm", "NXstm", "NXsts", "NXafm"]
+          "Converts STM, STS, and AFM raw data into NeXus files compliant with FAIRmat-developed application definitions.",
+          "<br><br>",
+          "<strong>Sub-techniques &amp; NeXus definitions</strong><br>",
+          "&#8226; <strong>STM</strong> — Scanning Tunneling Microscopy &rarr; <a href='https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/NXstm.html' target='_blank' rel='noopener noreferrer'>NXstm</a><br>",
+          "&#8226; <strong>STS</strong> — Scanning Tunneling Spectroscopy &rarr; <a href='https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/NXsts.html' target='_blank' rel='noopener noreferrer'>NXsts</a><br>",
+          "&#8226; <strong>AFM</strong> — Atomic Force Microscopy &rarr; <a href='https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/NXafm.html' target='_blank' rel='noopener noreferrer'>NXafm</a>",
+          "<br><br>",
+          "<strong>Vendors &amp; file formats</strong><br>",
+          "&#8226; <strong>Nanonis (SPECS)</strong> — <code>.sxm</code> (STM/AFM images), <code>.dat</code> (STS spectra)<br>",
+          "&#8226; <strong>ScientaOmicron</strong> — <code>.sm4</code> (STM images)",
+          "<br><br>",
+          "<strong>Install:</strong> <code>pip install pynxtools[spm]</code><br>",
+          "Docs: <a href='https://fairmat-nfdi.github.io/pynxtools-spm/' target='_blank' rel='noopener noreferrer'>pynxtools-spm</a> &nbsp;|&nbsp; <a href='https://github.com/FAIRmat-NFDI/pynxtools-spm' target='_blank' rel='noopener noreferrer'>GitHub</a>"
+        ].join(""),
+        tags: ["STM", "STS", "AFM", "Nanonis", "ScientaOmicron", "NXstm", "NXsts", "NXafm"]
       },
       {
         name: "pynxtools-xps",
         desc: "X-ray photoelectron spectroscopy",
         detail: [
-          "Free and open-source data converter for X-ray Photoelectron Spectroscopy (XPS). Reads heterogeneous vendor formats — including SPECS, Kratos, ULVAC-PHI, and others — and produces standardized NeXus files compliant with <a href='https://fairmat-nfdi.github.io/nexus_definitions/classes/applications/NXxps.html' target='_blank' rel='noopener noreferrer'>NXxps</a> and <a href='https://fairmat-nfdi.github.io/nexus_definitions/classes/applications/NXmpes.html' target='_blank' rel='noopener noreferrer'>NXmpes</a>.",
-          "Handles binding energy calibration, survey/region scan structures, and charge referencing. Works both as a standalone converter and as a NOMAD plugin.",
-          "Full documentation: <a href='https://fairmat-nfdi.github.io/pynxtools-xps/' target='_blank' rel='noopener noreferrer'>pynxtools-xps docs</a> | Tutorial: <a href='https://fairmat-nfdi.github.io/pynxtools-xps/tutorial/nomad_usage.html' target='_blank' rel='noopener noreferrer'>Usage in NOMAD</a>."
-        ].join(" "),
-        tags: ["XPS", "SPECS", "Kratos", "NXxps", "NXmpes"]
+          "Reads heterogeneous XPS vendor formats and produces standardized NeXus files compliant with <a href='https://fairmat-nfdi.github.io/nexus_definitions/classes/applications/NXxps.html' target='_blank' rel='noopener noreferrer'>NXxps</a> and <a href='https://fairmat-nfdi.github.io/nexus_definitions/classes/applications/NXmpes.html' target='_blank' rel='noopener noreferrer'>NXmpes</a>.",
+          "<br><br>",
+          "<strong>Vendors &amp; file formats</strong><br>",
+          "&#8226; <strong>SPECS GmbH</strong> — SpecsLabProdigy <code>.sle</code>, SpecsLab 2 <code>.xml</code> (≥ v4.63), <code>.xy</code><br>",
+          "&#8226; <strong>Kratos Analytical</strong> — AXIS Ultra/Nova/Supra via VAMAS <code>.vms</code><br>",
+          "&#8226; <strong>PHI Electronics</strong> — VersaProbe 4 via MultiPak <code>.spe</code> (spectra), <code>.pro</code> (depth profiles)<br>",
+          "&#8226; <strong>Scienta Omicron</strong> — SES export <code>.txt</code>, Igor Binary <code>.ibw</code>, HDF5 <code>.h5</code><br>",
+          "&#8226; <strong>VAMAS ISO 14976</strong> — generic <code>.vms</code> / <code>.npl</code> from any vendor",
+          "<br><br>",
+          "<strong>Also handles:</strong> binding energy calibration, survey/region scan structures, charge referencing.",
+          "<br><br>",
+          "<strong>Install:</strong> <code>pip install pynxtools[xps]</code><br>",
+          "Docs: <a href='https://fairmat-nfdi.github.io/pynxtools-xps/' target='_blank' rel='noopener noreferrer'>pynxtools-xps</a> &nbsp;|&nbsp; <a href='https://fairmat-nfdi.github.io/pynxtools-xps/tutorial/nomad_usage.html' target='_blank' rel='noopener noreferrer'>NOMAD tutorial</a>"
+        ].join(""),
+        tags: ["XPS", "SPECS", "Kratos", "PHI", "Scienta Omicron", "VAMAS", "NXxps", "NXmpes"]
       },
       {
         name: "pynxtools-em",
         desc: "Electron microscopy",
         detail: [
-          "Reads data and metadata from various proprietary and open file formats from TEM and SEM instruments across technology partners — including FEI/Thermo Fisher (Velox .emd, TIFF), JEOL, Zeiss, Hitachi, TESCAN, Nion, Gatan (DigitalMicrograph .dm3/.dm4), and EDAX APEX.",
-          "Standardizes data against the <a href='https://fairmat-nfdi.github.io/nexus_definitions/classes/applications/NXem.html' target='_blank' rel='noopener noreferrer'>NXem</a> application definition. Also supports Kikuchi diffraction (EBSD) parsing routes via MTex and pyxem.",
-          "Full documentation: <a href='https://fairmat-nfdi.github.io/pynxtools-em/' target='_blank' rel='noopener noreferrer'>pynxtools-em docs</a> | <a href='https://github.com/FAIRmat-NFDI/pynxtools-em' target='_blank' rel='noopener noreferrer'>GitHub</a>."
-        ].join(" "),
-        tags: ["TEM", "SEM", "EBSD", "dm4", "NXem", "FEI", "Zeiss"]
+          "Reads TEM and SEM data from technology-partner formats and standardizes them against the <a href='https://fairmat-nfdi.github.io/nexus_definitions/classes/applications/NXem.html' target='_blank' rel='noopener noreferrer'>NXem</a> application definition.",
+          "<br><br>",
+          "<strong>Vendors &amp; file formats</strong><br>",
+          "&#8226; <strong>Thermo Fisher / FEI</strong> — Velox <code>.emd</code>, legacy <code>.tiff</code><br>",
+          "&#8226; <strong>Gatan</strong> — DigitalMicrograph <code>.dm3</code> / <code>.dm4</code><br>",
+          "&#8226; <strong>Zeiss</strong> — SEM <code>.tiff</code> with embedded metadata<br>",
+          "&#8226; <strong>JEOL</strong> — TEM/SEM <code>.tiff</code> with metadata<br>",
+          "&#8226; <strong>Hitachi</strong> — SEM <code>.tiff</code> with metadata<br>",
+          "&#8226; <strong>TESCAN</strong> — SEM <code>.tiff</code> with metadata<br>",
+          "&#8226; <strong>Nion Co.</strong> — <code>.ndata</code> and HDF5 project files<br>",
+          "&#8226; <strong>EDAX APEX</strong> — HDF5 EDS/EBSD files<br>",
+          "&#8226; <strong>SerialEM</strong> — <code>.mrc</code> / <code>.mdoc</code> cryo-EM files<br>",
+          "&#8226; <strong>Protochips AXON</strong> — zipped <code>.png</code> in-situ image sequences<br>",
+          "&#8226; <strong>Point Electronic DISS</strong> — <code>.tiff</code> with metadata<br>",
+          "&#8226; <strong>EBSD</strong> — Kikuchi diffraction routes via <strong>MTex</strong> and <strong>pyxem</strong>",
+          "<br><br>",
+          "<strong>Install:</strong> <code>pip install pynxtools[em]</code><br>",
+          "Docs: <a href='https://fairmat-nfdi.github.io/pynxtools-em/' target='_blank' rel='noopener noreferrer'>pynxtools-em</a> &nbsp;|&nbsp; <a href='https://github.com/FAIRmat-NFDI/pynxtools-em' target='_blank' rel='noopener noreferrer'>GitHub</a>"
+        ].join(""),
+        tags: ["TEM", "SEM", "EBSD", "FEI", "Gatan", "Zeiss", "JEOL", "Nion", "NXem"]
       },
       {
         name: "pynxtools-apm",
         desc: "Atom probe microscopy",
         detail: [
-          "Converts Atom Probe Tomography (APT) and LEAP reconstruction files (.pos, .epos, .apt, .rng, .rrng) into NeXus files compliant with the NXapm application definition. Preserves detector hit data, ranging tables, and reconstructed ion positions.",
-          "Useful for researchers working with atom probe data from CAMECA LEAP instruments who want to store results in a FAIR, interoperable format.",
-          "GitHub: <a href='https://github.com/FAIRmat-NFDI/pynxtools-apm' target='_blank' rel='noopener noreferrer'>pynxtools-apm</a> | Docs: <a href='https://fairmat-nfdi.github.io/pynxtools-apm/' target='_blank' rel='noopener noreferrer'>pynxtools-apm docs</a>."
-        ].join(" "),
-        tags: ["APT", "LEAP", "NXapm", "atom probe"]
+          "Converts atom probe tomography (APT) and field-ion microscopy (FIM) raw data into NeXus files compliant with the <a href='https://fairmat-nfdi.github.io/nexus_definitions/classes/applications/NXapm.html' target='_blank' rel='noopener noreferrer'>NXapm</a> application definition.",
+          "<br><br>",
+          "<strong>Vendors &amp; file formats</strong><br>",
+          "&#8226; <strong>AMETEK / Cameca LEAP</strong> — <code>.apt</code>, <code>.epos</code>, <code>.pos</code>, <code>.rrng</code>, <code>.rng</code>, Cameca HDF5, IVAS XML, AP Suite XML<br>",
+          "&#8226; <strong>Inspico / (M)-TAP / APyT</strong> — Stuttgart open-source instrument formats<br>",
+          "&#8226; <strong>OXCART / pyccapt</strong> — Erlangen open-source atom probe instrument<br>",
+          "&#8226; <strong>Imago / PoSAP</strong> — legacy <code>.ato</code>, OPS, <code>.env</code> formats<br>",
+          "&#8226; <strong>Generic</strong> — <code>.csv</code> reconstructed point clouds",
+          "<br><br>",
+          "<strong>Preserved data:</strong> reconstructed ion positions (x, y, z, m/q), ranging tables, detector hit data.",
+          "<br><br>",
+          "<strong>Install:</strong> <code>pip install pynxtools[apm]</code><br>",
+          "Docs: <a href='https://fairmat-nfdi.github.io/pynxtools-apm/' target='_blank' rel='noopener noreferrer'>pynxtools-apm</a> &nbsp;|&nbsp; <a href='https://github.com/FAIRmat-NFDI/pynxtools-apm' target='_blank' rel='noopener noreferrer'>GitHub</a>"
+        ].join(""),
+        tags: ["APT", "LEAP", "CAMECA", "NXapm", ".apt", ".epos", ".pos", ".rrng"]
       },
       {
         name: "pynxtools-mpes",
         desc: "Multidimensional photoemission spectroscopy",
         detail: [
-          "Converts Multidimensional Photoemission Spectroscopy (MPES) and ARPES datasets from Flash and BESSY II beamlines into NeXus files compliant with the <a href='https://fairmat-nfdi.github.io/nexus_definitions/classes/applications/NXmpes.html' target='_blank' rel='noopener noreferrer'>NXmpes</a> application definition.",
-          "Handles momentum-resolved energy band maps, time-resolved (tr-ARPES) data, and associated beamline metadata.",
-          "GitHub: <a href='https://github.com/FAIRmat-NFDI/pynxtools-mpes' target='_blank' rel='noopener noreferrer'>pynxtools-mpes</a> | Docs: <a href='https://fairmat-nfdi.github.io/pynxtools-mpes/' target='_blank' rel='noopener noreferrer'>pynxtools-mpes docs</a>."
-        ].join(" "),
-        tags: ["ARPES", "MPES", "beamline", "NXmpes", "Flash", "BESSY"]
+          "Converts MPES and ARPES datasets from FHI Berlin instruments and free-electron laser beamlines into NeXus files compliant with <a href='https://fairmat-nfdi.github.io/nexus_definitions/classes/applications/NXmpes.html' target='_blank' rel='noopener noreferrer'>NXmpes</a> and <a href='https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/NXmpes_arpes.html' target='_blank' rel='noopener noreferrer'>NXmpes_arpes</a>.",
+          "<br><br>",
+          "<strong>Instruments &amp; file formats</strong><br>",
+          "&#8226; <strong>FHI Berlin MPES instruments</strong> — HDF5 (<code>.h5</code>), JSON, YAML metadata<br>",
+          "&#8226; <strong>Flash FEL (DESY)</strong> — beamline HDF5 files with timing and pump–probe metadata<br>",
+          "&#8226; <strong>BESSY II (HZB)</strong> — synchrotron beamline HDF5 datasets",
+          "<br><br>",
+          "<strong>Data types handled</strong><br>",
+          "&#8226; Momentum-resolved energy band maps (k∥, k⊥, E)<br>",
+          "&#8226; Time-resolved tr-ARPES pump–probe sequences<br>",
+          "&#8226; Associated beamline and instrument metadata",
+          "<br><br>",
+          "<strong>Install:</strong> <code>pip install pynxtools[mpes]</code><br>",
+          "Docs: <a href='https://fairmat-nfdi.github.io/pynxtools-mpes/' target='_blank' rel='noopener noreferrer'>pynxtools-mpes</a> &nbsp;|&nbsp; <a href='https://github.com/FAIRmat-NFDI/pynxtools-mpes' target='_blank' rel='noopener noreferrer'>GitHub</a>"
+        ].join(""),
+        tags: ["ARPES", "MPES", "tr-ARPES", "FHI Berlin", "Flash", "BESSY II", "NXmpes", "NXmpes_arpes"]
       },
       {
         name: "pynxtools-ellips",
         desc: "Ellipsometry",
         detail: [
-          "Converts ellipsometry data into NeXus/HDF5 files compliant with the NXellipsometry application definition. Reads J.A. Woollam CompleteEASE exports and supports psi/delta spectra and Mueller matrix data.",
-          "Ellipsometry is a non-destructive optical technique widely used to characterize thin films, surfaces, and optical constants of materials.",
-          "GitHub: <a href='https://github.com/FAIRmat-NFDI/pynxtools-ellips' target='_blank' rel='noopener noreferrer'>pynxtools-ellips</a> | Docs: <a href='https://fairmat-nfdi.github.io/pynxtools-ellips/' target='_blank' rel='noopener noreferrer'>pynxtools-ellips docs</a>."
-        ].join(" "),
-        tags: ["ellipsometry", "Woollam", "NXellipsometry", "thin films"]
+          "Converts ellipsometry raw data into NeXus/HDF5 files compliant with <a href='https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/NXellipsometry.html' target='_blank' rel='noopener noreferrer'>NXellipsometry</a> (extends NXoptical_spectroscopy).",
+          "<br><br>",
+          "<strong>Vendors &amp; file formats</strong><br>",
+          "&#8226; <strong>J.A. Woollam (VASE / M-2000)</strong> — CompleteEASE export <code>.dat</code> (psi/delta spectra)<br>",
+          "&#8226; <strong>Sentech</strong> — <code>.spe</code> ASCII export files",
+          "<br><br>",
+          "<strong>Data types handled</strong><br>",
+          "&#8226; Psi (Ψ) and delta (Δ) angle-of-incidence spectra<br>",
+          "&#8226; Mueller matrix polarimetry data<br>",
+          "&#8226; Wavelength / photon energy axes + instrument optical path metadata",
+          "<br><br>",
+          "<strong>Install:</strong> <code>pip install pynxtools[ellips]</code><br>",
+          "Docs: <a href='https://fairmat-nfdi.github.io/pynxtools-ellips/' target='_blank' rel='noopener noreferrer'>pynxtools-ellips</a> &nbsp;|&nbsp; <a href='https://github.com/FAIRmat-NFDI/pynxtools-ellips' target='_blank' rel='noopener noreferrer'>GitHub</a>"
+        ].join(""),
+        tags: ["ellipsometry", "Woollam", "VASE", "Sentech", "NXellipsometry", "thin films", "Mueller matrix"]
       },
       {
         name: "pynxtools-xrd",
         desc: "X-ray diffraction",
         detail: [
-          "Parses powder and single-crystal X-ray Diffraction (XRD) data — including Bruker .raw and PANalytical .xrdml formats — into NeXus files compliant with the NXxrd_pan application definition.",
-          "Supports 2D detector images and standard powder patterns. Useful for structural characterization workflows in materials science and chemistry.",
-          "GitHub: <a href='https://github.com/FAIRmat-NFDI/pynxtools-xrd' target='_blank' rel='noopener noreferrer'>pynxtools-xrd</a> | Docs: <a href='https://fairmat-nfdi.github.io/pynxtools-xrd/' target='_blank' rel='noopener noreferrer'>pynxtools-xrd docs</a>."
-        ].join(" "),
-        tags: ["XRD", "Bruker", "PANalytical", "NXxrd_pan", "powder diffraction"]
+          "Converts X-ray Diffraction (XRD) raw data into NeXus/HDF5 files compliant with the <a href='https://fairmat-nfdi.github.io/nexus_definitions/classes/applications/NXxrd_pan.html' target='_blank' rel='noopener noreferrer'>NXxrd_pan</a> application definition.",
+          "<br><br>",
+          "<strong>Vendors &amp; file formats</strong><br>",
+          "&#8226; <strong>Malvern PANalytical</strong> — X'Pert PRO <code>.xrdml</code> (format v1.5), 1D and 2D scans<br>",
+          "&#8226; <strong>Future / community</strong> — architecture supports adding Bruker <code>.raw</code> and other formats via new sub-readers",
+          "<br><br>",
+          "<strong>Scan types handled</strong><br>",
+          "&#8226; Powder diffraction (2θ / ω scans), rocking curves<br>",
+          "&#8226; Reciprocal space maps (RSM)<br>",
+          "&#8226; 2D area detector frames",
+          "<br><br>",
+          "<strong>Install:</strong> <code>pip install pynxtools[xrd]</code><br>",
+          "Docs: <a href='https://fairmat-nfdi.github.io/pynxtools-xrd/' target='_blank' rel='noopener noreferrer'>pynxtools-xrd</a> &nbsp;|&nbsp; <a href='https://github.com/FAIRmat-NFDI/pynxtools-xrd' target='_blank' rel='noopener noreferrer'>GitHub</a>"
+        ].join(""),
+        tags: ["XRD", "PANalytical", "X'Pert PRO", ".xrdml", "NXxrd_pan", "powder diffraction", "RSM"]
       },
       {
         name: "pynxtools-raman",
         desc: "Raman spectroscopy",
         detail: [
-          "Reads Raman spectroscopy data from multiple vendor formats including HORIBA LabSpec, Renishaw WiRE, and Bruker OPUS. Maps wavenumber axes, intensity data, and instrument metadata to a NeXus file compliant with the NXraman application definition.",
-          "Useful for researchers in condensed matter physics, chemistry, and materials science who want to archive Raman data in a FAIR format.",
-          "GitHub: <a href='https://github.com/FAIRmat-NFDI/pynxtools-raman' target='_blank' rel='noopener noreferrer'>pynxtools-raman</a> | Docs: <a href='https://fairmat-nfdi.github.io/pynxtools-raman/' target='_blank' rel='noopener noreferrer'>pynxtools-raman docs</a>."
-        ].join(" "),
-        tags: ["Raman", "HORIBA", "Renishaw", "NXraman"]
+          "Converts Raman spectroscopy data into NeXus/HDF5 files compliant with <a href='https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/NXraman.html' target='_blank' rel='noopener noreferrer'>NXraman</a> (extends NXoptical_spectroscopy).",
+          "<br><br>",
+          "<strong>Vendors &amp; file formats</strong><br>",
+          "&#8226; <strong>WITec</strong> — WITec Alpha300 export <code>.txt</code> (ASCII wavenumber + intensity)<br>",
+          "&#8226; <strong>Raman Open Database (ROD)</strong> — community standard plain-text format",
+          "<br><br>",
+          "<strong>Data types handled</strong><br>",
+          "&#8226; Single-point spectra and spectral maps<br>",
+          "&#8226; Wavenumber axis (cm⁻¹), laser wavelength, integration time<br>",
+          "&#8226; Sample and instrument metadata from ELN YAML",
+          "<br><br>",
+          "<strong>Install:</strong> <code>pip install pynxtools[raman]</code><br>",
+          "Docs: <a href='https://fairmat-nfdi.github.io/pynxtools-raman/' target='_blank' rel='noopener noreferrer'>pynxtools-raman</a> &nbsp;|&nbsp; <a href='https://github.com/FAIRmat-NFDI/pynxtools-raman' target='_blank' rel='noopener noreferrer'>GitHub</a>"
+        ].join(""),
+        tags: ["Raman", "WITec", "ROD", "Raman Open Database", "NXraman", "NXoptical_spectroscopy"]
       },
       {
         name: "pynxtools-igor",
         desc: "Igor Pro experiment files",
         detail: [
-          "Reads Igor Pro binary wave (.ibw) and packed experiment (.pxp) files. Converts wave metadata and data arrays into NeXus structures.",
-          "Igor Pro is widely used in condensed matter physics and SPM laboratories for data acquisition and analysis. This plugin bridges legacy Igor Pro datasets into the FAIR NeXus ecosystem.",
-          "GitHub: <a href='https://github.com/FAIRmat-NFDI/pynxtools-igor' target='_blank' rel='noopener noreferrer'>pynxtools-igor</a> | Docs: <a href='https://fairmat-nfdi.github.io/pynxtools-igor/' target='_blank' rel='noopener noreferrer'>pynxtools-igor docs</a>."
-        ].join(" "),
-        tags: ["Igor Pro", ".ibw", ".pxp", "SPM", "condensed matter"]
+          "Reads WaveMetrics Igor Pro binary files and converts them into NeXus/HDF5, mapping wave data and experiment notes to any applicable NeXus application definition.",
+          "<br><br>",
+          "<strong>File formats supported</strong><br>",
+          "&#8226; <strong>Igor Binary Wave</strong> — <code>.ibw</code> (single wave: 1-D to 4-D numeric or text arrays)<br>",
+          "&#8226; <strong>Igor Packed Experiment</strong> — <code>.pxp</code> (full experiment: all waves, notes, display layouts)",
+          "<br><br>",
+          "<strong>Usage pattern</strong><br>",
+          "&#8226; Commonly used as a <em>pre-reader</em> inside other plugins (e.g., pynxtools-xps reads Scienta <code>.ibw</code> via igor-reader)<br>",
+          "&#8226; Stand-alone: map waves to any NeXus definition via config JSON",
+          "<br><br>",
+          "<strong>NeXus output:</strong> configurable — NXmpes, NXxps, NXxrd, NXroot, or custom definitions via <code>--nxdl</code>",
+          "<br><br>",
+          "<strong>Install:</strong> <code>pip install pynxtools[igor]</code><br>",
+          "Docs: <a href='https://fairmat-nfdi.github.io/pynxtools-igor/' target='_blank' rel='noopener noreferrer'>pynxtools-igor</a> &nbsp;|&nbsp; <a href='https://github.com/FAIRmat-NFDI/pynxtools-igor' target='_blank' rel='noopener noreferrer'>GitHub</a>"
+        ].join(""),
+        tags: ["Igor Pro", "WaveMetrics", ".ibw", ".pxp", "NXmpes", "NXxrd", "NXxps"]
       },
     ],
   },
@@ -400,7 +565,7 @@ const DATA = {
   /* ── EXPLORE PYNXTOOLS ECOSYSTEM ── */
   explore: {
     page: {
-      name: "Explore pynxtools ecosystem",
+      name: "Explore pynxtools framework",
       detail: [
         "pynxtools is a framework for converting experimental raw data files into standardized NeXus/HDF5 files, making scientific data FAIR (Findable, Accessible, Interoperable, Reusable).",
         "This page walks you through finding or building a plugin for your experimental technique, and how to run plugins either as a standalone CLI tool or integrated with the NOMAD research data management system.",
@@ -489,7 +654,13 @@ const DATA = {
       tracks: [
         {
           name: "Standalone CLI",
-          detail: "Install pynxtools and the plugin in a Python environment. Use the <code>dataconverter</code> CLI command to convert raw files to NeXus locally. You manage your raw files, ELN YAML, config JSON, and output NeXus file per experiment.",
+          detail: [
+            "&#8226; <strong>Install</strong> — <code>pip install pynxtools[&lt;plugin&gt;]</code> in any Python environment<br>",
+            "&#8226; <strong>Convert</strong> — <code>pynx convert --reader &lt;reader&gt; --nxdl &lt;NXdef&gt; data.raw eln.yaml</code><br>",
+            "&#8226; <strong>Inputs</strong> — raw vendor file &nbsp;+&nbsp; ELN YAML (sample &amp; instrument metadata) &nbsp;+&nbsp; config JSON (field mapping)<br>",
+            "&#8226; <strong>Output</strong> — a single <code>.nxs</code> NeXus/HDF5 file per experiment<br>",
+            "&#8226; <strong>Validate</strong> — auto-runs during conversion; re-run anytime with <code>pynx validate out.nxs</code>"
+          ].join(""),
           tags: ["pip", "CLI", "Python environment", "local"],
           demos: [
             {
@@ -518,7 +689,13 @@ const DATA = {
         },
         {
           name: "With NOMAD RDM",
-          detail: "Include pynxtools and the relevant plugin in a NOMAD Oasis deployment. Upload raw files and an ELN through the NOMAD interface. NOMAD automatically detects the format, runs the plugin reader, creates structured NeXus entries, and makes them searchable, shareable, and citable with a DOI.",
+          detail: [
+            "&#8226; <strong>Deploy</strong> — include pynxtools and the plugin in a NOMAD Oasis or use the public <a href='https://nomad-lab.eu' target='_blank' rel='noopener noreferrer'>nomad-lab.eu</a><br>",
+            "&#8226; <strong>Upload</strong> — drop raw vendor files and an ELN YAML through the NOMAD web interface<br>",
+            "&#8226; <strong>Auto-parse</strong> — NOMAD detects the format, runs the plugin reader, and creates structured NeXus entries automatically<br>",
+            "&#8226; <strong>Search &amp; share</strong> — all metadata is indexed and immediately searchable across datasets<br>",
+            "&#8226; <strong>Publish</strong> — assign a DOI and make data publicly citable with one click"
+          ].join(""),
           tags: ["NOMAD Oasis", "upload", "automated parsing", "DOI", "FAIR"],
           demos: [
             {
@@ -695,7 +872,7 @@ function makeCentralBox(cls, title, subtitle, features, featureList, standalone,
   if (onExplore) {
     const exploreBtn = document.createElement('button');
     exploreBtn.className = 'btn-explore-eco';
-    exploreBtn.textContent = 'explore ecosystem →';
+    exploreBtn.textContent = 'explore framework →';
     exploreBtn.onclick = onExplore;
     box.appendChild(exploreBtn);
   }
