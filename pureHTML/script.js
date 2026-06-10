@@ -220,16 +220,54 @@ const DATA = {
         tags: ["XRD", "SEM", "spectroscopy"]
       },
       {
-        name: "nomad-lab-base",
-        desc: "Shared base schemas & utilities",
-        detail: "Foundational Metainfo sections (Sample, Instrument, Researcher) reused by other plugins to reduce duplication across the NOMAD plugin ecosystem.",
-        tags: ["base", "reusable"]
+        name: "nomad-material-processing",
+        desc: "Material processing schemas",
+        detail: [
+          "Metainfo base schemas for thin-film and bulk material processing techniques.",
+          "<br><br>",
+          "<strong>Techniques covered</strong><br>",
+          "&#8226; <strong>Vapor deposition</strong> — CVD, PVD, MBE, PLD, sputtering, thermal evaporation<br>",
+          "&#8226; <strong>Solution processing</strong> — wet-chemical and coating workflows<br>",
+          "&#8226; <strong>Generic processing</strong> — reusable base sections for any synthesis step",
+          "<br><br>",
+          "<strong>Install:</strong> <code>pip install nomad-material-processing</code><br>",
+          "GitHub: <a href='https://github.com/FAIRmat-NFDI/nomad-material-processing' target='_blank' rel='noopener noreferrer'>nomad-material-processing</a>"
+        ].join(""),
+        tags: ["CVD", "PVD", "MBE", "PLD", "sputtering", "thin film", "synthesis"]
       },
       {
-        name: "nomad-parser-plugin",
-        desc: "Custom file-format parser entry point",
-        detail: "Entry point for adding parsers for new file formats. Any lab can ship a parser plugin that NOMAD auto-discovers and applies during upload. See the <a href='https://nomad-lab.eu/prod/v1/docs/howto/plugins/plugins.html' target='_blank' rel='noopener noreferrer'>plugin guide</a> for details.",
-        tags: ["parser", "entrypoint", "format"]
+        name: "nomad-ml-workflows",
+        desc: "ML workflow management",
+        detail: [
+          "NOMAD plugin for managing machine-learning workflows on top of NOMAD data.",
+          "<br><br>",
+          "<strong>Key features</strong><br>",
+          "&#8226; <strong>Export entries</strong> — bulk-export NOMAD entries as <code>CSV</code>, <code>Parquet</code>, or <code>JSON</code> via a NOMAD Action<br>",
+          "&#8226; <strong>Filter &amp; select</strong> — user-defined search criteria, include/exclude specific data fields<br>",
+          "&#8226; <strong>Scale</strong> — configurable batch timeout and export limit (up to 100 000 entries)<br>",
+          "&#8226; <strong>Download</strong> — output files land in a NOMAD upload, ready to download for local ML training",
+          "<br><br>",
+          "<strong>Install:</strong> <code>pip install nomad-ml-workflows</code><br>",
+          "GitHub: <a href='https://github.com/FAIRmat-NFDI/nomad-ml-workflows' target='_blank' rel='noopener noreferrer'>nomad-ml-workflows</a>"
+        ].join(""),
+        tags: ["ML", "machine learning", "CSV", "Parquet", "export", "workflow"]
+      },
+      {
+        name: "nomad-parser-plugins-simulation",
+        desc: "Simulation code parsers",
+        detail: [
+          "Collection of 15 parser plugins covering major DFT, MD, and phonon simulation codes — auto-discovered by NOMAD on upload.",
+          "<br><br>",
+          "<strong>Supported codes</strong><br>",
+          "&#8226; <strong>DFT / electronic structure</strong> — VASP, FHI-aims, Quantum ESPRESSO, ABINIT, GPAW, Exciting, CRYSTAL, Octopus, AMS, Yambo<br>",
+          "&#8226; <strong>Wannier / post-processing</strong> — Wannier90<br>",
+          "&#8226; <strong>Molecular dynamics</strong> — GROMACS, LAMMPS, H5MD<br>",
+          "&#8226; <strong>Phonons</strong> — Phonopy",
+          "<br><br>",
+          "<strong>Install:</strong> <code>pip install nomad-parser-plugins-simulation</code><br>",
+          "GitHub: <a href='https://github.com/FAIRmat-NFDI/nomad-parser-plugins-simulation' target='_blank' rel='noopener noreferrer'>nomad-parser-plugins-simulation</a>"
+        ].join(""),
+        tags: ["VASP", "FHI-aims", "Quantum ESPRESSO", "GROMACS", "LAMMPS", "DFT", "MD", "simulation"]
       },
     ],
   },
@@ -242,7 +280,7 @@ const DATA = {
       "<br><br>",
       "<strong>Convert</strong> &mdash; raw vendor &amp; proprietary instrument files &rarr; NeXus/HDF5 with a single <code>pynx&nbsp;convert</code> command<br>",
       "<strong>Validate</strong> &mdash; verify field completeness, data types, and physical units against NXDL application definitions<br>",
-      "<strong>Plug&nbsp;in</strong> &mdash; 8 technique-specific readers: XPS, SPM, EM, APM, MPES, ellipsometry, XRD, Raman, Igor&nbsp;Pro<br>",
+      "<strong>Plug&nbsp;in</strong> &mdash; 9 technique-specific readers: XPS, SPM, EM, APM, MPES, ellipsometry, XRD, Raman, Igor&nbsp;Pro<br>",
       "<strong>Publish</strong> &mdash; upload <code>.nxs</code> directly to <a href='https://nomad-lab.eu' target='_blank' rel='noopener noreferrer'>NOMAD</a> for semantic search, DOI, and API access<br>",
       "<strong>Extend</strong> &mdash; build a new technique reader from the <strong>pynxtools-plugin-template</strong> scaffold"
     ].join(""),
