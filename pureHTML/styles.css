@@ -35,7 +35,7 @@
   --radius-md: 8px;
   --radius-lg: 12px;
   --central-box-width:       270px;   /* pynxtools view */
-  --nomad-central-box-width: 324px;   /* NOMAD view — 20% wider to fit 22 feature chips */
+  --nomad-central-box-width: 270px;
   --plugin-card-width: 175px;
   --connector-width: 36px;
   --rail-width: 30px;
@@ -125,9 +125,6 @@ a:hover { color: var(--link-hover-color); }
   border: 0.5px solid var(--border);
   border-radius: var(--radius-md);
 }
-#view-nomad .view-note {
-  width: min(var(--nomad-diagram-width), calc(100% - 40px));
-}
 .view-note-label {
   font-size: 10px; color: var(--text-muted); letter-spacing: 0.08em;
   text-transform: uppercase; margin-bottom: 6px;
@@ -141,8 +138,9 @@ a:hover { color: var(--link-hover-color); }
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   gap: 0;
-  padding: 24px 20px 48px;
+  padding: 28px 20px 48px;
   align-items: center;
+  align-content: start;
   min-height: calc(100vh - 145px);
 }
 
