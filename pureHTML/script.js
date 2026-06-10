@@ -737,15 +737,6 @@ const DATA = {
           tags: ["NOMAD Oasis", "upload", "automated parsing", "DOI", "FAIR"],
           demos: [
             {
-              name: "pynxtools-spm in NOMAD",
-              detail: [
-                "Upload Nanonis .sxm files to a NOMAD instance with pynxtools-spm installed. NOMAD automatically detects the SPM format, runs the reader, creates a structured NXsts entry, indexes it, and makes it searchable and shareable.\n\n",
-                "Full tutorial: <a href='https://fairmat-nfdi.github.io/pynxtools-spm/tutorials/use-reader-in-nomad.html' target='_blank' rel='noopener noreferrer'>Use pynxtools-spm reader in NOMAD</a>."
-              ].join(""),
-              tags: ["pynxtools-spm", "NOMAD", "NXsts", "automated upload"],
-              link: "https://github.com/FAIRmat-NFDI/pynxtools-spm"
-            },
-            {
               name: "pynxtools-xps in NOMAD",
               detail: [
                 "Upload XPS raw files to a NOMAD instance with pynxtools-xps installed. The plugin parses binding energy spectra into NXxps entries automatically.\n\n",
@@ -753,7 +744,16 @@ const DATA = {
               ].join(""),
               tags: ["pynxtools-xps", "NOMAD", "NXxps", "tutorial"],
               link: "https://fairmat-nfdi.github.io/pynxtools-xps/tutorial/nomad_usage.html"
-            }
+            },
+             {
+              name: "pynxtools-spm in NOMAD",
+              detail: [
+                "Upload Nanonis .sxm files to a NOMAD instance with pynxtools-spm installed. NOMAD automatically detects the SPM format, runs the reader, creates a structured NXsts entry, indexes it, and makes it searchable and shareable.\n\n",
+                "Full tutorial: <a href='https://fairmat-nfdi.github.io/pynxtools-spm/tutorials/use-reader-in-nomad.html' target='_blank' rel='noopener noreferrer'>Use pynxtools-spm reader in NOMAD</a>."
+              ].join(""),
+              tags: ["pynxtools-spm", "NOMAD", "NXsts", "automated upload"],
+              link: "https://github.com/FAIRmat-NFDI/pynxtools-spm"
+            },         
           ]
         }
       ]
