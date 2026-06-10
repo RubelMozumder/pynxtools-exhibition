@@ -237,6 +237,15 @@ const DATA = {
     className: "pynxtools",
     title: "pynxtools",
     subtitle: "NeXus data converter & validation framework",
+    overview: [
+      "<em>Convert experimental raw data into standardized, FAIR-ready NeXus/HDF5 files.</em>",
+      "<br><br>",
+      "<strong>Convert</strong> &mdash; raw vendor &amp; proprietary instrument files &rarr; NeXus/HDF5 with a single <code>pynx&nbsp;convert</code> command<br>",
+      "<strong>Validate</strong> &mdash; verify field completeness, data types, and physical units against NXDL application definitions<br>",
+      "<strong>Plug&nbsp;in</strong> &mdash; 8 technique-specific readers: XPS, SPM, EM, APM, MPES, ellipsometry, XRD, Raman, Igor&nbsp;Pro<br>",
+      "<strong>Publish</strong> &mdash; upload <code>.nxs</code> directly to <a href='https://nomad-lab.eu' target='_blank' rel='noopener noreferrer'>NOMAD</a> for semantic search, DOI, and API access<br>",
+      "<strong>Extend</strong> &mdash; build a new technique reader from the <strong>pynxtools-plugin-template</strong> scaffold"
+    ].join(""),
     pynxFeatures: [
       {
         name: "NeXus datamodel",
@@ -384,16 +393,6 @@ const DATA = {
           "GitHub: <a href='https://github.com/FAIRmat-NFDI/pynxtools-igor' target='_blank' rel='noopener noreferrer'>pynxtools-igor</a> | Docs: <a href='https://fairmat-nfdi.github.io/pynxtools-igor/' target='_blank' rel='noopener noreferrer'>pynxtools-igor docs</a>."
         ].join(" "),
         tags: ["Igor Pro", ".ibw", ".pxp", "SPM", "condensed matter"]
-      },
-      {
-        name: "pynxtools-camels",
-        desc: "CAMELS measurement software",
-        detail: [
-          "Plugin for reading data produced by CAMELS (Configurable Application for Measurements, Experiments and Laboratory Systems), an open-source measurement software for laboratory automation.",
-          "Converts CAMELS output into NeXus format, enabling FAIR data management for experiments controlled by CAMELS.",
-          "GitHub: <a href='https://github.com/FAIRmat-NFDI/pynxtools-camels' target='_blank' rel='noopener noreferrer'>pynxtools-camels</a>."
-        ].join(" "),
-        tags: ["CAMELS", "lab automation", "measurement software"]
       },
     ],
   },
@@ -765,6 +764,7 @@ function buildNomad() {
 }
 
 function buildPynx() {
+  document.querySelector('#view-pynxtools .view-note p').innerHTML = DATA.pynxtools.overview;
   const plugins = DATA.pynxtools.pynxPlugins;
   const mid = Math.ceil(plugins.length / 2);
   const central = makeCentralBox(DATA.pynxtools.className, DATA.pynxtools.title, DATA.pynxtools.subtitle, DATA.pynxtools.pynxFeatures, DATA.pynxtools.pynxFeatures, true, () => showView('explore'));
