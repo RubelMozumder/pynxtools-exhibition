@@ -281,7 +281,6 @@ const DATA = {
       "<strong>Convert</strong> &mdash; raw vendor &amp; proprietary instrument files &rarr; NeXus/HDF5 with a single <code>pynx&nbsp;convert</code> command<br>",
       "<strong>Validate</strong> &mdash; verify field completeness, data types, and physical units against NXDL application definitions<br>",
       "<strong>Plug&nbsp;in</strong> &mdash; 9 technique-specific readers: XPS, SPM, EM, APM, MPES, ellipsometry, XRD, Raman, Igor&nbsp;Pro<br>",
-      "<strong>Publish</strong> &mdash; upload <code>.nxs</code> directly to <a href='https://nomad-lab.eu' target='_blank' rel='noopener noreferrer'>NOMAD</a> for semantic search, DOI, and API access<br>",
       "<strong>Extend</strong> &mdash; build a new technique reader from the <strong>pynxtools-plugin-template</strong> scaffold"
     ].join(""),
     pynxFeatures: [
@@ -844,6 +843,8 @@ function makePluginCard(p, list, idx) {
   const actions = document.createElement('div');
   actions.className = 'pcard-actions';
 
+  let plugTarget = actions;
+
   if (p.isPynx) {
     const btn = document.createElement('button');
     btn.className = 'btn-explore';
@@ -851,16 +852,24 @@ function makePluginCard(p, list, idx) {
     btn.onclick = () => showView('pynxtools');
     actions.appendChild(btn);
   } else if (p.isPynxSpm) {
-    const infoBtnEl = document.createElement('button');
-    infoBtnEl.className = 'btn-info';
-    infoBtnEl.textContent = 'ⓘ info';
-    infoBtnEl.onclick = () => openPanel('plugin', list, idx);
-    actions.appendChild(infoBtnEl);
+    actions.classList.add('pcard-actions-spm');
+    const modelRow = document.createElement('div');
+    modelRow.className = 'pcard-model-row';
     const modelBtn = document.createElement('button');
     modelBtn.className = 'btn-explore';
     modelBtn.textContent = 'data model →';
     modelBtn.onclick = () => showView('nexus-spm');
-    actions.appendChild(modelBtn);
+    modelRow.appendChild(modelBtn);
+    actions.appendChild(modelRow);
+    const bottomRow = document.createElement('div');
+    bottomRow.className = 'pcard-actions-bottom';
+    const infoBtnEl = document.createElement('button');
+    infoBtnEl.className = 'btn-info';
+    infoBtnEl.textContent = 'ⓘ info';
+    infoBtnEl.onclick = () => openPanel('plugin', list, idx);
+    bottomRow.appendChild(infoBtnEl);
+    actions.appendChild(bottomRow);
+    plugTarget = bottomRow;
   } else {
     const btn = document.createElement('button');
     btn.className = 'btn-info';
@@ -872,7 +881,7 @@ function makePluginCard(p, list, idx) {
   const plug = document.createElement('span');
   plug.className = 'plug-badge';
   plug.textContent = '⚡ (plugin)';
-  actions.appendChild(plug);
+  plugTarget.appendChild(plug);
 
   card.appendChild(nameEl);
   card.appendChild(descEl);
@@ -1093,7 +1102,6 @@ function buildMotivation() {
     grid.appendChild(card);
   });
   body1.appendChild(grid);
-  content.appendChild(sec1);
 
   /* ── Section 2: In the lab ── */
   const sec2 = makeMSection('In the lab');
@@ -1109,18 +1117,18 @@ function buildMotivation() {
       tags: ['instrument', 'proprietary format', 'hardware', 'calibration']
     },
     {
-      src: 'assets/ExperimentMonitorSetup.png',
-      num: '②',
-      name: 'Data collection',
-      detail: 'Measurement output is captured on a lab computer alongside monitor readouts, live displays, and acquisition logs. The data produced in a single session spans the raw signal, instrument parameters, environmental conditions, and user-entered notes — rarely consolidated into one structured file and almost never linked to the sample record or the instrument configuration used.',
-      tags: ['data acquisition', 'session logs', 'instrument parameters', 'lab computer']
-    },
-    {
       src: 'assets/InstrumentSetupWindow.png',
-      num: '③',
+      num: '②',
       name: 'Vendor software',
       detail: 'Dozens of settings, calibration parameters, and acquisition options are configured and saved inside proprietary control software. These settings are rarely exported in a machine-readable form, meaning critical experimental context — scan range, bias voltage, amplifier gain, lock-in frequency — exists only inside a closed software environment and is easily lost when software versions change or licenses expire.',
       tags: ['vendor software', 'proprietary', 'settings', 'experimental context', 'lock-in']
+    },
+    {
+      src: 'assets/ExperimentMonitorSetup.png',
+      num: '③',
+      name: 'Data collection',
+      detail: 'Measurement output is captured on a lab computer alongside monitor readouts, live displays, and acquisition logs. The data produced in a single session spans the raw signal, instrument parameters, environmental conditions, and user-entered notes — rarely consolidated into one structured file and almost never linked to the sample record or the instrument configuration used.',
+      tags: ['data acquisition', 'session logs', 'instrument parameters', 'lab computer']
     }
   ].forEach(item => {
     const card = document.createElement('div');
@@ -1146,16 +1154,13 @@ function buildMotivation() {
     strip.appendChild(card);
   });
   body2.appendChild(strip);
-  content.appendChild(sec2);
 
   /* ── Section 3: How data is stored today ── */
   const folderItem = {
     name: 'How data is stored today',
     detail: [
-      '<img src="assets/FoderStructureOfExperimentalDataFilesNotesSampleData.png"',
-      ' alt="Folder structure of experimental data files, notes, and sample data"',
-      ' style="width:100%;height:auto;border-radius:6px;border:0.5px solid var(--border);display:block;margin-bottom:14px;">',
-      'Each lab invents its own folder hierarchy. Raw files, experiment notes, sample records, and user information are scattered across subfolders with no shared vocabulary, no search index, and no access control.',
+      'Labs manage experimental data manually in hand-crafted local folder trees — raw files, notes, sample records, and user logs stored with no shared structure or search index.',
+      ' Each lab invents its own folder hierarchy. Raw files, experiment notes, sample records, and user information are scattered across subfolders with no shared vocabulary, no search index, and no access control.',
       ' Folder names like <em>test_experiments</em>, <em>raw_files</em>, and <em>other_data</em> carry meaning only to the person who created them.',
       ' When staff leave or storage is reorganised, the structure — and the knowledge encoded in it — is permanently lost.'
     ].join(''),
@@ -1164,27 +1169,35 @@ function buildMotivation() {
 
   const sec3 = makeMSection('How data is stored today');
   const body3 = sec3.querySelector('.motiv-section-body');
+  const folderImg = document.createElement('img');
+  folderImg.src = 'assets/FoderStructureOfExperimentalDataFilesNotesSampleData.png';
+  folderImg.alt = 'Folder structure of experimental data files, notes, and sample data';
+  folderImg.className = 'motiv-folder-img';
+  body3.appendChild(folderImg);
   const folderSummary = document.createElement('div');
   folderSummary.className = 'motiv-folder-summary';
-  const folderDesc = document.createElement('span');
-  folderDesc.className = 'motiv-folder-desc';
-  folderDesc.textContent = 'Labs manage experimental data manually in hand-crafted local folder trees — raw files, notes, sample records, and user logs stored with no shared structure or search index.';
-  folderSummary.appendChild(folderDesc);
   folderSummary.appendChild(infoBtn(folderItem, 'storage'));
   body3.appendChild(folderSummary);
+
+  content.appendChild(sec2);
   content.appendChild(sec3);
+  content.appendChild(sec1);
 
   /* ── Section 4: The solution ── */
   const sec4 = makeMSection('The solution: a shared data model');
   const body4 = sec4.querySelector('.motiv-section-body');
 
-  const lead = document.createElement('p');
+  const lead = document.createElement('ul');
   lead.className = 'motiv-solution-lead';
-  lead.innerHTML = [
-    '<strong>NeXus</strong> defines a standardized, hierarchical data model for experimental science — every concept, unit, and relationship has a defined, machine-readable place.',
-    '<strong>pynxtools</strong> converts raw vendor files from any instrument into compliant NeXus/HDF5 files.',
-    '<strong>NOMAD</strong> stores, indexes, and shares the result — across labs, institutions, and the open scientific community.'
-  ].join(' ');
+  [
+    '<strong>NeXus</strong> — a standardised, hierarchical data model where every concept has a machine-readable place.',
+    '<strong>pynxtools</strong> — converts raw vendor files from any instrument into compliant NeXus/HDF5.',
+    '<strong>NOMAD</strong> — stores, indexes, and shares the result across labs, institutions, and the open community.'
+  ].forEach(text => {
+    const li = document.createElement('li');
+    li.innerHTML = text;
+    lead.appendChild(li);
+  });
   body4.appendChild(lead);
 
   /* inline SVG — uses CSS custom properties via class-based fill/stroke */

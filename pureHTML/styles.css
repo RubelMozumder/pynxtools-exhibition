@@ -275,6 +275,9 @@ a:hover { color: var(--link-hover-color); }
 .pcard-name { font-size: 12px; font-weight: 600; margin-bottom: 2px; color: var(--pynx-accent); }
 .pcard-desc { font-size: 10px; color: var(--text-secondary); line-height: 1.45; margin-bottom: 8px; }
 .pcard-actions { display: flex; gap: 5px; align-items: center; }
+.pcard-actions-spm { flex-direction: column; align-items: stretch; gap: 3px; }
+.pcard-model-row { display: flex; justify-content: flex-end; }
+.pcard-actions-bottom { display: flex; gap: 5px; align-items: center; }
 
 .btn-info {
   font-size: 10px; padding: 3px 9px; border-radius: 20px; cursor: pointer;
@@ -617,6 +620,15 @@ a:hover { color: var(--link-hover-color); }
 }
 
 /* folder summary row */
+.motiv-folder-img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  border: 0.5px solid var(--border);
+  display: block;
+  margin-bottom: 10px;
+}
+
 .motiv-folder-summary {
   display: flex;
   align-items: center;
@@ -678,8 +690,12 @@ a:hover { color: var(--link-hover-color); }
 .motiv-solution-lead {
   font-size: 13px;
   color: var(--text-secondary);
-  line-height: 1.7;
-  margin-bottom: 20px;
+  line-height: 1.6;
+  margin: 0 0 16px 0;
+  padding-left: 18px;
+}
+.motiv-solution-lead li {
+  margin-bottom: 4px;
 }
 
 /* SVG data-flow diagram */
