@@ -995,6 +995,245 @@ function infoBtn(item, type) {
   return btn;
 }
 
+/* ── MOTIVATION VIEW ── */
+function makeMSection(titleText) {
+  const sec = document.createElement('div');
+  sec.className = 'motiv-section';
+  const head = document.createElement('div');
+  head.className = 'motiv-section-head';
+  const title = document.createElement('span');
+  title.className = 'motiv-section-title';
+  title.textContent = titleText;
+  head.appendChild(title);
+  const body = document.createElement('div');
+  body.className = 'motiv-section-body';
+  sec.appendChild(head);
+  sec.appendChild(body);
+  return sec;
+}
+
+function buildMotivation() {
+  const content = document.getElementById('motivation-content');
+  content.innerHTML = '';
+
+  /* ── Section 1: The challenges ── */
+  const challengeItems = [
+    {
+      mark: '!',
+      name: 'No standard format',
+      detail: [
+        'Every vendor and lab uses different file types, naming conventions, and metadata fields.',
+        'A scanning tunneling microscopy file from Nanonis looks nothing like one from ScientaOmicron — even though both describe the same physical quantity.',
+        'Without a shared data model, each group must write custom parsers and converters, duplicating effort and introducing errors every time data moves between tools or people.',
+      ].join(' '),
+      tags: ['file formats', 'vendor lock-in', 'metadata', 'interoperability']
+    },
+    {
+      mark: '×',
+      name: 'Data gets siloed',
+      detail: [
+        'Raw files live on local lab computers or personal drives with no central index.',
+        'When a PhD student finishes, a postdoc moves institutions, or a hard drive fails, months or years of experimental measurements become permanently inaccessible — not because the data was deleted, but because the context and location are known only to the person who left.',
+        'There is no structural incentive or tooling to make data findable to the next researcher.',
+      ].join(' '),
+      tags: ['data loss', 'staff turnover', 'local storage', 'institutional knowledge']
+    },
+    {
+      mark: '?',
+      name: 'Cannot search across experiments',
+      detail: [
+        'Finding a specific measurement from two years ago requires opening folders one by one, reading filenames, and hoping that naming conventions were consistent.',
+        'There is no metadata index, no full-text search, and no way to filter by sample, technique, date, or result across the lab\'s entire dataset.',
+        'Cross-lab comparison — essential for reproducibility studies and collaborative projects — is effectively impossible without enormous manual effort.',
+      ].join(' '),
+      tags: ['findability', 'search', 'reproducibility', 'cross-lab']
+    },
+    {
+      mark: '~',
+      name: 'Sharing is manual and lossy',
+      detail: [
+        'Sending data to a collaborator or journal reviewer means manually zipping folders, writing a README, and emailing or uploading the archive.',
+        'Even with a README, there is no guarantee that physical units, calibration parameters, instrument settings, or sample provenance survive the transfer.',
+        'Each sharing event is a one-off act with no version history, no access control, and no record of who received what — making data management for multi-partner projects a constant source of friction.',
+      ].join(' '),
+      tags: ['collaboration', 'data transfer', 'provenance', 'access control']
+    }
+  ];
+
+  const sec1 = makeMSection('The challenges');
+  const body1 = sec1.querySelector('.motiv-section-body');
+  const grid = document.createElement('div');
+  grid.className = 'motiv-challenge-grid';
+  challengeItems.forEach(c => {
+    const card = document.createElement('div');
+    card.className = 'motiv-challenge-card';
+    const head = document.createElement('div');
+    head.className = 'motiv-challenge-head';
+    const mark = document.createElement('span');
+    mark.className = 'motiv-challenge-mark';
+    mark.textContent = c.mark;
+    const titleEl = document.createElement('span');
+    titleEl.className = 'motiv-challenge-title';
+    titleEl.textContent = c.name;
+    head.appendChild(mark);
+    head.appendChild(titleEl);
+    head.appendChild(infoBtn(c, 'challenge'));
+    card.appendChild(head);
+    grid.appendChild(card);
+  });
+  body1.appendChild(grid);
+  content.appendChild(sec1);
+
+  /* ── Section 2: In the lab ── */
+  const sec2 = makeMSection('In the lab');
+  const body2 = sec2.querySelector('.motiv-section-body');
+  const strip = document.createElement('div');
+  strip.className = 'motiv-image-strip';
+  [
+    {
+      src: 'assets/ExperimentInstrument.png',
+      num: '①',
+      name: 'Complex hardware',
+      detail: 'Each instrument generates data in a proprietary vendor format with instrument-specific metadata, calibration parameters, and acquisition settings. A single experiment may involve multiple instruments — each with its own file format, coordinate system, and unit convention — making a complete record of the measurement almost impossible to capture automatically.',
+      tags: ['instrument', 'proprietary format', 'hardware', 'calibration']
+    },
+    {
+      src: 'assets/ExperimentMonitorSetup.png',
+      num: '②',
+      name: 'Data collection',
+      detail: 'Measurement output is captured on a lab computer alongside monitor readouts, live displays, and acquisition logs. The data produced in a single session spans the raw signal, instrument parameters, environmental conditions, and user-entered notes — rarely consolidated into one structured file and almost never linked to the sample record or the instrument configuration used.',
+      tags: ['data acquisition', 'session logs', 'instrument parameters', 'lab computer']
+    },
+    {
+      src: 'assets/InstrumentSetupWindow.png',
+      num: '③',
+      name: 'Vendor software',
+      detail: 'Dozens of settings, calibration parameters, and acquisition options are configured and saved inside proprietary control software. These settings are rarely exported in a machine-readable form, meaning critical experimental context — scan range, bias voltage, amplifier gain, lock-in frequency — exists only inside a closed software environment and is easily lost when software versions change or licenses expire.',
+      tags: ['vendor software', 'proprietary', 'settings', 'experimental context', 'lock-in']
+    }
+  ].forEach(item => {
+    const card = document.createElement('div');
+    card.className = 'motiv-img-card';
+    const badge = document.createElement('span');
+    badge.className = 'motiv-num-badge';
+    badge.textContent = item.num;
+    const img = document.createElement('img');
+    img.src = item.src;
+    img.alt = item.name;
+    img.className = 'motiv-img';
+    img.loading = 'lazy';
+    const foot = document.createElement('div');
+    foot.className = 'motiv-img-foot';
+    const capTitle = document.createElement('div');
+    capTitle.className = 'motiv-cap-title';
+    capTitle.textContent = item.name;
+    foot.appendChild(capTitle);
+    foot.appendChild(infoBtn(item, 'lab setup'));
+    card.appendChild(badge);
+    card.appendChild(img);
+    card.appendChild(foot);
+    strip.appendChild(card);
+  });
+  body2.appendChild(strip);
+  content.appendChild(sec2);
+
+  /* ── Section 3: How data is stored today ── */
+  const folderItem = {
+    name: 'How data is stored today',
+    detail: [
+      '<img src="assets/FoderStructureOfExperimentalDataFilesNotesSampleData.png"',
+      ' alt="Folder structure of experimental data files, notes, and sample data"',
+      ' style="width:100%;height:auto;border-radius:6px;border:0.5px solid var(--border);display:block;margin-bottom:14px;">',
+      'Each lab invents its own folder hierarchy. Raw files, experiment notes, sample records, and user information are scattered across subfolders with no shared vocabulary, no search index, and no access control.',
+      ' Folder names like <em>test_experiments</em>, <em>raw_files</em>, and <em>other_data</em> carry meaning only to the person who created them.',
+      ' When staff leave or storage is reorganised, the structure — and the knowledge encoded in it — is permanently lost.'
+    ].join(''),
+    tags: ['folder structure', 'local storage', 'naming conventions', 'data loss', 'no index']
+  };
+
+  const sec3 = makeMSection('How data is stored today');
+  const body3 = sec3.querySelector('.motiv-section-body');
+  const folderSummary = document.createElement('div');
+  folderSummary.className = 'motiv-folder-summary';
+  const folderDesc = document.createElement('span');
+  folderDesc.className = 'motiv-folder-desc';
+  folderDesc.textContent = 'Labs manage experimental data manually in hand-crafted local folder trees — raw files, notes, sample records, and user logs stored with no shared structure or search index.';
+  folderSummary.appendChild(folderDesc);
+  folderSummary.appendChild(infoBtn(folderItem, 'storage'));
+  body3.appendChild(folderSummary);
+  content.appendChild(sec3);
+
+  /* ── Section 4: The solution ── */
+  const sec4 = makeMSection('The solution: a shared data model');
+  const body4 = sec4.querySelector('.motiv-section-body');
+
+  const lead = document.createElement('p');
+  lead.className = 'motiv-solution-lead';
+  lead.innerHTML = [
+    '<strong>NeXus</strong> defines a standardized, hierarchical data model for experimental science — every concept, unit, and relationship has a defined, machine-readable place.',
+    '<strong>pynxtools</strong> converts raw vendor files from any instrument into compliant NeXus/HDF5 files.',
+    '<strong>NOMAD</strong> stores, indexes, and shares the result — across labs, institutions, and the open scientific community.'
+  ].join(' ');
+  body4.appendChild(lead);
+
+  /* inline SVG — uses CSS custom properties via class-based fill/stroke */
+  const svgWrap = document.createElement('div');
+  svgWrap.innerHTML = `<svg class="motiv-svg" viewBox="0 0 580 200" xmlns="http://www.w3.org/2000/svg" aria-label="Data flow diagram: labs through pynxtools and NOMAD to search, sharing, and publication">
+  <!-- Lab boxes -->
+  <rect x="8" y="18" width="116" height="44" rx="6" class="svg-lab-rect"/>
+  <text x="16" y="33" class="svg-small-label">raw files · notes</text>
+  <text x="16" y="51" class="svg-main-label">Lab A</text>
+  <rect x="8" y="78" width="116" height="44" rx="6" class="svg-lab-rect"/>
+  <text x="16" y="93" class="svg-small-label">samples · users</text>
+  <text x="16" y="111" class="svg-main-label">Lab B</text>
+  <rect x="8" y="138" width="116" height="44" rx="6" class="svg-lab-rect"/>
+  <text x="16" y="153" class="svg-small-label">experiment data</text>
+  <text x="16" y="171" class="svg-main-label">Lab C</text>
+  <!-- Flow lines: labs → NOMAD -->
+  <line x1="124" y1="40" x2="209" y2="97" class="svg-flow-line"/>
+  <line x1="124" y1="100" x2="209" y2="100" class="svg-flow-line"/>
+  <line x1="124" y1="160" x2="209" y2="103" class="svg-flow-line"/>
+  <!-- pynxtools bridge label (drawn after lines so it paints over them) -->
+  <rect x="128" y="90" width="78" height="18" rx="4" class="svg-pynx-rect"/>
+  <text x="167" y="99" class="svg-pynx-label" dominant-baseline="middle">pynxtools</text>
+  <!-- NOMAD box -->
+  <rect x="209" y="62" width="152" height="76" rx="8" class="svg-nomad-rect"/>
+  <text x="285" y="91" class="svg-nomad-title">NOMAD</text>
+  <text x="285" y="109" class="svg-nomad-sub">research data platform</text>
+  <text x="285" y="124" class="svg-nomad-sub">NeXus · HDF5 · FAIR</text>
+  <!-- Flow lines: NOMAD → outcomes -->
+  <line x1="361" y1="88" x2="432" y2="43" class="svg-flow-line"/>
+  <line x1="361" y1="100" x2="432" y2="100" class="svg-flow-line"/>
+  <line x1="361" y1="112" x2="432" y2="157" class="svg-flow-line"/>
+  <!-- Outcome boxes -->
+  <rect x="432" y="18" width="140" height="50" rx="6" class="svg-outcome-rect"/>
+  <text x="502" y="39" class="svg-outcome-title">Search &amp; filter</text>
+  <text x="502" y="55" class="svg-outcome-sub">by material, method, date</text>
+  <rect x="432" y="75" width="140" height="50" rx="6" class="svg-outcome-rect"/>
+  <text x="502" y="96" class="svg-outcome-title">Share with teams</text>
+  <text x="502" y="112" class="svg-outcome-sub">private · group · open</text>
+  <rect x="432" y="132" width="140" height="50" rx="6" class="svg-outcome-rect"/>
+  <text x="502" y="153" class="svg-outcome-title">Publish &amp; cite</text>
+  <text x="502" y="169" class="svg-outcome-sub">DOI · FAIR · open data</text>
+</svg>`;
+  body4.appendChild(svgWrap.firstElementChild);
+
+  const ctaRow = document.createElement('div');
+  ctaRow.className = 'motiv-cta-row';
+  const btn1 = document.createElement('button');
+  btn1.className = 'motiv-btn motiv-btn-nomad';
+  btn1.textContent = 'discover NOMAD →';
+  btn1.onclick = () => showView('nomad');
+  const btn2 = document.createElement('button');
+  btn2.className = 'motiv-btn motiv-btn-pynx';
+  btn2.textContent = 'explore pynxtools →';
+  btn2.onclick = () => showView('pynxtools');
+  ctaRow.appendChild(btn1);
+  ctaRow.appendChild(btn2);
+  body4.appendChild(ctaRow);
+  content.appendChild(sec4);
+}
+
 /* ── EXPLORE ECOSYSTEM VIEW ── */
 function buildExplore() {
   const content = document.getElementById('explore-content');
@@ -1165,31 +1404,47 @@ function buildExplore() {
 function showView(name) {
   closePanel();
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-  const viewMap = { nomad: 'view-nomad', pynxtools: 'view-pynxtools', explore: 'view-explore' };
+  const viewMap = { motivation: 'view-motivation', nomad: 'view-nomad', pynxtools: 'view-pynxtools', explore: 'view-explore' };
   document.getElementById(viewMap[name]).classList.add('active');
 
+  const isMoti    = name === 'motivation';
   const isNomad   = name === 'nomad';
   const isPynx    = name === 'pynxtools';
   const isExplore = name === 'explore';
 
-  document.getElementById('crumb-sep').style.display     = (isPynx || isExplore) ? 'inline' : 'none';
-  document.getElementById('crumb-pyn').style.display     = (isPynx || isExplore) ? 'inline' : 'none';
-  document.getElementById('crumb-sep2').style.display    = isExplore ? 'inline' : 'none';
-  document.getElementById('crumb-explore').style.display = isExplore ? 'inline' : 'none';
+  /* breadcrumb: overview is always visible; deeper crumbs appear progressively */
+  document.getElementById('crumb-sep0').style.display    = (isNomad || isPynx || isExplore) ? '' : 'none';
+  document.getElementById('crumb-nomad').style.display   = (isNomad || isPynx || isExplore) ? '' : 'none';
+  document.getElementById('crumb-sep').style.display     = (isPynx  || isExplore) ? '' : 'none';
+  document.getElementById('crumb-pyn').style.display     = (isPynx  || isExplore) ? '' : 'none';
+  document.getElementById('crumb-sep2').style.display    = isExplore ? '' : 'none';
+  document.getElementById('crumb-explore').style.display = isExplore ? '' : 'none';
 
+  document.getElementById('crumb-overview').classList.toggle('active', isMoti);
   document.getElementById('crumb-nomad').classList.toggle('active', isNomad);
   document.getElementById('crumb-pyn').classList.toggle('active', isPynx);
   document.getElementById('crumb-explore').classList.toggle('active', isExplore);
 
+  /* back button */
   const backBtn = document.getElementById('back-btn');
-  backBtn.classList.toggle('visible', isPynx || isExplore);
-  backBtn.onclick = isExplore ? () => showView('pynxtools') : () => showView('nomad');
+  backBtn.classList.toggle('visible', !isMoti);
+  if (isNomad) {
+    backBtn.textContent = '← Motivation';
+    backBtn.onclick = () => showView('motivation');
+  } else if (isPynx) {
+    backBtn.textContent = '← back to NOMAD';
+    backBtn.onclick = () => showView('nomad');
+  } else if (isExplore) {
+    backBtn.textContent = '← back to pynxtools';
+    backBtn.onclick = () => showView('pynxtools');
+  }
 
-  if (!isExplore) requestAnimationFrame(equalizeVisibleSatelliteColumns);
+  if (!isExplore && !isMoti) requestAnimationFrame(equalizeVisibleSatelliteColumns);
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 /* ── INIT ── */
+buildMotivation();
 buildNomad();
 buildPynx();
 buildExplore();

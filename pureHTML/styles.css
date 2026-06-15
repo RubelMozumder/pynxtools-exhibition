@@ -523,6 +523,225 @@ a:hover { color: var(--link-hover-color); }
   font-size: 12px; font-weight: 600; flex: 1; color: var(--text-primary);
 }
 
+/* ── MOTIVATION VIEW ── */
+#motivation-content {
+  width: min(var(--diagram-width), calc(100% - 40px));
+  margin: 24px auto 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.motiv-section {
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.motiv-section-head {
+  padding: 12px 20px;
+  border-bottom: 0.5px solid var(--border);
+  background: var(--surface2);
+}
+
+.motiv-section-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.motiv-section-body {
+  padding: 20px;
+}
+
+/* image strip */
+.motiv-image-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.motiv-img-card {
+  position: relative;
+  background: var(--surface2);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.2s;
+}
+.motiv-img-card:hover { border-color: var(--border-strong); }
+
+.motiv-num-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: var(--nomad-bg-light);
+  color: var(--nomad-accent);
+  border: 0.5px solid var(--nomad-border);
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  z-index: 1;
+}
+
+.motiv-img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.motiv-img-foot {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 12px;
+}
+
+.motiv-cap-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+  flex: 1;
+}
+
+/* folder summary row */
+.motiv-folder-summary {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.motiv-folder-desc {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  flex: 1;
+}
+
+/* challenge cards */
+.motiv-challenge-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.motiv-challenge-card {
+  background: var(--surface2);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+}
+
+.motiv-challenge-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 7px;
+}
+
+.motiv-challenge-mark {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  background: var(--info-bg);
+  color: var(--info-text);
+  border: 0.5px solid var(--info-border);
+}
+
+.motiv-challenge-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+  flex: 1;
+}
+
+
+/* solution section */
+.motiv-solution-lead {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+/* SVG data-flow diagram */
+.motiv-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-bottom: 22px;
+  font-family: var(--font);
+}
+
+.svg-lab-rect    { fill: var(--surface2);      stroke: var(--border-strong); stroke-width: 0.5; }
+.svg-nomad-rect  { fill: var(--nomad-bg-light); stroke: var(--nomad-border);  stroke-width: 1.5; }
+.svg-outcome-rect{ fill: var(--pynx-bg-light);  stroke: var(--pynx-border);   stroke-width: 0.5; }
+.svg-pynx-rect   { fill: var(--pynx-bg-light);  stroke: var(--pynx-border);   stroke-width: 0.5; }
+
+.svg-flow-line   { stroke: var(--border-strong); stroke-width: 1; fill: none; }
+
+.svg-small-label  { font-size: 8px;  fill: var(--text-muted); }
+.svg-main-label   { font-size: 11px; fill: var(--text-primary); font-weight: 600; }
+.svg-nomad-title  { font-size: 14px; fill: var(--nomad-accent); font-weight: 700; text-anchor: middle; }
+.svg-nomad-sub    { font-size: 8px;  fill: var(--nomad-accent); text-anchor: middle; opacity: 0.85; }
+.svg-outcome-title{ font-size: 11px; fill: var(--pynx-accent);  font-weight: 600; text-anchor: middle; }
+.svg-outcome-sub  { font-size: 8px;  fill: var(--text-muted);   text-anchor: middle; }
+.svg-pynx-label   { font-size: 9px;  fill: var(--pynx-accent);  font-weight: 600; text-anchor: middle; }
+
+/* CTA buttons */
+.motiv-cta-row {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.motiv-btn {
+  font-size: 13px;
+  padding: 10px 26px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition: filter 0.15s;
+}
+.motiv-btn:hover { filter: brightness(0.92); }
+
+.motiv-btn-nomad {
+  background: var(--nomad-bg-light);
+  border: 1px solid var(--nomad-border);
+  color: var(--nomad-accent);
+}
+
+.motiv-btn-pynx {
+  background: var(--pynx-bg-light);
+  border: 1px solid var(--pynx-border);
+  color: var(--pynx-accent);
+}
+
+@media (max-width: 620px) {
+  .motiv-image-strip    { grid-template-columns: 1fr; }
+  .motiv-challenge-grid { grid-template-columns: 1fr; }
+}
+
 /* explore ecosystem button on the pynxtools central box */
 .btn-explore-eco {
   margin-top: 14px; width: 100%;

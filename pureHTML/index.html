@@ -10,19 +10,32 @@
 
 <!-- TOPBAR -->
 <div class="topbar">
-  <span class="brand">research data explorer</span>
+  <span class="brand">Research Data Plan</span>
   <div class="breadcrumb">
-    <span class="crumb active" id="crumb-nomad" onclick="showView('nomad')">NOMAD</span>
+    <span class="crumb active" id="crumb-overview" onclick="showView('motivation')">Motivation</span>
+    <span class="crumb-sep" id="crumb-sep0" style="display:none">›</span>
+    <span class="crumb" id="crumb-nomad" style="display:none" onclick="showView('nomad')">NOMAD</span>
     <span class="crumb-sep" id="crumb-sep" style="display:none">›</span>
     <span class="crumb" id="crumb-pyn" style="display:none" onclick="showView('pynxtools')">pynxtools</span>
     <span class="crumb-sep" id="crumb-sep2" style="display:none">›</span>
     <span class="crumb" id="crumb-explore" style="display:none">explore framework</span>
   </div>
-  <button class="back-btn" id="back-btn" onclick="showView('nomad')">← back to NOMAD</button>
+  <button class="back-btn" id="back-btn">&#8592; overview</button>
+</div>
+
+<!-- VIEW: MOTIVATION (landing page) -->
+<div class="view active" id="view-motivation">
+  <div class="view-note">
+    <div class="view-note-label">the problem</div>
+    <p>
+      <em>Experimental data in a modern research lab spans instruments, vendor software, sample records, experiment notes, and user logs — stored in hand-crafted folder trees on local computers, with no shared vocabulary and no way to search or share across groups.</em>
+    </p>
+  </div>
+  <div id="motivation-content"></div>
 </div>
 
 <!-- VIEW: NOMAD -->
-<div class="view active" id="view-nomad">
+<div class="view" id="view-nomad">
   <div class="view-note">
     <div class="view-note-label">overview</div>
     <p>
