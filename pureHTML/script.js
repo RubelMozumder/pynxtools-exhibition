@@ -850,6 +850,17 @@ function makePluginCard(p, list, idx) {
     btn.textContent = 'explore →';
     btn.onclick = () => showView('pynxtools');
     actions.appendChild(btn);
+  } else if (p.isPynxSpm) {
+    const infoBtnEl = document.createElement('button');
+    infoBtnEl.className = 'btn-info';
+    infoBtnEl.textContent = 'ⓘ info';
+    infoBtnEl.onclick = () => openPanel('plugin', list, idx);
+    actions.appendChild(infoBtnEl);
+    const modelBtn = document.createElement('button');
+    modelBtn.className = 'btn-explore';
+    modelBtn.textContent = 'data model →';
+    modelBtn.onclick = () => showView('nexus-spm');
+    actions.appendChild(modelBtn);
   } else {
     const btn = document.createElement('button');
     btn.className = 'btn-info';
@@ -1399,31 +1410,497 @@ function buildExplore() {
 }
 
 /* ============================================================
+   NXSPM DATA MODEL TREE
+   ============================================================ */
+const NXSPM_TREE = {
+  kind: 'definition',
+  name: 'NXspm',
+  extends: 'NXsensor_scan',
+  subtypes: ['NXsts', 'NXstm', 'NXafm'],
+  doc: 'Scanning Probe Microscopy application definition. Shared structural framework for STM, STS, and AFM experiments, inherited from NXsensor_scan.',
+  children: [
+    {
+      kind: 'group', name: 'NXentry', nxclass: 'NXentry', opt: 'required',
+      doc: 'Root entry of the NeXus file. All experiment data is organized under this group.',
+      children: [
+        { kind: 'field', name: 'definition', nxtype: 'NX_CHAR', opt: 'required', doc: 'Name of the application definition. Must be set to NXspm.', enum: ['NXspm'] },
+        { kind: 'field', name: 'experiment_technique', nxtype: 'NX_CHAR', opt: 'required', doc: 'The technique of the experiment.', enum: ['STM', 'STS', 'AFM'] },
+        { kind: 'field', name: 'scan_mode', nxtype: 'NX_CHAR', opt: 'optional', doc: 'The mode of the scan.', enum: ['constant height', 'constant current', 'contact mode', 'tapping mode', 'peak force tapping mode', 'non-contact mode'] },
+        { kind: 'field', name: 'scan_type', nxtype: 'NX_CHAR', opt: 'recommended', doc: 'Describes how the probe moves in the scan region, e.g. forward, backward, or both.' },
+        { kind: 'field', name: 'identifier_experiment', nxtype: 'NX_CHAR', opt: 'recommended', doc: 'Unique identifier for the experiment within the lab.' },
+        {
+          kind: 'group', name: 'NXprocess', nxclass: 'NXprocess', opt: 'optional',
+          doc: 'Defines data-processing programs, associated workflows, software, and results.',
+          children: []
+        },
+        {
+          kind: 'group', name: 'NXinstrument', nxclass: 'NXinstrument', opt: 'required',
+          doc: 'Groups all instrument-related sub-components: hardware, software, sensors, scan environment, and piezo actuators.',
+          children: [
+            {
+              kind: 'group', name: 'hardware', nxclass: 'NXfabrication', opt: 'required',
+              doc: 'Hardware description. Usually the complete instrument is supplied by one manufacturer.',
+              children: [
+                { kind: 'field', name: 'name',   nxtype: 'NX_CHAR', opt: 'recommended', doc: 'Name of the hardware.' },
+                { kind: 'field', name: 'vendor',  nxtype: 'NX_CHAR', opt: 'required',    doc: 'Company name of the manufacturer.' },
+                { kind: 'field', name: 'model',   nxtype: 'NX_CHAR', opt: 'recommended', doc: 'Version or model of the hardware setup.' }
+              ]
+            },
+            {
+              kind: 'group', name: 'software', nxclass: 'NXfabrication', opt: 'required',
+              doc: 'Software description of the instrument setup.',
+              children: [
+                { kind: 'field', name: 'name',   nxtype: 'NX_CHAR', opt: 'optional',    doc: 'Name of the software.' },
+                { kind: 'field', name: 'vendor',  nxtype: 'NX_CHAR', opt: 'required',    doc: 'Company name of the software manufacturer.' },
+                { kind: 'field', name: 'model',   nxtype: 'NX_CHAR', opt: 'recommended', doc: 'Version or model of the software.' }
+              ]
+            },
+            {
+              kind: 'group', name: 'real_time_controller', nxclass: 'NXrcs', opt: 'recommended',
+              doc: 'Real-time control system (RCS) information.',
+              children: []
+            },
+            {
+              kind: 'group', name: 'lockin_amplifier', nxclass: 'NXlockin', opt: 'optional',
+              doc: 'Lock-in amplifier for phase-sensitive detection in STS and AFM experiments.',
+              children: [
+                { kind: 'field', name: 'flip_sign',      nxtype: 'NX_NUMBER', opt: 'optional',    doc: 'Sign (+1 or −1) to render lock-in current values positive. Determined by calibration with retracted tip.' },
+                { kind: 'field', name: 'active_channel', nxtype: 'NX_CHAR',   opt: 'recommended', doc: 'Name of the active channel of the lock-in amplifier.' }
+              ]
+            },
+            {
+              kind: 'group', name: 'SCAN_ENVIRONMENT', nxclass: 'NXenvironment', nameType: 'any', opt: 'required',
+              doc: 'Scan environment: temperature, setpoint, scan area, and scan data. At least one temperature field (head, cryo_bottom, or cryo_shield) must be present.',
+              children: [
+                { kind: 'field', name: 'head_temperature',        nxtype: 'NX_NUMBER', units: 'NX_TEMPERATURE', opt: 'recommended', doc: 'Stabilized or target temperature of the STM head.' },
+                { kind: 'field', name: 'identifier_environment',  nxtype: 'NX_CHAR',   opt: 'recommended',                          doc: 'Unique identifier for the scan environment, to differentiate scans under the same conditions.' },
+                { kind: 'field', name: 'cryo_bottom_temperature', nxtype: 'NX_NUMBER', units: 'NX_TEMPERATURE', opt: 'recommended', doc: 'Temperature of the cold tail of the cryostat.' },
+                { kind: 'field', name: 'cryo_shield_temperature', nxtype: 'NX_NUMBER', units: 'NX_TEMPERATURE', opt: 'recommended', doc: 'Temperature of the liquid-nitrogen shield.' },
+                { kind: 'group', name: 'current_sensorTAG', nxclass: 'NXsensor',           nameType: 'partial', opt: 'optional', doc: 'Link to /entry/instrument/current_sensorTAG.', children: [] },
+                { kind: 'group', name: 'voltage_sensorTAG', nxclass: 'NXsensor',           nameType: 'partial', opt: 'optional', doc: 'Link to /entry/instrument/voltage_sensorTAG.', children: [] },
+                { kind: 'group', name: 'piezo_sensor',       nxclass: 'NXspm_piezo_sensor', opt: 'optional',                     doc: 'Link to /entry/instrument/piezo_sensor.',       children: [] },
+                {
+                  kind: 'group', name: 'NXspm_scan_control', nxclass: 'NXspm_scan_control', opt: 'required',
+                  doc: 'Scan control: scan region, pattern type, and speed.',
+                  children: [
+                    { kind: 'field', name: 'scanTAG', nxtype: 'NX_CHAR', nameType: 'partial', opt: 'recommended', doc: 'Differentiates among multiple scans under the same environment.' },
+                    {
+                      kind: 'group', name: 'scan_region', nxclass: 'NXspm_scan_region', opt: 'required',
+                      doc: 'The phase space (or sub-space) in which the scan is performed.',
+                      children: [
+                        { kind: 'field', name: 'scan_range_x',        nxtype: 'NX_NUMBER', units: 'NX_LENGTH', opt: 'recommended', doc: 'Scan range in the x direction.' },
+                        { kind: 'field', name: 'scan_range_y',        nxtype: 'NX_NUMBER', units: 'NX_LENGTH', opt: 'recommended', doc: 'Scan range in the y direction.' },
+                        { kind: 'field', name: 'scan_offset_value_x', nxtype: 'NX_NUMBER', units: 'NX_LENGTH', opt: 'recommended', doc: 'Scan offset in the x direction.' },
+                        { kind: 'field', name: 'scan_offset_value_y', nxtype: 'NX_NUMBER', units: 'NX_LENGTH', opt: 'recommended', doc: 'Scan offset in the y direction.' },
+                        { kind: 'field', name: 'scan_angle_x',        nxtype: 'NX_NUMBER', units: 'NX_ANGLE',  opt: 'recommended', doc: 'Rotation angle of the scan region around the x axis.' },
+                        { kind: 'field', name: 'scan_angle_y',        nxtype: 'NX_NUMBER', units: 'NX_ANGLE',  opt: 'recommended', doc: 'Rotation angle of the scan region around the y axis.' },
+                        { kind: 'field', name: 'scan_start_x',        nxtype: 'NX_NUMBER', units: 'NX_LENGTH', opt: 'required',    doc: 'Start position of the scan in the x direction.' },
+                        { kind: 'field', name: 'scan_start_y',        nxtype: 'NX_NUMBER', units: 'NX_LENGTH', opt: 'required',    doc: 'Start position of the scan in the y direction.' },
+                        { kind: 'field', name: 'scan_end_x',          nxtype: 'NX_NUMBER', units: 'NX_LENGTH', opt: 'required',    doc: 'End position of the scan in the x direction.' },
+                        { kind: 'field', name: 'scan_end_y',          nxtype: 'NX_NUMBER', units: 'NX_LENGTH', opt: 'required',    doc: 'End position of the scan in the y direction.' }
+                      ]
+                    },
+                    {
+                      kind: 'group', name: 'meshSCAN', nxclass: 'NXspm_scan_pattern', nameType: 'partial', opt: 'required',
+                      doc: 'Mesh scan: scans the surface in a grid pattern.',
+                      children: [
+                        { kind: 'field', name: 'scan_points_x', nxtype: 'NX_NUMBER', opt: 'required',    doc: 'Number of scan points in the x direction.' },
+                        { kind: 'field', name: 'scan_points_y', nxtype: 'NX_NUMBER', opt: 'required',    doc: 'Number of scan points in the y direction.' },
+                        { kind: 'field', name: 'step_size_x',   nxtype: 'NX_NUMBER', units: 'NX_LENGTH', opt: 'recommended', doc: 'Step size in the x direction.' },
+                        { kind: 'field', name: 'step_size_y',   nxtype: 'NX_NUMBER', units: 'NX_LENGTH', opt: 'recommended', doc: 'Step size in the y direction.' }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              kind: 'group', name: 'current_sensorTAG', nxclass: 'NXsensor', nameType: 'partial', opt: 'optional',
+              doc: 'Any current sensor (e.g. transimpedance amplifier) involved in the experiment. Replace TAG with the specific sensor name or ID.',
+              children: [
+                { kind: 'field', name: 'NAMEcurrent',  nxtype: 'NX_CHAR',   nameType: 'partial', opt: 'optional', doc: 'Display name of the current sensor.' },
+                { kind: 'field', name: 'current',       nxtype: 'NX_NUMBER', units: 'NX_CURRENT', opt: 'required', doc: 'Tunneling current measured (e.g. tip_current for current at the tip).' },
+                { kind: 'field', name: 'offset_value',  nxtype: 'NX_NUMBER', units: 'NX_CURRENT', opt: 'optional', doc: 'Offset in the tunneling current between tip and sample.' },
+                {
+                  kind: 'group', name: 'calibration', nxclass: 'NXcalibration', opt: 'optional',
+                  doc: 'Calibration data for the current sensor.',
+                  children: [
+                    { kind: 'group', name: 'calibration_parameters', nxclass: 'NXparameters', opt: 'optional', doc: 'Calibration parameters.', children: [
+                      { kind: 'field', name: 'coefficient', nxtype: 'NX_NUMBER', units: 'NX_ANY', opt: 'optional', doc: 'Calibration coefficient.' }
+                    ]}
+                  ]
+                },
+                {
+                  kind: 'group', name: 'NXamplifier', nxclass: 'NXamplifier', opt: 'optional',
+                  doc: 'Amplifier that amplifies the current signal.',
+                  children: [
+                    { kind: 'field', name: 'current_gain', nxtype: 'NX_NUMBER', units: 'NX_UNITLESS', opt: 'optional', doc: 'Gain of the current-sensor amplifier.' }
+                  ]
+                }
+              ]
+            },
+            {
+              kind: 'group', name: 'voltage_sensorTAG', nxclass: 'NXsensor', nameType: 'partial', opt: 'optional',
+              doc: 'Any voltage sensor involved in the experiment. Replace TAG with the sensor name or ID. Do NOT use for sample DC bias voltage — use sample_bias_voltage for that.',
+              children: [
+                { kind: 'field', name: 'NAMEvoltage',  nxtype: 'NX_CHAR',   nameType: 'partial', opt: 'optional', doc: 'Display name of the voltage sensor.' },
+                { kind: 'field', name: 'voltage',       nxtype: 'NX_NUMBER', units: 'NX_VOLTAGE', opt: 'optional', doc: 'Voltage measured by the sensor.' },
+                { kind: 'field', name: 'offset_value',  nxtype: 'NX_NUMBER', units: 'NX_VOLTAGE', opt: 'optional', doc: 'Offset voltage. Real voltage = voltage + offset_value.' },
+                {
+                  kind: 'group', name: 'calibration', nxclass: 'NXcalibration', opt: 'optional',
+                  doc: 'Calibration data for the voltage sensor.',
+                  children: [
+                    { kind: 'group', name: 'calibration_parameters', nxclass: 'NXparameters', opt: 'optional', doc: 'Calibration parameters.', children: [
+                      { kind: 'field', name: 'coefficient', nxtype: 'NX_NUMBER', units: 'NX_ANY', opt: 'optional', doc: 'Calibration coefficient.' }
+                    ]}
+                  ]
+                },
+                {
+                  kind: 'group', name: 'NXamplifier', nxclass: 'NXamplifier', opt: 'optional',
+                  doc: 'Amplifier that amplifies the voltage signal.',
+                  children: [
+                    { kind: 'field', name: 'voltage_gain', nxtype: 'NX_NUMBER', units: 'NX_UNITLESS', opt: 'optional', doc: 'Gain of the voltage-sensor amplifier.' }
+                  ]
+                }
+              ]
+            },
+            {
+              kind: 'group', name: 'piezo_sensor', nxclass: 'NXspm_piezo_sensor', opt: 'optional',
+              doc: 'Combined XYZ piezo sensor reference.',
+              children: [
+                { kind: 'field', name: 'x', nxtype: 'NX_NUMBER', units: 'NX_LENGTH', opt: 'recommended', doc: 'X position of the piezo.' },
+                { kind: 'field', name: 'y', nxtype: 'NX_NUMBER', units: 'NX_LENGTH', opt: 'recommended', doc: 'Y position of the piezo.' },
+                { kind: 'field', name: 'z', nxtype: 'NX_NUMBER', units: 'NX_LENGTH', opt: 'recommended', doc: 'Z position of the piezo.' }
+              ]
+            },
+            { kind: 'group', name: 'height_piezo_sensor',         nxclass: 'NXspm_piezo_sensor',      opt: 'recommended', doc: 'Sensor information for the height (Z-axis) piezo actuator.', children: [] },
+            { kind: 'group', name: 'XYZpiezo_sensor',             nxclass: 'NXspm_piezo_sensor',      nameType: 'partial', opt: 'optional', doc: 'Separate piezo sensors per axis (X, Y, Z). Use when each axis has its own sensor.', children: [] },
+            { kind: 'group', name: 'head_temperature_sensor',      nxclass: 'NXspm_temperature_sensor', opt: 'recommended', doc: 'Temperature near the sample or tip. Intended for array / time-series data.', children: [] },
+            { kind: 'group', name: 'cryo_bottom_temperature_sensor', nxclass: 'NXspm_temperature_sensor', opt: 'optional', doc: 'Temperature at the cold tail of the cryostat. Intended for array / time-series data.', children: [] },
+            { kind: 'group', name: 'cryo_shield_temperature_sensor', nxclass: 'NXspm_temperature_sensor', opt: 'optional', doc: 'Temperature of the liquid-nitrogen shield. Intended for array / time-series data.', children: [] },
+            { kind: 'group', name: 'sample_temperature_sensor',   nxclass: 'NXspm_temperature_sensor', opt: 'optional', doc: 'Temperature of the sample. Intended for array / time-series data.', children: [] },
+            {
+              kind: 'group', name: 'bias_spectroscopy_environment', nxclass: 'NXenvironment', opt: 'optional',
+              doc: 'Bias and current behavior due to voltage applied to the sample (sweep measurement). Primarily used for STS but may also appear in STM setups.',
+              children: [
+                {
+                  kind: 'group', name: 'NXspm_bias_spectroscopy', nxclass: 'NXspm_bias_spectroscopy', opt: 'required',
+                  doc: 'Setup and scan data for continuous measurement of bias voltage vs. tunneling current.',
+                  children: [
+                    {
+                      kind: 'group', name: 'NXspm_positioner', nxclass: 'NXspm_positioner', opt: 'recommended',
+                      doc: 'PID positioner used in STS scan settings. Can be reused for positioners at multiple sample points.',
+                      children: [
+                        { kind: 'group', name: 'z_controller', nxclass: 'NXpid_controller', opt: 'recommended', doc: 'PID controller for the Z-axis positioner.', children: [] }
+                      ]
+                    },
+                    {
+                      kind: 'group', name: 'BIAS_SWEEP', nxclass: 'NXspm_scan_control', nameType: 'any', opt: 'required',
+                      doc: 'Bias voltage sweep: scans the applied voltage while measuring the tunneling current.',
+                      children: [
+                        {
+                          kind: 'group', name: 'scan_region', nxclass: 'NXspm_scan_region', opt: 'required',
+                          doc: 'Bias voltage scan range.',
+                          children: [
+                            { kind: 'field', name: 'scan_start_bias',  nxtype: 'NX_NUMBER', units: 'NX_VOLTAGE', opt: 'required',    doc: 'Start voltage of the bias sweep.' },
+                            { kind: 'field', name: 'scan_end_bias',    nxtype: 'NX_NUMBER', units: 'NX_VOLTAGE', opt: 'required',    doc: 'End voltage of the bias sweep.' },
+                            { kind: 'field', name: 'scan_offset_bias', nxtype: 'NX_NUMBER', units: 'NX_VOLTAGE', opt: 'required',    doc: 'Offset of the bias scan voltage.' },
+                            { kind: 'field', name: 'scan_range_bias',  nxtype: 'NX_NUMBER', units: 'NX_VOLTAGE', opt: 'recommended', doc: 'Total range of the bias scan.' }
+                          ]
+                        },
+                        {
+                          kind: 'group', name: 'linear_sweep', nxclass: 'NXspm_scan_pattern', opt: 'required',
+                          doc: 'Linear sweep: measures sample response as bias voltage increases linearly.',
+                          children: [
+                            { kind: 'field', name: 'scan_points_bias', nxtype: 'NX_NUMBER', opt: 'required', doc: 'Number of bias scan points.' },
+                            { kind: 'field', name: 'step_size_bias',   nxtype: 'NX_NUMBER', opt: 'required', doc: 'Step size of the bias scan.' }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              kind: 'group', name: 'sample_bias_voltage', nxclass: 'NXsensor', opt: 'optional',
+              doc: 'DC bias voltage applied to the sample (e.g. in constant-current STM mode).',
+              children: [
+                { kind: 'field', name: 'bias_voltage',       nxtype: 'NX_NUMBER', units: 'NX_VOLTAGE', opt: 'required', doc: 'The DC bias voltage applied to the sample.' },
+                { kind: 'field', name: 'bias_offset_value',  nxtype: 'NX_NUMBER', units: 'NX_VOLTAGE', opt: 'optional', doc: 'Offset value of the bias voltage.' },
+                {
+                  kind: 'group', name: 'calibration', nxclass: 'NXcalibration', opt: 'optional',
+                  doc: 'Calibration of the bias voltage measurement (V/V).',
+                  children: [
+                    { kind: 'group', name: 'calibration_parameters', nxclass: 'NXparameters', opt: 'optional', doc: 'Calibration parameters.', children: [
+                      { kind: 'field', name: 'coefficient', nxtype: 'NX_NUMBER', units: 'NX_ANY', opt: 'optional', doc: 'Calibration coefficient.' }
+                    ]}
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          kind: 'group', name: 'NXsample', nxclass: 'NXsample', opt: 'optional',
+          doc: 'Sample information including preparation history and environmental conditions during measurement.',
+          children: [
+            { kind: 'group', name: 'history', nxclass: 'NXhistory', opt: 'recommended', doc: 'Physical processes that occurred to the sample prior to or during the experiment.', children: [] },
+            {
+              kind: 'group', name: 'sample_environment', nxclass: 'NXenvironment', opt: 'optional',
+              doc: 'Environmental conditions around the sample during measurement.',
+              children: [
+                { kind: 'field', name: 'temperature', nxtype: 'NX_NUMBER', units: 'NX_TEMPERATURE', opt: 'recommended', doc: 'Single-valued temperature of the sample (also the tip temperature when in contact or proximity).' },
+                { kind: 'group', name: 'sample_bias_voltage',       nxclass: 'NXsensor',              opt: 'optional', doc: 'Link to /entry/instrument/sample_bias_voltage.',       children: [] },
+                { kind: 'group', name: 'sample_temperature_sensor', nxclass: 'NXspm_temperature_sensor', opt: 'optional', doc: 'Link to /entry/instrument/sample_temperature_sensor.', children: [] }
+              ]
+            }
+          ]
+        },
+        {
+          kind: 'group', name: 'NXdata', nxclass: 'NXdata', opt: 'required',
+          doc: 'Primary data group. Contains the measured signal and its corresponding axes.',
+          children: [
+            { kind: 'field', name: 'DATA',     nxtype: 'NX_NUMBER',          units: 'NX_ANY', nameType: 'any', opt: 'required', doc: 'Measured data (e.g. current, voltage, topography) that can be plotted against the axes.' },
+            { kind: 'field', name: 'AXISNAME', nxtype: 'NX_CHAR_OR_NUMBER',  units: 'NX_ANY', nameType: 'any', opt: 'required', doc: 'Axis values corresponding to the DATA field.' }
+          ]
+        },
+        {
+          kind: 'group', name: 'reproducibility_indicators', nxclass: 'NXcollection', opt: 'optional',
+          doc: 'Collection of links to fields or groups that quantify experiment reproducibility.',
+          children: [
+            { kind: 'group', name: 'LINK_TO_GROUP', nxclass: 'NXcollection', nameType: 'any', opt: 'optional', doc: 'Link to any group relevant as a reproducibility indicator.', children: [] },
+            { kind: 'field', name: 'LINK_TO_FIELD', nxtype: 'NX_CHAR', nameType: 'any', opt: 'optional', doc: 'Link to any field relevant as a reproducibility indicator.' }
+          ]
+        },
+        {
+          kind: 'group', name: 'resolution_indicators', nxclass: 'NXcollection', opt: 'optional',
+          doc: 'Collection of links to fields or groups that quantify the resolution of the experimental results.',
+          children: [
+            { kind: 'group', name: 'LINK_TO_GROUP', nxclass: 'NXcollection', nameType: 'any', opt: 'optional', doc: 'Link to any group relevant as a resolution indicator.', children: [] },
+            { kind: 'field', name: 'LINK_TO_FIELD', nxtype: 'NX_CHAR', nameType: 'any', opt: 'optional', doc: 'Link to any field relevant as a resolution indicator.' }
+          ]
+        }
+      ]
+    }
+  ]
+};
+
+function renderNXNode(node, parentEl, depth) {
+  const nodeEl = document.createElement('div');
+  nodeEl.className = 'nxtree-node';
+
+  const row = document.createElement('div');
+  row.className = 'nxtree-row';
+
+  if (node.kind === 'group') {
+    const hasChildren = node.children && node.children.length > 0;
+
+    const toggleBtn = document.createElement('button');
+    toggleBtn.className = 'nxtree-toggle' + (hasChildren ? '' : ' nxtree-toggle-spacer');
+    toggleBtn.textContent = depth === 0 ? '▼' : '▶';
+    if (!hasChildren) { toggleBtn.style.visibility = 'hidden'; toggleBtn.disabled = true; }
+
+    const childrenEl = document.createElement('div');
+    childrenEl.className = 'nxtree-children';
+    childrenEl.style.display = depth === 0 ? 'block' : 'none';
+
+    let expanded = depth === 0;
+    toggleBtn.onclick = () => {
+      expanded = !expanded;
+      toggleBtn.textContent = expanded ? '▼' : '▶';
+      childrenEl.style.display = expanded ? 'block' : 'none';
+    };
+
+    row.appendChild(toggleBtn);
+
+    const icon = document.createElement('span');
+    icon.className = 'nxtree-group-icon';
+    icon.textContent = '▣';
+    row.appendChild(icon);
+
+    const nameEl = document.createElement('span');
+    nameEl.className = 'nxtree-name';
+    nameEl.textContent = node.name;
+    row.appendChild(nameEl);
+
+    if (node.nxclass) {
+      const classTag = document.createElement('span');
+      classTag.className = 'nxtree-class';
+      classTag.textContent = node.nxclass;
+      row.appendChild(classTag);
+    }
+
+    if (node.nameType && node.nameType !== 'specified') {
+      const ntTag = document.createElement('span');
+      ntTag.className = 'nxtree-nametype';
+      ntTag.textContent = node.nameType === 'any' ? 'any name' : 'partial name';
+      row.appendChild(ntTag);
+    }
+
+    const optEl = document.createElement('span');
+    optEl.className = 'nxtree-opt nxtree-opt-' + (node.opt || 'required');
+    optEl.textContent = node.opt || 'required';
+    row.appendChild(optEl);
+
+    if (node.doc) {
+      const tags = [node.nxclass || 'group', node.opt || 'required'];
+      if (node.nameType) tags.push(node.nameType + ' nameType');
+      row.appendChild(infoBtn({ name: node.name, detail: node.doc, tags }, 'group'));
+    }
+
+    nodeEl.appendChild(row);
+
+    if (hasChildren) {
+      node.children.forEach(child => renderNXNode(child, childrenEl, depth + 1));
+      nodeEl.appendChild(childrenEl);
+    }
+
+  } else if (node.kind === 'field') {
+    const spacer = document.createElement('span');
+    spacer.className = 'nxtree-toggle nxtree-toggle-spacer';
+    row.appendChild(spacer);
+
+    const icon = document.createElement('span');
+    icon.className = 'nxtree-field-icon';
+    icon.textContent = '◈';
+    row.appendChild(icon);
+
+    const nameEl = document.createElement('span');
+    nameEl.className = 'nxtree-name nxtree-field-name';
+    nameEl.textContent = node.name;
+    row.appendChild(nameEl);
+
+    if (node.nxtype) {
+      const typeTag = document.createElement('span');
+      typeTag.className = 'nxtree-type';
+      typeTag.textContent = node.nxtype;
+      row.appendChild(typeTag);
+    }
+
+    if (node.units) {
+      const unitsTag = document.createElement('span');
+      unitsTag.className = 'nxtree-units';
+      unitsTag.textContent = node.units;
+      row.appendChild(unitsTag);
+    }
+
+    if (node.nameType && node.nameType !== 'specified') {
+      const ntTag = document.createElement('span');
+      ntTag.className = 'nxtree-nametype';
+      ntTag.textContent = node.nameType === 'any' ? 'any name' : 'partial name';
+      row.appendChild(ntTag);
+    }
+
+    const optEl = document.createElement('span');
+    optEl.className = 'nxtree-opt nxtree-opt-' + (node.opt || 'required');
+    optEl.textContent = node.opt || 'required';
+    row.appendChild(optEl);
+
+    if (node.doc) {
+      let detail = node.doc;
+      if (node.enum) {
+        detail += '<br><br><strong>Allowed values:</strong> ' + node.enum.map(e => `<code>${e}</code>`).join(', ');
+      }
+      const tags = [node.nxtype || 'field', node.opt || 'required'];
+      if (node.units) tags.push(node.units);
+      if (node.enum) tags.push('enumeration');
+      row.appendChild(infoBtn({ name: node.name, detail, tags }, 'field'));
+    }
+
+    nodeEl.appendChild(row);
+  }
+
+  parentEl.appendChild(nodeEl);
+}
+
+function buildNXspmModel() {
+  const content = document.getElementById('nexusspm-content');
+  content.innerHTML = '';
+
+  /* inheritance banner */
+  const banner = document.createElement('div');
+  banner.className = 'nxtree-banner';
+
+  const bannerRow = document.createElement('div');
+  bannerRow.className = 'nxtree-banner-row';
+
+  const defBadge = document.createElement('span');
+  defBadge.className = 'nxtree-def-badge';
+  defBadge.textContent = 'application definition';
+
+  const defName = document.createElement('span');
+  defName.className = 'nxtree-def-name';
+  defName.textContent = NXSPM_TREE.name;
+
+  const extendsLabel = document.createElement('span');
+  extendsLabel.className = 'nxtree-extends-label';
+  extendsLabel.textContent = 'extends';
+
+  const parentName = document.createElement('span');
+  parentName.className = 'nxtree-parent';
+  parentName.textContent = NXSPM_TREE.extends;
+
+  bannerRow.appendChild(defBadge);
+  bannerRow.appendChild(defName);
+  bannerRow.appendChild(extendsLabel);
+  bannerRow.appendChild(parentName);
+  banner.appendChild(bannerRow);
+
+  const subtypesRow = document.createElement('div');
+  subtypesRow.className = 'nxtree-subtypes-row';
+
+  const subtypesLabel = document.createElement('span');
+  subtypesLabel.className = 'nxtree-subtypes-label';
+  subtypesLabel.textContent = 'sub-techniques:';
+  subtypesRow.appendChild(subtypesLabel);
+
+  (NXSPM_TREE.subtypes || []).forEach(st => {
+    const stEl = document.createElement('span');
+    stEl.className = 'nxtree-subtype';
+    stEl.textContent = st;
+    subtypesRow.appendChild(stEl);
+  });
+  banner.appendChild(subtypesRow);
+  content.appendChild(banner);
+
+  /* tree */
+  const tree = document.createElement('div');
+  tree.className = 'nxtree';
+  (NXSPM_TREE.children || []).forEach(child => renderNXNode(child, tree, 0));
+  content.appendChild(tree);
+}
+
+/* ============================================================
    NAVIGATION
    ============================================================ */
 function showView(name) {
   closePanel();
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-  const viewMap = { motivation: 'view-motivation', nomad: 'view-nomad', pynxtools: 'view-pynxtools', explore: 'view-explore' };
+  const viewMap = { motivation: 'view-motivation', nomad: 'view-nomad', pynxtools: 'view-pynxtools', explore: 'view-explore', 'nexus-spm': 'view-nexus-spm' };
   document.getElementById(viewMap[name]).classList.add('active');
 
   const isMoti    = name === 'motivation';
   const isNomad   = name === 'nomad';
   const isPynx    = name === 'pynxtools';
   const isExplore = name === 'explore';
+  const isNXspm   = name === 'nexus-spm';
 
-  /* breadcrumb: overview is always visible; deeper crumbs appear progressively */
-  document.getElementById('crumb-sep0').style.display    = (isNomad || isPynx || isExplore) ? '' : 'none';
-  document.getElementById('crumb-nomad').style.display   = (isNomad || isPynx || isExplore) ? '' : 'none';
-  document.getElementById('crumb-sep').style.display     = (isPynx  || isExplore) ? '' : 'none';
-  document.getElementById('crumb-pyn').style.display     = (isPynx  || isExplore) ? '' : 'none';
-  document.getElementById('crumb-sep2').style.display    = isExplore ? '' : 'none';
-  document.getElementById('crumb-explore').style.display = isExplore ? '' : 'none';
+  /* breadcrumb */
+  document.getElementById('crumb-sep0').style.display     = (isNomad || isPynx || isExplore || isNXspm) ? '' : 'none';
+  document.getElementById('crumb-nomad').style.display    = (isNomad || isPynx || isExplore || isNXspm) ? '' : 'none';
+  document.getElementById('crumb-sep').style.display      = (isPynx  || isExplore || isNXspm) ? '' : 'none';
+  document.getElementById('crumb-pyn').style.display      = (isPynx  || isExplore || isNXspm) ? '' : 'none';
+  document.getElementById('crumb-sep2').style.display     = isExplore ? '' : 'none';
+  document.getElementById('crumb-explore').style.display  = isExplore ? '' : 'none';
+  document.getElementById('crumb-sep3').style.display     = isNXspm ? '' : 'none';
+  document.getElementById('crumb-nexusspm').style.display = isNXspm ? '' : 'none';
 
   document.getElementById('crumb-overview').classList.toggle('active', isMoti);
   document.getElementById('crumb-nomad').classList.toggle('active', isNomad);
   document.getElementById('crumb-pyn').classList.toggle('active', isPynx);
   document.getElementById('crumb-explore').classList.toggle('active', isExplore);
+  document.getElementById('crumb-nexusspm').classList.toggle('active', isNXspm);
 
   /* back button */
   const backBtn = document.getElementById('back-btn');
@@ -1437,9 +1914,12 @@ function showView(name) {
   } else if (isExplore) {
     backBtn.textContent = '← back to pynxtools';
     backBtn.onclick = () => showView('pynxtools');
+  } else if (isNXspm) {
+    backBtn.textContent = '← back to pynxtools';
+    backBtn.onclick = () => showView('pynxtools');
   }
 
-  if (!isExplore && !isMoti) requestAnimationFrame(equalizeVisibleSatelliteColumns);
+  if (!isExplore && !isMoti && !isNXspm) requestAnimationFrame(equalizeVisibleSatelliteColumns);
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -1448,5 +1928,6 @@ buildMotivation();
 buildNomad();
 buildPynx();
 buildExplore();
+buildNXspmModel();
 requestAnimationFrame(equalizeVisibleSatelliteColumns);
 window.addEventListener('resize', equalizeVisibleSatelliteColumns);

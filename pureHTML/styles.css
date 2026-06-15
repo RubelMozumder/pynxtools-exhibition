@@ -751,3 +751,235 @@ a:hover { color: var(--link-hover-color); }
   letter-spacing: 0.02em;
 }
 .btn-explore-eco:hover { filter: brightness(0.92); }
+
+/* ============================================================
+   NEXUS SPM TREE VIEW
+   ============================================================ */
+#nexusspm-content {
+  width: min(var(--diagram-width), calc(100% - 40px));
+  margin: 24px auto 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ── Inheritance banner ── */
+.nxtree-banner {
+  background: var(--surface);
+  border: 1.5px solid var(--pynx-border);
+  border-radius: var(--radius-lg);
+  padding: 16px 20px;
+}
+.nxtree-banner-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+.nxtree-def-badge {
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 20px;
+  background: var(--pynx-bg-light);
+  color: var(--pynx-accent);
+  border: 0.5px solid var(--pynx-border);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.nxtree-def-name {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--pynx-accent);
+  font-family: 'SF Mono', 'Fira Code', monospace;
+}
+.nxtree-extends-label {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.nxtree-parent {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: var(--surface2);
+  border: 0.5px solid var(--border);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+}
+.nxtree-subtypes-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.nxtree-subtypes-label {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+.nxtree-subtype {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: var(--nomad-bg-light);
+  color: var(--nomad-accent);
+  border: 0.5px solid var(--nomad-border);
+  font-family: 'SF Mono', 'Fira Code', monospace;
+}
+
+/* ── Tree container ── */
+.nxtree {
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 10px 8px;
+}
+
+/* ── Row ── */
+.nxtree-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 6px;
+  border-radius: 6px;
+  transition: background 0.12s;
+  min-height: 28px;
+  flex-wrap: nowrap;
+}
+.nxtree-row:hover { background: var(--surface2); }
+
+/* ── Children indentation via nesting ── */
+.nxtree-children {
+  padding-left: 18px;
+  margin-left: 9px;
+  border-left: 1px dashed var(--border);
+}
+
+/* ── Toggle button ── */
+.nxtree-toggle {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  border: 0.5px solid var(--border);
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 7px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.12s, color 0.12s;
+  padding: 0;
+}
+.nxtree-toggle:hover:not(:disabled) {
+  background: var(--surface2);
+  color: var(--pynx-accent);
+}
+.nxtree-toggle-spacer {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* ── Group icon ── */
+.nxtree-group-icon {
+  font-size: 10px;
+  color: var(--pynx-accent);
+  flex-shrink: 0;
+}
+
+/* ── Field icon ── */
+.nxtree-field-icon {
+  font-size: 10px;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+/* ── Name ── */
+.nxtree-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+  font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+  flex-shrink: 0;
+}
+.nxtree-field-name {
+  font-weight: 400;
+  color: var(--text-secondary);
+}
+
+/* ── Class badge (group NeXus class) ── */
+.nxtree-class {
+  font-size: 10px;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: var(--pynx-bg-light);
+  color: var(--pynx-accent);
+  border: 0.5px solid var(--pynx-border);
+  flex-shrink: 0;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+}
+
+/* ── Type badge (field data type) ── */
+.nxtree-type {
+  font-size: 10px;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: var(--surface2);
+  color: var(--text-muted);
+  border: 0.5px solid var(--border);
+  flex-shrink: 0;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+}
+
+/* ── Units badge ── */
+.nxtree-units {
+  font-size: 10px;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: var(--pynx-bg-light);
+  color: var(--pynx-accent);
+  border: 0.5px dashed var(--pynx-border);
+  flex-shrink: 0;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+}
+
+/* ── nameType badge ── */
+.nxtree-nametype {
+  font-size: 10px;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: var(--surface2);
+  color: var(--text-muted);
+  border: 0.5px dashed var(--border-strong);
+  flex-shrink: 0;
+}
+
+/* ── Optionality badges ── */
+.nxtree-opt {
+  font-size: 9px;
+  padding: 1px 6px;
+  border-radius: 20px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+.nxtree-opt-required {
+  background: var(--info-bg);
+  color: var(--info-text);
+  border: 0.5px solid var(--info-border);
+}
+.nxtree-opt-recommended {
+  background: var(--pynx-bg-light);
+  color: var(--pynx-accent);
+  border: 0.5px solid var(--pynx-border);
+}
+.nxtree-opt-optional {
+  background: var(--surface2);
+  color: var(--text-muted);
+  border: 0.5px solid var(--border);
+}

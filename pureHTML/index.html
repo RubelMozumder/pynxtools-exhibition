@@ -19,6 +19,8 @@
     <span class="crumb" id="crumb-pyn" style="display:none" onclick="showView('pynxtools')">pynxtools</span>
     <span class="crumb-sep" id="crumb-sep2" style="display:none">›</span>
     <span class="crumb" id="crumb-explore" style="display:none">explore framework</span>
+    <span class="crumb-sep" id="crumb-sep3" style="display:none">›</span>
+    <span class="crumb" id="crumb-nexusspm" style="display:none">NXspm data model</span>
   </div>
   <button class="back-btn" id="back-btn">&#8592; overview</button>
 </div>
@@ -72,6 +74,20 @@
     </p>
   </div>
   <div id="explore-content"></div>
+</div>
+
+<!-- VIEW: NEXUS SPM DATA MODEL -->
+<div class="view" id="view-nexus-spm">
+  <div class="view-note">
+    <div class="view-note-label">data model</div>
+    <p>
+      <em>NXspm is the NeXus application definition for Scanning Probe Microscopy — a standardized, hierarchical structure that captures instrument hardware, environmental conditions, and measured scan data for STM, STS, and AFM experiments.</em><br><br>
+      &#8226; Click <strong>▶</strong> on any group to expand it and reveal its fields and sub-groups<br>
+      &#8226; Click <strong>ⓘ info</strong> on any node for the full description from the NXDL definition<br>
+      &#8226; Optionality badges: <span style="font-weight:600;color:var(--info-text)">required</span> &nbsp;·&nbsp; <span style="font-weight:600;color:var(--success-text)">recommended</span> &nbsp;·&nbsp; <span style="font-weight:600;color:var(--text-muted)">optional</span>
+    </p>
+  </div>
+  <div id="nexusspm-content"></div>
 </div>
 
 <!-- SIDE PANEL (shared, outside views) -->
