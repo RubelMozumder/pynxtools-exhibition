@@ -1303,9 +1303,11 @@ function buildExplore() {
   const yesBranch = document.createElement('div');
   yesBranch.className = 'branch branch-yes';
   const yesTag = document.createElement('span');
-  yesTag.className = 'branch-label branch-label-yes';
-  yesTag.textContent = '✓ YES';
+  yesTag.className = 'branch-label branch-label-yes branch-toggle';
+  yesTag.innerHTML = '<span class="collapse-indicator">▸</span> ✓ YES';
   yesBranch.appendChild(yesTag);
+  const yesBody = document.createElement('div');
+  yesBody.className = 'branch-body collapsed';
   const yesCard = document.createElement('div');
   yesCard.className = 'step-card';
   const yesCardName = document.createElement('span');
@@ -1313,16 +1315,27 @@ function buildExplore() {
   yesCardName.textContent = DATA.explore.utilize.yesPath.name;
   yesCard.appendChild(yesCardName);
   yesCard.appendChild(infoBtn(DATA.explore.utilize.yesPath, 'step'));
-  yesBranch.appendChild(yesCard);
+  yesBody.appendChild(yesCard);
+  yesBranch.appendChild(yesBody);
+  yesTag.onclick = () => {
+    const collapsed = yesBody.classList.toggle('collapsed');
+    yesTag.querySelector('.collapse-indicator').textContent = collapsed ? '▸' : '▾';
+  };
   branches.appendChild(yesBranch);
 
   /* NO branch */
   const noBranch = document.createElement('div');
   noBranch.className = 'branch branch-no';
   const noTag = document.createElement('span');
-  noTag.className = 'branch-label branch-label-no';
-  noTag.textContent = '✗ NO';
+  noTag.className = 'branch-label branch-label-no branch-toggle';
+  noTag.innerHTML = '<span class="collapse-indicator">▸</span> ✗ NO';
   noBranch.appendChild(noTag);
+  const noBody = document.createElement('div');
+  noBody.className = 'branch-body collapsed';
+  noTag.onclick = () => {
+    const collapsed = noBody.classList.toggle('collapsed');
+    noTag.querySelector('.collapse-indicator').textContent = collapsed ? '▸' : '▾';
+  };
 
   DATA.explore.utilize.noPath.steps.forEach((step, si) => {
     const stepNum = ['A', 'B'][si];
@@ -1340,7 +1353,7 @@ function buildExplore() {
     labelWrap.appendChild(infoBtn(step, 'step'));
     stepRow.appendChild(circle);
     stepRow.appendChild(labelWrap);
-    noBranch.appendChild(stepRow);
+    noBody.appendChild(stepRow);
 
     if (step.steps && step.steps.length) {
       const subWrap = document.createElement('div');
@@ -1359,10 +1372,18 @@ function buildExplore() {
         subRow.appendChild(infoBtn(sub, 'step'));
         subWrap.appendChild(subRow);
       });
-      noBranch.appendChild(subWrap);
+      noBody.appendChild(subWrap);
+      subWrap.classList.add('collapsed');
+      lbl.classList.add('step-toggle');
+      lbl.innerHTML = '<span class="collapse-indicator">▸</span> ' + step.name;
+      lbl.onclick = () => {
+        const collapsed = subWrap.classList.toggle('collapsed');
+        lbl.querySelector('.collapse-indicator').textContent = collapsed ? '▸' : '▾';
+      };
     }
   });
 
+  noBranch.appendChild(noBody);
   branches.appendChild(noBranch);
   stepper.appendChild(branches);
   sectionA.appendChild(stepper);

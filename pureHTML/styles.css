@@ -160,7 +160,7 @@ a:hover { color: var(--link-hover-color); }
   border: 1.5px solid var(--nomad-border);
   width: var(--nomad-central-box-width);
 }
-.central-box.pynx  { border: 1.5px solid var(--pynx-border); }
+.central-box.pynxtools { border: 1.5px solid var(--pynx-border); }
 
 /* plug where each rail taps into the box — sits at the box's vertical center,
    which always lines up with the rail midpoint */
@@ -467,6 +467,13 @@ a:hover { color: var(--link-hover-color); }
   background: var(--info-bg); color: var(--info-text);
   border: 0.5px solid var(--info-border);
 }
+.branch-toggle { cursor: pointer; user-select: none; }
+.branch-toggle:hover { filter: brightness(0.92); }
+.collapse-indicator { font-size: 9px; display: inline-block; margin-right: 2px; }
+.branch-body.collapsed { display: none; }
+.sub-steps.collapsed { display: none; }
+.step-toggle { cursor: pointer; user-select: none; }
+.step-toggle:hover { color: var(--text-primary); }
 
 /* ── SUB-STEPS (indented under a step) ── */
 .sub-steps {
