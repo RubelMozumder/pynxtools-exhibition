@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//home/rubel/NOMAD-FAIRmat/nomad-distro-dev-RM/packages/pynxtools-xps/docs/reference/**)",
+      "Read(//home/rubel/NOMAD-FAIRmat/nomad-distro-dev-RM/packages/pynxtools-spm/docs/explanation/**)",
+      "Bash(gh repo *)",
+      "Bash(gh api *)",
+      "Bash(python3 -c \"import sys,json; [print\\(e['name']\\) for e in json.load\\(sys.stdin\\) if e['type']=='directory']\")",
+      "Bash(python3 -c \"import sys,json; [print\\(e['name']\\) for e in json.load\\(sys.stdin\\)]\")",
+      "Bash(python3 -c ' *)",
+      "WebFetch(domain:github.com)"
+    ]
+  }
+}

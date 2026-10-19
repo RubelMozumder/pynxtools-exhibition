@@ -3,14 +3,14 @@
    ============================================================ */
 :root {
   /* NOMAD */
-  --nomad-accent:      #185FA5;
-  --nomad-bg-light:    #E6F1FB;
-  --nomad-border:      #185FA5;
+  --nomad-accent:      #2a4cdf;
+  --nomad-bg-light:    #eaedfc;
+  --nomad-border:      #2a4cdf;
 
   /* pynxtools */
-  --pynx-accent:       #3B6D11;
-  --pynx-bg-light:     #EAF3DE;
-  --pynx-border:       #3B6D11;
+  --pynx-accent:       #4186e0;
+  --pynx-bg-light:     #e8f0fb;
+  --pynx-border:       #4186e0;
 
   /* global light mode */
   --bg:                #f5f5f3;
@@ -21,23 +21,27 @@
   --text-primary:      #1a1a18;
   --text-secondary:    #5f5e5a;
   --text-muted:        #888780;
-  --info-bg:           #E6F1FB;
-  --info-border:       #B5D4F4;
-  --info-text:         #185FA5;
-  --success-bg:        #EAF3DE;
-  --success-border:    #C0DD97;
-  --success-text:      #3B6D11;
+  --info-bg:           #eaedfc;
+  --info-border:       #b0bcf7;
+  --info-text:         #2a4cdf;
+  --success-bg:        #e8f0fb;
+  --success-border:    #aac5f5;
+  --success-text:      #4186e0;
   --panel-bg:          #ffffff;
   --overlay-bg:        rgba(0,0,0,0.2);
+  --link-color:        #2a4cdf;
+  --link-hover-color:  #1a38b8;
   --font: system-ui, -apple-system, 'Segoe UI', sans-serif;
   --radius-md: 8px;
   --radius-lg: 12px;
-  --central-box-width: 270px;
+  --central-box-width:       270px;   /* pynxtools view */
+  --nomad-central-box-width: 270px;
   --plugin-card-width: 175px;
   --connector-width: 36px;
   --rail-width: 30px;
   --satellite-col-width: calc(var(--plugin-card-width) + var(--connector-width) + var(--rail-width));
-  --diagram-width: calc((var(--satellite-col-width) * 2) + var(--central-box-width));
+  --diagram-width:       calc((var(--satellite-col-width) * 2) + var(--central-box-width));
+  --nomad-diagram-width: calc((var(--satellite-col-width) * 2) + var(--nomad-central-box-width));
 }
 
 @media (prefers-color-scheme: dark) {
@@ -50,17 +54,21 @@
     --text-primary:    #e8e6df;
     --text-secondary:  #9c9a92;
     --text-muted:      #5f5e5a;
-    --info-bg:         #042C53;
-    --info-border:     #0C447C;
-    --info-text:       #85B7EB;
-    --success-bg:      #173404;
-    --success-border:  #27500A;
-    --success-text:    #97C459;
+    --info-bg:         #0d1547;
+    --info-border:     #2033a0;
+    --info-text:       #9baaf0;
+    --success-bg:      #0a1a38;
+    --success-border:  #1e3a8a;
+    --success-text:    #7aabf0;
     --panel-bg:        #1a1a17;
-    --nomad-accent:    #378ADD;
-    --pynx-accent:     #639922;
-    --nomad-border:    #378ADD;
-    --pynx-border:     #639922;
+    --link-color:      #7aabf0;
+    --link-hover-color: #a0c4f8;
+    --nomad-accent:    #7b8ef0;
+    --nomad-border:    #7b8ef0;
+    --nomad-bg-light:  #0d1547;
+    --pynx-accent:     #7aabf0;
+    --pynx-border:     #7aabf0;
+    --pynx-bg-light:   #0a1a38;
   }
 }
 
@@ -72,6 +80,14 @@ body {
   color: var(--text-primary);
   min-height: 100vh;
 }
+
+a {
+  color: var(--link-color);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+a:hover { color: var(--link-hover-color); }
 
 /* ── TOPBAR ── */
 .topbar {
@@ -107,7 +123,6 @@ body {
   margin: 28px auto 0;
   padding: 14px 16px;
   background: var(--surface);
-  /* background: var(--success-bg); */
   border: 0.5px solid var(--border);
   border-radius: var(--radius-md);
 }
@@ -124,8 +139,9 @@ body {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   gap: 0;
-  padding: 24px 20px 48px;
+  padding: 28px 20px 48px;
   align-items: center;
+  align-content: start;
   min-height: calc(100vh - 145px);
 }
 
@@ -140,8 +156,11 @@ body {
   position: relative;
   z-index: 2;
 }
-.central-box.nomad { border: 1.5px solid var(--nomad-border); }
-.central-box.pynx  { border: 1.5px solid var(--pynx-border); }
+.central-box.nomad {
+  border: 1.5px solid var(--nomad-border);
+  width: var(--nomad-central-box-width);
+}
+.central-box.pynxtools { border: 1.5px solid var(--pynx-border); }
 
 /* plug where each rail taps into the box — sits at the box's vertical center,
    which always lines up with the rail midpoint */
@@ -156,8 +175,8 @@ body {
 .box-plug.right { right: -9px; }
 
 .box-title { font-size: 17px; font-weight: 600; margin-bottom: 4px; }
-.nomad .box-title { color: var(--nomad-accent); }
-.pynx  .box-title { color: var(--pynx-accent); }
+.nomad     .box-title { color: var(--nomad-accent); }
+.pynxtools .box-title { color: var(--pynx-accent); }
 .box-sub { font-size: 12px; color: var(--text-secondary); margin-bottom: 16px; line-height: 1.5; }
 .standalone-tag {
   display: inline-block; font-size: 10px; padding: 2px 9px; border-radius: 20px;
@@ -169,6 +188,13 @@ body {
   text-transform: uppercase; margin-bottom: 8px;
 }
 .chips { display: flex; flex-wrap: wrap; gap: 5px; }
+/* Prevent the NOMAD box (22 features) from overflowing satellite columns */
+.nomad .chips {
+  max-height: 260px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-strong) transparent;
+}
 .chip {
   font-size: 11px; padding: 4px 10px; border-radius: 20px; cursor: pointer;
   background: var(--surface2); border: 0.5px solid var(--border);
@@ -246,11 +272,12 @@ body {
   background: var(--pynx-bg-light);
 }
 
-.pcard-name { font-size: 12px; font-weight: 600; margin-bottom: 2px; }
-.pynx-card .pcard-name { color: var(--pynx-accent); }
-.pynx-spm-card .pcard-name { color: var(--pynx-accent); }
+.pcard-name { font-size: 12px; font-weight: 600; margin-bottom: 2px; color: var(--pynx-accent); }
 .pcard-desc { font-size: 10px; color: var(--text-secondary); line-height: 1.45; margin-bottom: 8px; }
 .pcard-actions { display: flex; gap: 5px; align-items: center; }
+.pcard-actions-spm { flex-direction: column; align-items: stretch; gap: 3px; }
+.pcard-model-row { display: flex; justify-content: flex-end; }
+.pcard-actions-bottom { display: flex; gap: 5px; align-items: center; }
 
 .btn-info {
   font-size: 10px; padding: 3px 9px; border-radius: 20px; cursor: pointer;
@@ -378,7 +405,7 @@ body {
   border-bottom: 0.5px solid var(--border);
 }
 .esec-title {
-  font-size: 14px; font-weight: 600; color: var(--pynx-accent); flex: 1;
+  font-size: 14px; font-weight: 600; color: var(--text-primary); flex: 1;
 }
 
 /* ── STEPPER ── */
@@ -414,7 +441,7 @@ body {
   margin-top: 2px; transition: border-color 0.2s;
 }
 .step-card:hover { border-color: var(--success-text); }
-.step-card-name { font-size: 12px; font-weight: 600; color: var(--success-text); flex: 1; }
+.step-card-name { font-size: 12px; font-weight: 600; color: var(--text-primary); flex: 1; }
 
 /* ── BRANCHES ── */
 .step-branches {
@@ -440,6 +467,13 @@ body {
   background: var(--info-bg); color: var(--info-text);
   border: 0.5px solid var(--info-border);
 }
+.branch-toggle { cursor: pointer; user-select: none; }
+.branch-toggle:hover { filter: brightness(0.92); }
+.collapse-indicator { font-size: 9px; display: inline-block; margin-right: 2px; }
+.branch-body.collapsed { display: none; }
+.sub-steps.collapsed { display: none; }
+.step-toggle { cursor: pointer; user-select: none; }
+.step-toggle:hover { color: var(--text-primary); }
 
 /* ── SUB-STEPS (indented under a step) ── */
 .sub-steps {
@@ -482,7 +516,7 @@ body {
   border-bottom: 0.5px solid var(--border);
 }
 .track-title {
-  font-size: 13px; font-weight: 600; color: var(--pynx-accent); flex: 1;
+  font-size: 13px; font-weight: 600; color: var(--text-primary); flex: 1;
 }
 .track-desc {
   font-size: 12px; color: var(--text-secondary); line-height: 1.55;
@@ -499,6 +533,238 @@ body {
   font-size: 12px; font-weight: 600; flex: 1; color: var(--text-primary);
 }
 
+/* ── MOTIVATION VIEW ── */
+#motivation-content {
+  width: min(var(--diagram-width), calc(100% - 40px));
+  margin: 24px auto 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.motiv-section {
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.motiv-section-head {
+  padding: 12px 20px;
+  border-bottom: 0.5px solid var(--border);
+  background: var(--surface2);
+}
+
+.motiv-section-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.motiv-section-body {
+  padding: 20px;
+}
+
+/* image strip */
+.motiv-image-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.motiv-img-card {
+  position: relative;
+  background: var(--surface2);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.2s;
+}
+.motiv-img-card:hover { border-color: var(--border-strong); }
+
+.motiv-num-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: var(--nomad-bg-light);
+  color: var(--nomad-accent);
+  border: 0.5px solid var(--nomad-border);
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  z-index: 1;
+}
+
+.motiv-img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.motiv-img-foot {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 12px;
+}
+
+.motiv-cap-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+  flex: 1;
+}
+
+/* folder summary row */
+.motiv-folder-img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  border: 0.5px solid var(--border);
+  display: block;
+  margin-bottom: 10px;
+}
+
+.motiv-folder-summary {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.motiv-folder-desc {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  flex: 1;
+}
+
+/* challenge cards */
+.motiv-challenge-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.motiv-challenge-card {
+  background: var(--surface2);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 14px 16px;
+}
+
+.motiv-challenge-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 7px;
+}
+
+.motiv-challenge-mark {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  background: var(--info-bg);
+  color: var(--info-text);
+  border: 0.5px solid var(--info-border);
+}
+
+.motiv-challenge-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+  flex: 1;
+}
+
+
+/* solution section */
+.motiv-solution-lead {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0 0 16px 0;
+  padding-left: 18px;
+}
+.motiv-solution-lead li {
+  margin-bottom: 4px;
+}
+
+/* SVG data-flow diagram */
+.motiv-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-bottom: 22px;
+  font-family: var(--font);
+}
+
+.svg-lab-rect    { fill: var(--surface2);      stroke: var(--border-strong); stroke-width: 0.5; }
+.svg-nomad-rect  { fill: var(--nomad-bg-light); stroke: var(--nomad-border);  stroke-width: 1.5; }
+.svg-outcome-rect{ fill: var(--pynx-bg-light);  stroke: var(--pynx-border);   stroke-width: 0.5; }
+.svg-pynx-rect   { fill: var(--pynx-bg-light);  stroke: var(--pynx-border);   stroke-width: 0.5; }
+
+.svg-flow-line   { stroke: var(--border-strong); stroke-width: 1; fill: none; }
+
+.svg-small-label  { font-size: 8px;  fill: var(--text-muted); }
+.svg-main-label   { font-size: 11px; fill: var(--text-primary); font-weight: 600; }
+.svg-nomad-title  { font-size: 14px; fill: var(--nomad-accent); font-weight: 700; text-anchor: middle; }
+.svg-nomad-sub    { font-size: 8px;  fill: var(--nomad-accent); text-anchor: middle; opacity: 0.85; }
+.svg-outcome-title{ font-size: 11px; fill: var(--pynx-accent);  font-weight: 600; text-anchor: middle; }
+.svg-outcome-sub  { font-size: 8px;  fill: var(--text-muted);   text-anchor: middle; }
+.svg-pynx-label   { font-size: 9px;  fill: var(--pynx-accent);  font-weight: 600; text-anchor: middle; }
+
+/* CTA buttons */
+.motiv-cta-row {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.motiv-btn {
+  font-size: 13px;
+  padding: 10px 26px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition: filter 0.15s;
+}
+.motiv-btn:hover { filter: brightness(0.92); }
+
+.motiv-btn-nomad {
+  background: var(--nomad-bg-light);
+  border: 1px solid var(--nomad-border);
+  color: var(--nomad-accent);
+}
+
+.motiv-btn-pynx {
+  background: var(--pynx-bg-light);
+  border: 1px solid var(--pynx-border);
+  color: var(--pynx-accent);
+}
+
+@media (max-width: 620px) {
+  .motiv-image-strip    { grid-template-columns: 1fr; }
+  .motiv-challenge-grid { grid-template-columns: 1fr; }
+}
+
 /* explore ecosystem button on the pynxtools central box */
 .btn-explore-eco {
   margin-top: 14px; width: 100%;
@@ -508,3 +774,235 @@ body {
   letter-spacing: 0.02em;
 }
 .btn-explore-eco:hover { filter: brightness(0.92); }
+
+/* ============================================================
+   NEXUS SPM TREE VIEW
+   ============================================================ */
+#nexusspm-content {
+  width: min(var(--diagram-width), calc(100% - 40px));
+  margin: 24px auto 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ── Inheritance banner ── */
+.nxtree-banner {
+  background: var(--surface);
+  border: 1.5px solid var(--pynx-border);
+  border-radius: var(--radius-lg);
+  padding: 16px 20px;
+}
+.nxtree-banner-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+.nxtree-def-badge {
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 20px;
+  background: var(--pynx-bg-light);
+  color: var(--pynx-accent);
+  border: 0.5px solid var(--pynx-border);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.nxtree-def-name {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--pynx-accent);
+  font-family: 'SF Mono', 'Fira Code', monospace;
+}
+.nxtree-extends-label {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.nxtree-parent {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: var(--surface2);
+  border: 0.5px solid var(--border);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+}
+.nxtree-subtypes-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.nxtree-subtypes-label {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+.nxtree-subtype {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: var(--nomad-bg-light);
+  color: var(--nomad-accent);
+  border: 0.5px solid var(--nomad-border);
+  font-family: 'SF Mono', 'Fira Code', monospace;
+}
+
+/* ── Tree container ── */
+.nxtree {
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 10px 8px;
+}
+
+/* ── Row ── */
+.nxtree-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 6px;
+  border-radius: 6px;
+  transition: background 0.12s;
+  min-height: 28px;
+  flex-wrap: nowrap;
+}
+.nxtree-row:hover { background: var(--surface2); }
+
+/* ── Children indentation via nesting ── */
+.nxtree-children {
+  padding-left: 18px;
+  margin-left: 9px;
+  border-left: 1px dashed var(--border);
+}
+
+/* ── Toggle button ── */
+.nxtree-toggle {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  border: 0.5px solid var(--border);
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 7px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.12s, color 0.12s;
+  padding: 0;
+}
+.nxtree-toggle:hover:not(:disabled) {
+  background: var(--surface2);
+  color: var(--pynx-accent);
+}
+.nxtree-toggle-spacer {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* ── Group icon ── */
+.nxtree-group-icon {
+  font-size: 10px;
+  color: var(--pynx-accent);
+  flex-shrink: 0;
+}
+
+/* ── Field icon ── */
+.nxtree-field-icon {
+  font-size: 10px;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+/* ── Name ── */
+.nxtree-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+  font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+  flex-shrink: 0;
+}
+.nxtree-field-name {
+  font-weight: 400;
+  color: var(--text-secondary);
+}
+
+/* ── Class badge (group NeXus class) ── */
+.nxtree-class {
+  font-size: 10px;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: var(--pynx-bg-light);
+  color: var(--pynx-accent);
+  border: 0.5px solid var(--pynx-border);
+  flex-shrink: 0;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+}
+
+/* ── Type badge (field data type) ── */
+.nxtree-type {
+  font-size: 10px;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: var(--surface2);
+  color: var(--text-muted);
+  border: 0.5px solid var(--border);
+  flex-shrink: 0;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+}
+
+/* ── Units badge ── */
+.nxtree-units {
+  font-size: 10px;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: var(--pynx-bg-light);
+  color: var(--pynx-accent);
+  border: 0.5px dashed var(--pynx-border);
+  flex-shrink: 0;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+}
+
+/* ── nameType badge ── */
+.nxtree-nametype {
+  font-size: 10px;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: var(--surface2);
+  color: var(--text-muted);
+  border: 0.5px dashed var(--border-strong);
+  flex-shrink: 0;
+}
+
+/* ── Optionality badges ── */
+.nxtree-opt {
+  font-size: 9px;
+  padding: 1px 6px;
+  border-radius: 20px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+.nxtree-opt-required {
+  background: var(--info-bg);
+  color: var(--info-text);
+  border: 0.5px solid var(--info-border);
+}
+.nxtree-opt-recommended {
+  background: var(--pynx-bg-light);
+  color: var(--pynx-accent);
+  border: 0.5px solid var(--pynx-border);
+}
+.nxtree-opt-optional {
+  background: var(--surface2);
+  color: var(--text-muted);
+  border: 0.5px solid var(--border);
+}

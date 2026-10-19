@@ -10,8 +10,9 @@ const DATA = {
       {
         name: "Metainfo schema",
         detail: [
-          "NOMAD uses the Metainfo schema system to describe research data in a structured and machine-readable way. Instead of storing only files, NOMAD represents experiments, simulations, instruments, samples, workflows, and results as sections and quantities with units, descriptions, and references.",
-          "This makes data easier to search, compare, reuse, and connect across different scientific domains and research communities. Details: <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/explanation/data.md'>Data structure</a>, <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/reference/glossary.md#metainfo'>Metainfo</a>."
+          "NOMAD uses the Metainfo schema system to describe research data in a structured, machine-readable way. Instead of storing only files, NOMAD represents experiments, simulations, instruments, samples, workflows, and results as sections and quantities with units, descriptions, and references.",
+          "This makes data easier to search, compare, reuse, and connect across different scientific domains and research communities.",
+          "Details: <a href='https://nomad-lab.eu/prod/v1/docs/explanation/data.html' target='_blank' rel='noopener noreferrer'>Data structure</a>, <a href='https://nomad-lab.eu/prod/v1/docs/reference/glossary.html#metainfo' target='_blank' rel='noopener noreferrer'>Metainfo glossary</a>."
         ].join(" "),
         tags: ["schema", "metainfo", "interoperability"]
       },
@@ -19,7 +20,8 @@ const DATA = {
         name: "Upload, share & access",
         detail: [
           "Users can upload raw research files, organize them into folders, inspect generated entries, edit metadata, reprocess data, and download files again. Uploads can stay private during active research, be shared with selected collaborators, made visible for review, or published permanently.",
-          "This supports both everyday project work and formal publication workflows for individual researchers, groups, and shared projects. Details: <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/tutorial/upload_publish.md'>Upload and publish</a>, <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/howto/manage/gui/upload.md'>Upload guide</a>."
+          "This supports both everyday project work and formal publication workflows for individual researchers, groups, and shared projects.",
+          "Details: <a href='https://nomad-lab.eu/prod/v1/docs/tutorial/upload_publish.html' target='_blank' rel='noopener noreferrer'>Upload and publish</a>."
         ].join(" "),
         tags: ["uploads", "sharing", "access control"]
       },
@@ -27,7 +29,8 @@ const DATA = {
         name: "Automatic parsing",
         detail: [
           "When files are uploaded, NOMAD checks whether their format is supported by an available parser. If a parser matches, NOMAD automatically creates structured entries from the raw files and extracts scientific metadata and results.",
-          "This turns heterogeneous file formats into comparable data objects that can be searched, inspected, reused, and connected. Details: <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/reference/parsers.md'>Supported parsers</a>, <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/explanation/processing.md'>Processing</a>."
+          "This turns heterogeneous file formats into comparable data objects that can be searched, inspected, reused, and connected.",
+          "Details: <a href='https://nomad-lab.eu/prod/v1/docs/reference/parsers.html' target='_blank' rel='noopener noreferrer'>Supported parsers</a>, <a href='https://nomad-lab.eu/prod/v1/docs/explanation/processing.html' target='_blank' rel='noopener noreferrer'>Processing</a>."
         ].join(" "),
         tags: ["parsers", "file formats", "structured entries"]
       },
@@ -35,7 +38,8 @@ const DATA = {
         name: "Processing & normalizing",
         detail: [
           "After parsing, NOMAD further processes the data through normalization. Normalizers can clean, complete, or enrich entries by adding derived quantities, standardized values, and searchable summaries.",
-          "This processing chain makes uploaded data more consistent and useful for large-scale exploration across many entries and uploads. Details: <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/explanation/processing.md'>Processing</a>, <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/reference/glossary.md#normalizer'>Normalizer</a>."
+          "This processing chain makes uploaded data more consistent and useful for large-scale exploration across many entries and uploads.",
+          "Details: <a href='https://nomad-lab.eu/prod/v1/docs/explanation/processing.html' target='_blank' rel='noopener noreferrer'>Processing</a>."
         ].join(" "),
         tags: ["normalization", "derived data", "indexing"]
       },
@@ -43,7 +47,8 @@ const DATA = {
         name: "Search & filter",
         detail: [
           "NOMAD provides search across published data and data accessible to the logged-in user. Search can be based on materials, elements, methods, properties, datasets, upload metadata, or any indexed schema quantity.",
-          "Users can combine filters and range queries to narrow down complex scientific datasets during interactive exploration sessions. Details: <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/tutorial/explore.md'>Explore data</a>."
+          "Users can combine filters and range queries to narrow down complex scientific datasets during interactive exploration sessions.",
+          "Details: <a href='https://nomad-lab.eu/prod/v1/docs/tutorial/explore.html' target='_blank' rel='noopener noreferrer'>Explore data</a>."
         ].join(" "),
         tags: ["search", "filters", "metadata"]
       },
@@ -51,7 +56,8 @@ const DATA = {
         name: "Analytics dashboards",
         detail: [
           "The Explore interface includes interactive dashboards for scientific data analysis. Users can create terms plots, histograms, scatter plots, and periodic-table filters directly from indexed NOMAD data.",
-          "This allows quick visual exploration without first downloading or manually preparing the data in separate analysis tools. Details: <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/tutorial/explore.md#custom-widgets-for-advanced-searches'>Custom widgets</a>."
+          "This allows quick visual exploration without first downloading or manually preparing the data in separate analysis tools.",
+          "Details: <a href='https://nomad-lab.eu/prod/v1/docs/tutorial/explore.html' target='_blank' rel='noopener noreferrer'>Explore data</a>."
         ].join(" "),
         tags: ["dashboards", "plots", "visual analytics"]
       },
@@ -59,7 +65,8 @@ const DATA = {
         name: "Publishing & DOI",
         detail: [
           "NOMAD supports publication of uploads and curated datasets. Published data becomes findable and accessible, while datasets can receive persistent DOIs for citation in papers and reuse by other researchers.",
-          "Embargo options allow data to be prepared for publication while delaying public access when needed by projects or publishers. Details: <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/tutorial/upload_publish.md#create-datasets-and-get-a-doi'>Datasets and DOI</a>."
+          "Embargo options allow data to be prepared for publication while delaying public access when needed by projects or publishers.",
+          "Details: <a href='https://nomad-lab.eu/prod/v1/docs/tutorial/upload_publish.html' target='_blank' rel='noopener noreferrer'>Upload and publish</a>."
         ].join(" "),
         tags: ["DOI", "publication", "FAIR"]
       },
@@ -67,7 +74,8 @@ const DATA = {
         name: "Central database",
         detail: [
           "The central NOMAD installation acts as a public research data platform for materials science. It stores raw files, processed entries, metadata, and searchable scientific results from many different domains.",
-          "This makes NOMAD both a repository and an analysis-ready database for FAIR research data management across materials-science domains. Details: <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/index.md'>NOMAD documentation</a>."
+          "This makes NOMAD both a repository and an analysis-ready database for FAIR research data management across materials-science domains.",
+          "Details: <a href='https://nomad-lab.eu/prod/v1/docs/' target='_blank' rel='noopener noreferrer'>NOMAD documentation</a>."
         ].join(" "),
         tags: ["repository", "open data", "materials science"]
       },
@@ -75,15 +83,17 @@ const DATA = {
         name: "Datasets",
         detail: [
           "Datasets allow users to group related entries from one or more uploads into curated collections. This is useful for organizing results belonging to a publication, project, benchmark, or shared scientific question.",
-          "Datasets are also the main object for DOI assignment and make curated result collections easier to cite, share, and revisit. Details: <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/reference/glossary.md#dataset'>Dataset</a>."
+          "Datasets are also the main object for DOI assignment and make curated result collections easier to cite, share, and revisit.",
+          "Details: <a href='https://nomad-lab.eu/prod/v1/docs/reference/glossary.html#dataset' target='_blank' rel='noopener noreferrer'>Datasets</a>."
         ].join(" "),
         tags: ["datasets", "curation", "collections"]
       },
       {
         name: "ELNs & integration",
         detail: [
-          "NOMAD includes Electronic Lab Notebook entries that can be edited through structured forms and widgets. These ELNs are schema-based, so entered data is immediately structured and searchable.",
-          "The documentation also describes integration paths for external ELN systems such as elabFTW, Labfolder, Chemotion, and Openbis. Details: <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/howto/manage/gui/eln.md'>ELNs</a>, <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/tutorial/eln/built_in_templates.md'>Built-in ELN templates</a>."
+          "NOMAD includes Electronic Lab Notebook (ELN) entries that can be edited through structured forms and widgets. These ELNs are schema-based, so entered data is immediately structured and searchable.",
+          "The documentation also describes integration paths for external ELN systems such as elabFTW, Labfolder, Chemotion, and openBIS.",
+          "Details: <a href='https://nomad-lab.eu/prod/v1/docs/howto/manage/gui/eln.html' target='_blank' rel='noopener noreferrer'>ELNs</a>."
         ].join(" "),
         tags: ["ELN", "lab data", "integration"]
       },
@@ -91,7 +101,8 @@ const DATA = {
         name: "Workflows",
         detail: [
           "NOMAD can represent scientific workflows as connected tasks and results. Workflows may be simple, nested, or custom, and can reference data across entries and uploads.",
-          "Workflow graphs help users understand provenance and the relationship between processing steps, intermediate results, and final outputs. Details: <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/howto/manage/gui/workflows.md'>Custom workflows</a>, <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/explanation/workflows.md'>Workflow explanation</a>."
+          "Workflow graphs help users understand provenance and the relationship between processing steps, intermediate results, and final outputs.",
+          "Details: <a href='https://nomad-lab.eu/prod/v1/docs/howto/manage/gui/workflows.html' target='_blank' rel='noopener noreferrer'>Workflows</a>, <a href='https://nomad-lab.eu/prod/v1/docs/explanation/workflows.html' target='_blank' rel='noopener noreferrer'>Workflow explanation</a>."
         ].join(" "),
         tags: ["workflows", "provenance", "task graph"]
       },
@@ -99,15 +110,17 @@ const DATA = {
         name: "NOMAD Actions",
         detail: [
           "Actions provide a way to define executable workflows inside NOMAD. They are useful for long-running tasks, external API calls, advanced processing, or computations that need dedicated resources such as CPU or GPU queues.",
-          "This extends NOMAD from data management toward controlled automation for processing tasks that should be launched, tracked, and documented inside the platform. Details: <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/howto/plugins/types/actions.md'>Actions</a>."
+          "This extends NOMAD from data management toward controlled automation for processing tasks that should be launched, tracked, and documented inside the platform.",
+          "Details: <a href='https://nomad-lab.eu/prod/v1/docs/howto/plugins/types/actions.html' target='_blank' rel='noopener noreferrer'>Actions</a>."
         ].join(" "),
         tags: ["actions", "automation", "CPU/GPU"]
       },
       {
         name: "NORTH & Jupyter",
         detail: [
-          "NORTH, the NOMAD Remote Tools Hub, lets users run analysis tools in isolated browser-accessible containers. These tools can access NOMAD data directly, avoiding manual downloads of large datasets.",
-          "NORTH is especially useful for Jupyter notebooks, domain-specific analysis tools, and reproducible remote environments. Details: <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/explanation/north.md'>NORTH</a>, <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/howto/manage/gui/north.md'>Analyze data in NORTH</a>."
+          "NORTH — the NOMAD Remote Tools Hub — lets users run analysis tools in isolated browser-accessible containers. These tools can access NOMAD data directly, avoiding manual downloads of large datasets.",
+          "NORTH is especially useful for Jupyter notebooks, domain-specific analysis tools, and reproducible remote environments.",
+          "Details: <a href='https://nomad-lab.eu/prod/v1/docs/explanation/north.html' target='_blank' rel='noopener noreferrer'>NORTH</a>, <a href='https://nomad-lab.eu/prod/v1/docs/howto/manage/gui/north.html' target='_blank' rel='noopener noreferrer'>Analyze data in NORTH</a>."
         ].join(" "),
         tags: ["NORTH", "JupyterHub", "containers"]
       },
@@ -115,7 +128,8 @@ const DATA = {
         name: "Programmatic API",
         detail: [
           "NOMAD can be accessed programmatically through REST APIs, Python requests, curl, wget, and the NOMAD Python package. Users can search data, download files, inspect processed entries, update metadata, and publish data through scripts.",
-          "This supports automation and integration into research workflows where repeated search, metadata updates, publication, or download steps should be scripted. Details: <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/howto/manage/program/api.md'>API overview</a>."
+          "This supports automation and integration into research workflows where repeated search, metadata updates, publication, or download steps should be scripted.",
+          "Details: <a href='https://nomad-lab.eu/prod/v1/docs/howto/manage/program/api.html' target='_blank' rel='noopener noreferrer'>API overview</a>."
         ].join(" "),
         tags: ["REST API", "Python", "automation"]
       },
@@ -123,7 +137,8 @@ const DATA = {
         name: "Graph-style API",
         detail: [
           "The graph-style API provides flexible access to nested NOMAD data structures. Users can fetch selected parts of entries, follow references, access archive data, query schema definitions, and control the depth of returned data.",
-          "This is useful when working with complex structured datasets where only selected nested fields, references, or archive sections are needed. Details: <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/howto/manage/program/graph_api.md'>Graph-style API</a>."
+          "This is useful when working with complex structured datasets where only selected nested fields, references, or archive sections are needed.",
+          "Details: <a href='https://nomad-lab.eu/prod/v1/docs/howto/manage/program/graph_api.html' target='_blank' rel='noopener noreferrer'>Graph-style API</a>."
         ].join(" "),
         tags: ["graph API", "nested data", "references"]
       },
@@ -131,7 +146,8 @@ const DATA = {
         name: "Download data",
         detail: [
           "NOMAD supports downloading raw files, whole uploads, datasets, and selected processed data. This enables researchers to reuse published data, run external analyses, or archive project data locally.",
-          "Both GUI and programmatic download workflows are documented, supporting lightweight manual access as well as scripted data retrieval for analysis pipelines. Details: <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/howto/manage/program/download.md'>Download data</a>."
+          "Both GUI and programmatic download workflows are documented, supporting lightweight manual access as well as scripted data retrieval for analysis pipelines.",
+          "Details: <a href='https://nomad-lab.eu/prod/v1/docs/howto/manage/program/download.html' target='_blank' rel='noopener noreferrer'>Download data</a>."
         ].join(" "),
         tags: ["download", "raw files", "reuse"]
       },
@@ -139,7 +155,8 @@ const DATA = {
         name: "Processed data access",
         detail: [
           "Each parsed NOMAD entry has processed data that follows a defined schema. This structured data can be accessed through the GUI, APIs, or downloaded as JSON.",
-          "It allows users to work with normalized scientific information instead of manually interpreting raw files for every analysis task. Details: <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/howto/manage/program/archive_query.md'>Access processed data</a>."
+          "It allows users to work with normalized scientific information instead of manually interpreting raw files for every analysis task.",
+          "Details: <a href='https://nomad-lab.eu/prod/v1/docs/howto/manage/program/archive_query.html' target='_blank' rel='noopener noreferrer'>Access processed data</a>."
         ].join(" "),
         tags: ["processed data", "archives", "JSON"]
       },
@@ -147,7 +164,8 @@ const DATA = {
         name: "Authentication",
         detail: [
           "NOMAD supports authenticated access through Keycloak, personal access tokens, app tokens, scopes, and user groups. This enables secure private work, controlled sharing, and programmatic access to protected data.",
-          "Authentication is important for both central NOMAD and local Oasis deployments, especially when private data or automation tokens are involved. Details: <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/explanation/auth.md'>Authentication</a>, <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/howto/manage/program/auth.md'>Programmatic auth</a>."
+          "Authentication is important for both central NOMAD and local Oasis deployments, especially when private data or automation tokens are involved.",
+          "Details: <a href='https://nomad-lab.eu/prod/v1/docs/explanation/auth.html' target='_blank' rel='noopener noreferrer'>Authentication</a>, <a href='https://nomad-lab.eu/prod/v1/docs/howto/manage/program/auth.html' target='_blank' rel='noopener noreferrer'>Programmatic auth</a>."
         ].join(" "),
         tags: ["authentication", "tokens", "authorization"]
       },
@@ -155,7 +173,8 @@ const DATA = {
         name: "Oasis & federation",
         detail: [
           "NOMAD Oasis allows institutions, labs, and companies to run their own NOMAD installation. This supports private data management, local infrastructure, custom plugins, and domain-specific workflows.",
-          "Oasis installations can also participate in federated data transfer using upload bundles between trusted NOMAD environments. Details: <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/explanation/oasis.md'>Federation and Oasis</a>, <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/howto/oasis/install.md'>Install Oasis</a>."
+          "Oasis installations can also participate in federated data transfer using upload bundles between trusted NOMAD environments.",
+          "Details: <a href='https://nomad-lab.eu/prod/v1/docs/explanation/oasis.html' target='_blank' rel='noopener noreferrer'>Federation and Oasis</a>, <a href='https://nomad-lab.eu/prod/v1/docs/howto/oasis/install.html' target='_blank' rel='noopener noreferrer'>Install Oasis</a>."
         ].join(" "),
         tags: ["Oasis", "self-hosting", "federation"]
       },
@@ -163,7 +182,8 @@ const DATA = {
         name: "Plugin system",
         detail: [
           "NOMAD is extensible through plugins. Plugins can add parsers, schemas, apps, APIs, normalizers, actions, example data, and NORTH tools for NOMAD installations.",
-          "This makes NOMAD adaptable to new instruments, communities, file formats, and scientific workflows without changing the core platform. Details: <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/explanation/plugin_system.md'>Plugin system</a>, <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/howto/plugins/plugins.md'>Plugin guide</a>."
+          "This makes NOMAD adaptable to new instruments, communities, file formats, and scientific workflows without changing the core platform.",
+          "Details: <a href='https://nomad-lab.eu/prod/v1/docs/explanation/plugin_system.html' target='_blank' rel='noopener noreferrer'>Plugin system</a>, <a href='https://nomad-lab.eu/prod/v1/docs/howto/plugins/plugins.html' target='_blank' rel='noopener noreferrer'>Plugin guide</a>."
         ].join(" "),
         tags: ["plugins", "extensions", "customization"]
       },
@@ -171,82 +191,466 @@ const DATA = {
         name: "Domain-specific apps",
         detail: [
           "NOMAD apps provide tailored interfaces for specific research domains or use cases. They can define specialized filters, dashboards, units, highlighted properties, and views that make domain data easier to understand.",
-          "This helps communities build focused portals on top of the same NOMAD infrastructure while keeping data management consistent. Details: <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/howto/plugins/types/apps.md'>Apps</a>, <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/reference/glossary.md#app'>App glossary</a>."
+          "This helps communities build focused portals on top of the same NOMAD infrastructure while keeping data management consistent.",
+          "Details: <a href='https://nomad-lab.eu/prod/v1/docs/howto/plugins/types/apps.html' target='_blank' rel='noopener noreferrer'>Apps</a>."
         ].join(" "),
         tags: ["apps", "domain views", "dashboards"]
       },
       {
         name: "Domain support",
         detail: [
-          "NOMAD supports a broad range of computational and experimental materials-science data. The documentation includes examples for DFT, many-body calculations, molecular dynamics, electron microscopy, photoemission, XPS, optical spectroscopy, atom probe tomography, scanning probe microscopy, NeXus/pynxtools workflows, catalysis, and NEB workflows. Details: <a href='../../nomad-distro-dev-RM/packages/nomad-docs/docs/examples/overview.md'>Domain-specific examples</a>."
+          "NOMAD supports a broad range of computational and experimental materials-science data. The documentation includes examples for DFT, many-body calculations, molecular dynamics, electron microscopy, photoemission, XPS, optical spectroscopy, atom probe tomography, scanning probe microscopy, NeXus/pynxtools workflows, catalysis, and NEB workflows.",
+          "Details: <a href='https://nomad-lab.eu/prod/v1/docs/examples/overview.html' target='_blank' rel='noopener noreferrer'>Domain examples</a>."
         ].join(" "),
         tags: ["simulations", "experiments", "materials science"]
       }
     ],
     nomadPlugins: [
       { name: "pynxtools",             desc: "NeXus converter & validator",       isPynx: true },
-      { name: "nomad-simulations",     desc: "Computational simulation schemas",  detail: "Metainfo schemas for DFT, MD, and ab initio workflows. Defines quantities for basis sets, k-points, and geometry optimisation.", tags: ["DFT", "MD", "ab initio"] },
-      { name: "nomad-measurements",    desc: "Experimental measurement schemas",  detail: "Covers XRD, SEM, TEM, and optical spectroscopy. Provides reusable base sections for sample, instrument, and environment.", tags: ["XRD", "SEM", "spectroscopy"] },
-      { name: "nomad-lab-base",        desc: "Shared base schemas & utilities",   detail: "Foundational Metainfo sections (Sample, Instrument, Researcher) reused by other plugins to reduce duplication.", tags: ["base", "reusable"] },
-      { name: "nomad-parser-plugin",   desc: "Custom file format parser",         detail: "Entry point for adding parsers for new file formats. Any lab can ship a parser plugin that NOMAD auto-discovers and applies during upload.", tags: ["parser", "entrypoint", "format"] },
+      {
+        name: "nomad-simulations",
+        desc: "Computational simulation schemas",
+        detail: "Metainfo schemas for DFT, molecular dynamics, and ab initio workflows. Defines quantities for basis sets, k-points, geometry optimization, and band structures. See <a href='https://github.com/nomad-coe/nomad-simulations' target='_blank' rel='noopener noreferrer'>nomad-simulations on GitHub</a>.",
+        tags: ["DFT", "MD", "ab initio"]
+      },
+      {
+        name: "nomad-measurements",
+        desc: "Experimental measurement schemas",
+        detail: "Covers XRD, SEM, TEM, and optical spectroscopy. Provides reusable base sections for sample, instrument, and environment metadata. See <a href='https://github.com/FAIRmat-NFDI/nomad-measurements' target='_blank' rel='noopener noreferrer'>nomad-measurements on GitHub</a>.",
+        tags: ["XRD", "SEM", "spectroscopy"]
+      },
+      {
+        name: "nomad-material-processing",
+        desc: "Material processing schemas",
+        detail: [
+          "Metainfo base schemas for thin-film and bulk material processing techniques.",
+          "<br><br>",
+          "<strong>Techniques covered</strong><br>",
+          "&#8226; <strong>Vapor deposition</strong> — CVD, PVD, MBE, PLD, sputtering, thermal evaporation<br>",
+          "&#8226; <strong>Solution processing</strong> — wet-chemical and coating workflows<br>",
+          "&#8226; <strong>Generic processing</strong> — reusable base sections for any synthesis step",
+          "<br><br>",
+          "<strong>Install:</strong> <code>pip install nomad-material-processing</code><br>",
+          "GitHub: <a href='https://github.com/FAIRmat-NFDI/nomad-material-processing' target='_blank' rel='noopener noreferrer'>nomad-material-processing</a>"
+        ].join(""),
+        tags: ["CVD", "PVD", "MBE", "PLD", "sputtering", "thin film", "synthesis"]
+      },
+      {
+        name: "nomad-ml-workflows",
+        desc: "ML workflow management",
+        detail: [
+          "NOMAD plugin for managing machine-learning workflows on top of NOMAD data.",
+          "<br><br>",
+          "<strong>Key features</strong><br>",
+          "&#8226; <strong>Export entries</strong> — bulk-export NOMAD entries as <code>CSV</code>, <code>Parquet</code>, or <code>JSON</code> via a NOMAD Action<br>",
+          "&#8226; <strong>Filter &amp; select</strong> — user-defined search criteria, include/exclude specific data fields<br>",
+          "&#8226; <strong>Scale</strong> — configurable batch timeout and export limit (up to 100 000 entries)<br>",
+          "&#8226; <strong>Download</strong> — output files land in a NOMAD upload, ready to download for local ML training",
+          "<br><br>",
+          "<strong>Install:</strong> <code>pip install nomad-ml-workflows</code><br>",
+          "GitHub: <a href='https://github.com/FAIRmat-NFDI/nomad-ml-workflows' target='_blank' rel='noopener noreferrer'>nomad-ml-workflows</a>"
+        ].join(""),
+        tags: ["ML", "machine learning", "CSV", "Parquet", "export", "workflow"]
+      },
+      {
+        name: "nomad-parser-plugins-simulation",
+        desc: "Simulation code parsers",
+        detail: [
+          "Collection of 15 parser plugins covering major DFT, MD, and phonon simulation codes — auto-discovered by NOMAD on upload.",
+          "<br><br>",
+          "<strong>Supported codes</strong><br>",
+          "&#8226; <strong>DFT / electronic structure</strong> — VASP, FHI-aims, Quantum ESPRESSO, ABINIT, GPAW, Exciting, CRYSTAL, Octopus, AMS, Yambo<br>",
+          "&#8226; <strong>Wannier / post-processing</strong> — Wannier90<br>",
+          "&#8226; <strong>Molecular dynamics</strong> — GROMACS, LAMMPS, H5MD<br>",
+          "&#8226; <strong>Phonons</strong> — Phonopy",
+          "<br><br>",
+          "<strong>Install:</strong> <code>pip install nomad-parser-plugins-simulation</code><br>",
+          "GitHub: <a href='https://github.com/FAIRmat-NFDI/nomad-parser-plugins-simulation' target='_blank' rel='noopener noreferrer'>nomad-parser-plugins-simulation</a>"
+        ].join(""),
+        tags: ["VASP", "FHI-aims", "Quantum ESPRESSO", "GROMACS", "LAMMPS", "DFT", "MD", "simulation"]
+      },
     ],
-    },
+  },
   pynxtools: {
     className: "pynxtools",
     title: "pynxtools",
     subtitle: "NeXus data converter & validation framework",
+    overview: [
+      "<em>Convert experimental raw data into standardized, FAIR-ready NeXus/HDF5 files.</em>",
+      "<br><br>",
+      "<strong>Convert</strong> &mdash; raw vendor &amp; proprietary instrument files &rarr; NeXus/HDF5 with a single <code>pynx&nbsp;convert</code> command<br>",
+      "<strong>Validate</strong> &mdash; verify field completeness, data types, and physical units against NXDL application definitions<br>",
+      "<strong>Plug&nbsp;in</strong> &mdash; 9 technique-specific readers: XPS, SPM, EM, APM, MPES, ellipsometry, XRD, Raman, Igor&nbsp;Pro<br>",
+      "<strong>Extend</strong> &mdash; build a new technique reader from the <strong>pynxtools-plugin-template</strong> scaffold"
+    ].join(""),
     pynxFeatures: [
-      { name: "NeXus datamodel",   detail: "Embeds the official NeXus definitions repository as a Git submodule — every NXDL application definition and base class is versioned and available at import time.", tags: ["NeXus", "NXDL", "submodule"] },
-      { name: "Validator",         detail: "Checks a parsed HDF5/NeXus file against its application definition. Verifies required groups/fields exist, data types match NXDL specs, and physical units are compatible.", tags: ["NXDL", "dtype", "units", "HDF5"] },
-      { name: "Writer",            detail: "Takes a Python dict or ELN YAML template and serialises it into a conformant NeXus HDF5 file (.nxs). Handles group hierarchy, attribute attachment, and link resolution.", tags: [".nxs", "HDF5", "ELN", "YAML"] },
-      { name: "Test framework",    detail: "A pytest-based harness that every reader plugin can import. Provides fixtures for loading reference files, assertions for NeXus tree structure, and round-trip validation helpers.", tags: ["pytest", "fixtures", "CI"] },
-      { name: "Reader entrypoint", detail: "All reader plugins register a common Python entrypoint. NOMAD and user code can discover and invoke any installed reader with a single unified API call.", tags: ["entrypoint", "API", "discovery"] },
+      {
+        name: "NeXus datamodel",
+        detail: [
+          "NeXus is an HDF5-based scientific data standard: a semantic layer that defines <em>how</em> experimental data must be named, structured, and documented inside a file.",
+          "<br><br>",
+          "<strong>Two definition types</strong><br>",
+          "&#8226; <strong>Base classes</strong> — reusable building blocks (e.g. NXdetector, NXsample) that define the <em>complete</em> vocabulary for a component.<br>",
+          "&#8226; <strong>Application definitions</strong> — technique-specific schemas that define the <em>minimum required</em> set of fields for a given experiment.",
+          "<br><br>",
+          "<strong>NXDL</strong> — NeXus Definition Language: the XML grammar used to write both base classes and application definitions. It encodes field names, data types, physical units, and optionality (required / recommended / optional).",
+          "<br><br>",
+          "<strong>FAIRmat contributions</strong> — actively extended to cover materials-science techniques:<br>",
+          "SPM &bull; XPS &bull; MPES/ARPES &bull; Electron Microscopy &bull; Atom Probe &bull; Ellipsometry &bull; XRD &bull; Raman",
+          "<br><br>",
+          "The definitions are pinned as a <strong>versioned Git submodule</strong> inside pynxtools, so every conversion is tied to an exact schema version and is fully reproducible.",
+          "<br><br>",
+          "Learn more: <a href='https://fairmat-nfdi.github.io/pynxtools/learn/pynxtools/nexus-definitions.html' target='_blank' rel='noopener noreferrer'>NeXus definitions in pynxtools</a> &nbsp;|&nbsp; <a href='https://fairmat-nfdi.github.io/nexus_definitions/' target='_blank' rel='noopener noreferrer'>NeXus-FAIRmat definitions</a>."
+        ].join(""),
+        tags: ["NeXus", "NXDL", "base class", "application definition", "FAIRmat"]
+      },
+      {
+        name: "Dataconverter CLI",
+        detail: [
+          "<strong>pynx convert</strong> — the single entry point for converting raw experimental data into NeXus/HDF5 files.",
+          "<br><br>",
+          "<strong>Typical command</strong><br>",
+          "<code>pynx convert --reader &lt;reader&gt; --nxdl &lt;NXdef&gt; data.raw eln.yaml --output out.nxs</code>",
+          "<br><br>",
+          "<strong>Key options</strong><br>",
+          "&#8226; <code>--reader</code> — name of the technique reader (auto-discovered from installed plugins)<br>",
+          "&#8226; <code>--nxdl</code> — NeXus application definition to target (e.g. <code>NXxps</code>, <code>NXsts</code>)<br>",
+          "&#8226; <code>--params-file</code> — pass all arguments via a YAML config file<br>",
+          "&#8226; <code>generate-template</code> — print all fillable NeXus paths for a given definition<br>",
+          "&#8226; <code>get-readers</code> — list all readers available in the current environment",
+          "<br><br>",
+          "Validation runs automatically before writing. Legacy <code>dataconverter</code> alias still works but is deprecated.",
+          "<br><br>",
+          "Learn more: <a href='https://fairmat-nfdi.github.io/pynxtools/learn/pynxtools/dataconverter-and-readers.html' target='_blank' rel='noopener noreferrer'>Data conversion in pynxtools</a> &nbsp;|&nbsp; <a href='https://fairmat-nfdi.github.io/pynxtools/reference/cli-api.html' target='_blank' rel='noopener noreferrer'>CLI reference</a>."
+        ].join(""),
+        tags: ["CLI", "pynx convert", "HDF5", "reader", "template"]
+      },
+      {
+        name: "Validator",
+        detail: [
+          "Checks a NeXus/HDF5 file against its declared application definition. Runs automatically during conversion and is also available as a standalone tool.",
+          "<br><br>",
+          "<strong>What is checked</strong><br>",
+          "&#8226; <strong>Required concepts</strong> — warns if mandatory groups, fields, or attributes are missing<br>",
+          "&#8226; <strong>Data types</strong> — values are checked against NXDL-specified NeXus types<br>",
+          "&#8226; <strong>Physical units</strong> — unit dimensionality validated against NeXus unit categories via <code>pint</code><br>",
+          "&#8226; <strong>Enumerations</strong> — warns for closed enums, info for open enums<br>",
+          "&#8226; <strong>NXdata</strong> — signal and axes dimensionality checked across v1/v2/v3 plotting conventions<br>",
+          "&#8226; <strong>HDF5 links</strong> — resolved and validated; broken links reported<br>",
+          "&#8226; <strong>Symbol consistency</strong> — shared dimension symbols verified across fields",
+          "<br><br>",
+          "<strong>Standalone commands</strong><br>",
+          "<code>pynx validate myfile.nxs</code> — validate an existing NeXus file<br>",
+          "<code>pynx read myfile.nxs</code> — annotate every node with its NXDL documentation",
+          "<br><br>",
+          "Learn more: <a href='https://fairmat-nfdi.github.io/pynxtools/learn/pynxtools/nexus-validation.html' target='_blank' rel='noopener noreferrer'>Validation in pynxtools</a> &nbsp;|&nbsp; <a href='https://fairmat-nfdi.github.io/pynxtools/how-tos/pynxtools/validate-nexus-files.html' target='_blank' rel='noopener noreferrer'>How-to guide</a>."
+        ].join(""),
+        tags: ["validation", "required fields", "units", "NXdata", "pynx validate"]
+      },
+      {
+        name: "MultiFormatReader",
+        detail: [
+          "The recommended superclass for building pynxtools reader plugins. It manages multi-source merging so plugin authors only implement the format-specific parsing logic.",
+          "<br><br>",
+          "<strong>Three input sources merged automatically</strong><br>",
+          "&#8226; <strong>Raw vendor file</strong> — instrument output in any proprietary format<br>",
+          "&#8226; <strong>ELN YAML</strong> — sample &amp; experiment metadata from the lab notebook<br>",
+          "&#8226; <strong>Config JSON</strong> — maps data keys to NeXus paths using <code>@attrs</code>, <code>@data</code>, <code>@eln</code> prefixes",
+          "<br><br>",
+          "<strong>What the framework handles for you</strong><br>",
+          "&#8226; File ordering and overwrite priority<br>",
+          "&#8226; Template population and config-to-path resolution<br>",
+          "&#8226; Wildcard notation for repeated fields (e.g. multiple detectors)<br>",
+          "&#8226; Post-processing hook for derived or dynamic entries<br>",
+          "&#8226; Serialization into a validated NeXus/HDF5 file",
+          "<br><br>",
+          "Learn more: <a href='https://fairmat-nfdi.github.io/pynxtools/learn/pynxtools/multi-format-reader.html' target='_blank' rel='noopener noreferrer'>MultiFormatReader explanation</a> &nbsp;|&nbsp; <a href='https://fairmat-nfdi.github.io/pynxtools/how-tos/pynxtools/use-multi-format-reader.html' target='_blank' rel='noopener noreferrer'>How-to guide</a>."
+        ].join(""),
+        tags: ["ELN", "YAML", "config JSON", "template", "merge", "plugin"]
+      },
+      {
+        name: "Test framework",
+        detail: [
+          "A shared pytest-based harness from <code>pynxtools.testing</code> that any plugin imports to test its reader integration — no knowledge of pynxtools internals required.",
+          "<br><br>",
+          "<strong>Two core test steps</strong><br>",
+          "&#8226; <code>test.convert_to_nexus()</code> — runs the full conversion pipeline and checks for errors<br>",
+          "&#8226; <code>test.check_reproducibility_of_nexus()</code> — compares output against a stored reference file",
+          "<br><br>",
+          "<strong>What it covers</strong><br>",
+          "&#8226; Plugin integration with pynxtools core<br>",
+          "&#8226; Round-trip conversion correctness<br>",
+          "&#8226; Regression detection when vendor formats or definitions change<br>",
+          "&#8226; CI/CD-ready: runs in both the plugin repo and pynxtools core CI",
+          "<br><br>",
+          "Learn more: <a href='https://fairmat-nfdi.github.io/pynxtools/how-tos/pynxtools/using-pynxtools-test-framework.html' target='_blank' rel='noopener noreferrer'>Using the pynxtools test framework</a>."
+        ].join(""),
+        tags: ["pytest", "ReaderTest", "CI/CD", "regression", "reproducibility"]
+      },
+      {
+        name: "Plugin entrypoint",
+        detail: [
+          "Plugins register via a standard Python entrypoint in <code>pyproject.toml</code> — once installed, pynxtools and NOMAD discover and invoke them automatically.",
+          "<br><br>",
+          "<strong>Register a reader</strong><br>",
+          "<code>[project.entry-points.&quot;pynxtools.reader&quot;]</code><br>",
+          "<code>myreader = &quot;pynxtools_myplugin.reader:MyReader&quot;</code>",
+          "<br><br>",
+          "<strong>What this gives you</strong><br>",
+          "&#8226; Auto-discovery by <code>pynx convert</code> and <code>pynx convert get-readers</code><br>",
+          "&#8226; Zero-config NOMAD integration — NOMAD picks up the reader on upload<br>",
+          "&#8226; Multiple readers per package are supported (one entrypoint each)<br>",
+          "&#8226; Install with <code>pip install pynxtools-myplugin</code> — no code changes needed",
+          "<br><br>",
+          "Learn more: <a href='https://fairmat-nfdi.github.io/pynxtools/how-tos/pynxtools/build-a-plugin.html' target='_blank' rel='noopener noreferrer'>Build a pynxtools plugin</a>."
+        ].join(""),
+        tags: ["entrypoint", "pyproject.toml", "auto-discovery", "pip", "NOMAD"]
+      },
     ],
     pynxPlugins: [
-      { name: "pynxtools-spm",      desc: "Scanning probe microscopy",         isPynxSpm: true, detail: "Reads Nanonis .sxm/.dat and Bruker .spm formats, converts to NXsts/NXafm application definitions. Supports STM and AFM modalities.", tags: ["STM", "AFM", "Nanonis"] },
-      { name: "pynxtools-xps",      desc: "X-ray photoelectron spectroscopy",  detail: "Parses SPECS, Kratos, and ULVAC-PHI vendor formats into NXxps. Handles binding energy calibration and survey/region scan structures.", tags: ["XPS", "SPECS", "NXxps"] },
-      { name: "pynxtools-apm",      desc: "Atom probe microscopy",             detail: "Converts APT/LEAP reconstruction files (.pos, .epos, .apt) into NXapm. Preserves detector hit data, ranging tables, and reconstructed ion positions.", tags: ["APT", "LEAP", "NXapm"] },
-      { name: "pynxtools-em",       desc: "Electron microscopy",               detail: "Handles TEM and SEM data from FEI/Thermo, JEOL, and Zeiss. Reads .dm3/.dm4, .bcf, .emd and maps metadata to NXem.", tags: ["TEM", "SEM", "dm4", "NXem"] },
-      { name: "pynxtools-ellips",   desc: "Ellipsometry converter",            detail: "Reads J.A. Woollam CompleteEASE exports into NXellipsometry. Supports psi/delta spectra and Mueller matrix data.", tags: ["ellipsometry", "Woollam"] },
-      { name: "pynxtools-mpes",     desc: "Multidimensional photoemission",    detail: "Converts MPES/ARPES datasets from Flash and BESSY beamlines into NXmpes. Handles momentum-resolved energy band maps.", tags: ["ARPES", "MPES", "beamline"] },
-      { name: "pynxtools-xrd",      desc: "X-ray diffraction",                 detail: "Parses powder and single-crystal XRD data (Bruker .raw, PANalytical .xrdml) into NXxrd_pan. Supports 2D detector images.", tags: ["XRD", "Bruker", "Rietveld"] },
-      { name: "pynxtools-raman",    desc: "Raman spectroscopy",                detail: "Reads HORIBA LabSpec, Renishaw WiRE, and Bruker OPUS formats. Maps wavenumber, intensity, and metadata to NXraman.", tags: ["Raman", "HORIBA", "NXraman"] },
-      { name: "pynxtools-igor",     desc: "Igor Pro experiment reader",        detail: "Reads Igor Pro binary wave (.ibw) and packed experiment (.pxp) files. Converts wave metadata and arrays into NeXus structures.", tags: ["Igor Pro", ".ibw", ".pxp"] },
-      { name: "pynxtools-mpes-nxs", desc: "NeXus MPES file tools",             detail: "Companion to pynxtools-mpes providing NeXus-native read/write utilities for pipelines that already produce .nxs files and need validation.", tags: ["MPES", ".nxs", "pipeline"] },
+      {
+        name: "pynxtools-spm",
+        desc: "Scanning probe microscopy",
+        isPynxSpm: true,
+        detail: [
+          "Converts STM, STS, and AFM raw data into NeXus files compliant with FAIRmat-developed application definitions.",
+          "<br><br>",
+          "<strong>Sub-techniques &amp; NeXus definitions</strong><br>",
+          "&#8226; <strong>STM</strong> — Scanning Tunneling Microscopy &rarr; <a href='https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/NXstm.html' target='_blank' rel='noopener noreferrer'>NXstm</a><br>",
+          "&#8226; <strong>STS</strong> — Scanning Tunneling Spectroscopy &rarr; <a href='https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/NXsts.html' target='_blank' rel='noopener noreferrer'>NXsts</a><br>",
+          "&#8226; <strong>AFM</strong> — Atomic Force Microscopy &rarr; <a href='https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/NXafm.html' target='_blank' rel='noopener noreferrer'>NXafm</a>",
+          "<br><br>",
+          "<strong>Vendors &amp; file formats</strong><br>",
+          "&#8226; <strong>Nanonis (SPECS)</strong> — <code>.sxm</code> (STM/AFM images), <code>.dat</code> (STS spectra)<br>",
+          "&#8226; <strong>ScientaOmicron</strong> — <code>.sm4</code> (STM images)",
+          "<br><br>",
+          "<strong>Install:</strong> <code>pip install pynxtools[spm]</code><br>",
+          "Docs: <a href='https://fairmat-nfdi.github.io/pynxtools-spm/' target='_blank' rel='noopener noreferrer'>pynxtools-spm</a> &nbsp;|&nbsp; <a href='https://github.com/FAIRmat-NFDI/pynxtools-spm' target='_blank' rel='noopener noreferrer'>GitHub</a>"
+        ].join(""),
+        tags: ["STM", "STS", "AFM", "Nanonis", "ScientaOmicron", "NXstm", "NXsts", "NXafm"]
+      },
+      {
+        name: "pynxtools-xps",
+        desc: "X-ray photoelectron spectroscopy",
+        detail: [
+          "Reads heterogeneous XPS vendor formats and produces standardized NeXus files compliant with <a href='https://fairmat-nfdi.github.io/nexus_definitions/classes/applications/NXxps.html' target='_blank' rel='noopener noreferrer'>NXxps</a> and <a href='https://fairmat-nfdi.github.io/nexus_definitions/classes/applications/NXmpes.html' target='_blank' rel='noopener noreferrer'>NXmpes</a>.",
+          "<br><br>",
+          "<strong>Vendors &amp; file formats</strong><br>",
+          "&#8226; <strong>SPECS GmbH</strong> — SpecsLabProdigy <code>.sle</code>, SpecsLab 2 <code>.xml</code> (≥ v4.63), <code>.xy</code><br>",
+          "&#8226; <strong>Kratos Analytical</strong> — AXIS Ultra/Nova/Supra via VAMAS <code>.vms</code><br>",
+          "&#8226; <strong>PHI Electronics</strong> — VersaProbe 4 via MultiPak <code>.spe</code> (spectra), <code>.pro</code> (depth profiles)<br>",
+          "&#8226; <strong>Scienta Omicron</strong> — SES export <code>.txt</code>, Igor Binary <code>.ibw</code>, HDF5 <code>.h5</code><br>",
+          "&#8226; <strong>VAMAS ISO 14976</strong> — generic <code>.vms</code> / <code>.npl</code> from any vendor",
+          "<br><br>",
+          "<strong>Also handles:</strong> binding energy calibration, survey/region scan structures, charge referencing.",
+          "<br><br>",
+          "<strong>Install:</strong> <code>pip install pynxtools[xps]</code><br>",
+          "Docs: <a href='https://fairmat-nfdi.github.io/pynxtools-xps/' target='_blank' rel='noopener noreferrer'>pynxtools-xps</a> &nbsp;|&nbsp; <a href='https://fairmat-nfdi.github.io/pynxtools-xps/tutorial/nomad_usage.html' target='_blank' rel='noopener noreferrer'>NOMAD tutorial</a>"
+        ].join(""),
+        tags: ["XPS", "SPECS", "Kratos", "PHI", "Scienta Omicron", "VAMAS", "NXxps", "NXmpes"]
+      },
+      {
+        name: "pynxtools-em",
+        desc: "Electron microscopy",
+        detail: [
+          "Reads TEM and SEM data from technology-partner formats and standardizes them against the <a href='https://fairmat-nfdi.github.io/nexus_definitions/classes/applications/NXem.html' target='_blank' rel='noopener noreferrer'>NXem</a> application definition.",
+          "<br><br>",
+          "<strong>Vendors &amp; file formats</strong><br>",
+          "&#8226; <strong>Thermo Fisher / FEI</strong> — Velox <code>.emd</code>, legacy <code>.tiff</code><br>",
+          "&#8226; <strong>Gatan</strong> — DigitalMicrograph <code>.dm3</code> / <code>.dm4</code><br>",
+          "&#8226; <strong>Zeiss</strong> — SEM <code>.tiff</code> with embedded metadata<br>",
+          "&#8226; <strong>JEOL</strong> — TEM/SEM <code>.tiff</code> with metadata<br>",
+          "&#8226; <strong>Hitachi</strong> — SEM <code>.tiff</code> with metadata<br>",
+          "&#8226; <strong>TESCAN</strong> — SEM <code>.tiff</code> with metadata<br>",
+          "&#8226; <strong>Nion Co.</strong> — <code>.ndata</code> and HDF5 project files<br>",
+          "&#8226; <strong>EDAX APEX</strong> — HDF5 EDS/EBSD files<br>",
+          "&#8226; <strong>SerialEM</strong> — <code>.mrc</code> / <code>.mdoc</code> cryo-EM files<br>",
+          "&#8226; <strong>Protochips AXON</strong> — zipped <code>.png</code> in-situ image sequences<br>",
+          "&#8226; <strong>Point Electronic DISS</strong> — <code>.tiff</code> with metadata<br>",
+          "&#8226; <strong>EBSD</strong> — Kikuchi diffraction routes via <strong>MTex</strong> and <strong>pyxem</strong>",
+          "<br><br>",
+          "<strong>Install:</strong> <code>pip install pynxtools[em]</code><br>",
+          "Docs: <a href='https://fairmat-nfdi.github.io/pynxtools-em/' target='_blank' rel='noopener noreferrer'>pynxtools-em</a> &nbsp;|&nbsp; <a href='https://github.com/FAIRmat-NFDI/pynxtools-em' target='_blank' rel='noopener noreferrer'>GitHub</a>"
+        ].join(""),
+        tags: ["TEM", "SEM", "EBSD", "FEI", "Gatan", "Zeiss", "JEOL", "Nion", "NXem"]
+      },
+      {
+        name: "pynxtools-apm",
+        desc: "Atom probe microscopy",
+        detail: [
+          "Converts atom probe tomography (APT) and field-ion microscopy (FIM) raw data into NeXus files compliant with the <a href='https://fairmat-nfdi.github.io/nexus_definitions/classes/applications/NXapm.html' target='_blank' rel='noopener noreferrer'>NXapm</a> application definition.",
+          "<br><br>",
+          "<strong>Vendors &amp; file formats</strong><br>",
+          "&#8226; <strong>AMETEK / Cameca LEAP</strong> — <code>.apt</code>, <code>.epos</code>, <code>.pos</code>, <code>.rrng</code>, <code>.rng</code>, Cameca HDF5, IVAS XML, AP Suite XML<br>",
+          "&#8226; <strong>Inspico / (M)-TAP / APyT</strong> — Stuttgart open-source instrument formats<br>",
+          "&#8226; <strong>OXCART / pyccapt</strong> — Erlangen open-source atom probe instrument<br>",
+          "&#8226; <strong>Imago / PoSAP</strong> — legacy <code>.ato</code>, OPS, <code>.env</code> formats<br>",
+          "&#8226; <strong>Generic</strong> — <code>.csv</code> reconstructed point clouds",
+          "<br><br>",
+          "<strong>Preserved data:</strong> reconstructed ion positions (x, y, z, m/q), ranging tables, detector hit data.",
+          "<br><br>",
+          "<strong>Install:</strong> <code>pip install pynxtools[apm]</code><br>",
+          "Docs: <a href='https://fairmat-nfdi.github.io/pynxtools-apm/' target='_blank' rel='noopener noreferrer'>pynxtools-apm</a> &nbsp;|&nbsp; <a href='https://github.com/FAIRmat-NFDI/pynxtools-apm' target='_blank' rel='noopener noreferrer'>GitHub</a>"
+        ].join(""),
+        tags: ["APT", "LEAP", "CAMECA", "NXapm", ".apt", ".epos", ".pos", ".rrng"]
+      },
+      {
+        name: "pynxtools-mpes",
+        desc: "Multidimensional photoemission spectroscopy",
+        detail: [
+          "Converts MPES and ARPES datasets from FHI Berlin instruments and free-electron laser beamlines into NeXus files compliant with <a href='https://fairmat-nfdi.github.io/nexus_definitions/classes/applications/NXmpes.html' target='_blank' rel='noopener noreferrer'>NXmpes</a> and <a href='https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/NXmpes_arpes.html' target='_blank' rel='noopener noreferrer'>NXmpes_arpes</a>.",
+          "<br><br>",
+          "<strong>Instruments &amp; file formats</strong><br>",
+          "&#8226; <strong>FHI Berlin MPES instruments</strong> — HDF5 (<code>.h5</code>), JSON, YAML metadata<br>",
+          "&#8226; <strong>Flash FEL (DESY)</strong> — beamline HDF5 files with timing and pump–probe metadata<br>",
+          "&#8226; <strong>BESSY II (HZB)</strong> — synchrotron beamline HDF5 datasets",
+          "<br><br>",
+          "<strong>Data types handled</strong><br>",
+          "&#8226; Momentum-resolved energy band maps (k∥, k⊥, E)<br>",
+          "&#8226; Time-resolved tr-ARPES pump–probe sequences<br>",
+          "&#8226; Associated beamline and instrument metadata",
+          "<br><br>",
+          "<strong>Install:</strong> <code>pip install pynxtools[mpes]</code><br>",
+          "Docs: <a href='https://fairmat-nfdi.github.io/pynxtools-mpes/' target='_blank' rel='noopener noreferrer'>pynxtools-mpes</a> &nbsp;|&nbsp; <a href='https://github.com/FAIRmat-NFDI/pynxtools-mpes' target='_blank' rel='noopener noreferrer'>GitHub</a>"
+        ].join(""),
+        tags: ["ARPES", "MPES", "tr-ARPES", "FHI Berlin", "Flash", "BESSY II", "NXmpes", "NXmpes_arpes"]
+      },
+      {
+        name: "pynxtools-ellips",
+        desc: "Ellipsometry",
+        detail: [
+          "Converts ellipsometry raw data into NeXus/HDF5 files compliant with <a href='https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/NXellipsometry.html' target='_blank' rel='noopener noreferrer'>NXellipsometry</a> (extends NXoptical_spectroscopy).",
+          "<br><br>",
+          "<strong>Vendors &amp; file formats</strong><br>",
+          "&#8226; <strong>J.A. Woollam (VASE / M-2000)</strong> — CompleteEASE export <code>.dat</code> (psi/delta spectra)<br>",
+          "&#8226; <strong>Sentech</strong> — <code>.spe</code> ASCII export files",
+          "<br><br>",
+          "<strong>Data types handled</strong><br>",
+          "&#8226; Psi (Ψ) and delta (Δ) angle-of-incidence spectra<br>",
+          "&#8226; Mueller matrix polarimetry data<br>",
+          "&#8226; Wavelength / photon energy axes + instrument optical path metadata",
+          "<br><br>",
+          "<strong>Install:</strong> <code>pip install pynxtools[ellips]</code><br>",
+          "Docs: <a href='https://fairmat-nfdi.github.io/pynxtools-ellips/' target='_blank' rel='noopener noreferrer'>pynxtools-ellips</a> &nbsp;|&nbsp; <a href='https://github.com/FAIRmat-NFDI/pynxtools-ellips' target='_blank' rel='noopener noreferrer'>GitHub</a>"
+        ].join(""),
+        tags: ["ellipsometry", "Woollam", "VASE", "Sentech", "NXellipsometry", "thin films", "Mueller matrix"]
+      },
+      {
+        name: "pynxtools-xrd",
+        desc: "X-ray diffraction",
+        detail: [
+          "Converts X-ray Diffraction (XRD) raw data into NeXus/HDF5 files compliant with the <a href='https://fairmat-nfdi.github.io/nexus_definitions/classes/applications/NXxrd_pan.html' target='_blank' rel='noopener noreferrer'>NXxrd_pan</a> application definition.",
+          "<br><br>",
+          "<strong>Vendors &amp; file formats</strong><br>",
+          "&#8226; <strong>Malvern PANalytical</strong> — X'Pert PRO <code>.xrdml</code> (format v1.5), 1D and 2D scans<br>",
+          "&#8226; <strong>Future / community</strong> — architecture supports adding Bruker <code>.raw</code> and other formats via new sub-readers",
+          "<br><br>",
+          "<strong>Scan types handled</strong><br>",
+          "&#8226; Powder diffraction (2θ / ω scans), rocking curves<br>",
+          "&#8226; Reciprocal space maps (RSM)<br>",
+          "&#8226; 2D area detector frames",
+          "<br><br>",
+          "<strong>Install:</strong> <code>pip install pynxtools[xrd]</code><br>",
+          "Docs: <a href='https://fairmat-nfdi.github.io/pynxtools-xrd/' target='_blank' rel='noopener noreferrer'>pynxtools-xrd</a> &nbsp;|&nbsp; <a href='https://github.com/FAIRmat-NFDI/pynxtools-xrd' target='_blank' rel='noopener noreferrer'>GitHub</a>"
+        ].join(""),
+        tags: ["XRD", "PANalytical", "X'Pert PRO", ".xrdml", "NXxrd_pan", "powder diffraction", "RSM"]
+      },
+      {
+        name: "pynxtools-raman",
+        desc: "Raman spectroscopy",
+        detail: [
+          "Converts Raman spectroscopy data into NeXus/HDF5 files compliant with <a href='https://fairmat-nfdi.github.io/nexus_definitions/classes/contributed_definitions/NXraman.html' target='_blank' rel='noopener noreferrer'>NXraman</a> (extends NXoptical_spectroscopy).",
+          "<br><br>",
+          "<strong>Vendors &amp; file formats</strong><br>",
+          "&#8226; <strong>WITec</strong> — WITec Alpha300 export <code>.txt</code> (ASCII wavenumber + intensity)<br>",
+          "&#8226; <strong>Raman Open Database (ROD)</strong> — community standard plain-text format",
+          "<br><br>",
+          "<strong>Data types handled</strong><br>",
+          "&#8226; Single-point spectra and spectral maps<br>",
+          "&#8226; Wavenumber axis (cm⁻¹), laser wavelength, integration time<br>",
+          "&#8226; Sample and instrument metadata from ELN YAML",
+          "<br><br>",
+          "<strong>Install:</strong> <code>pip install pynxtools[raman]</code><br>",
+          "Docs: <a href='https://fairmat-nfdi.github.io/pynxtools-raman/' target='_blank' rel='noopener noreferrer'>pynxtools-raman</a> &nbsp;|&nbsp; <a href='https://github.com/FAIRmat-NFDI/pynxtools-raman' target='_blank' rel='noopener noreferrer'>GitHub</a>"
+        ].join(""),
+        tags: ["Raman", "WITec", "ROD", "Raman Open Database", "NXraman", "NXoptical_spectroscopy"]
+      },
+      {
+        name: "pynxtools-igor",
+        desc: "Igor Pro experiment files",
+        detail: [
+          "Reads WaveMetrics Igor Pro binary files and converts them into NeXus/HDF5, mapping wave data and experiment notes to any applicable NeXus application definition.",
+          "<br><br>",
+          "<strong>File formats supported</strong><br>",
+          "&#8226; <strong>Igor Binary Wave</strong> — <code>.ibw</code> (single wave: 1-D to 4-D numeric or text arrays)<br>",
+          "&#8226; <strong>Igor Packed Experiment</strong> — <code>.pxp</code> (full experiment: all waves, notes, display layouts)",
+          "<br><br>",
+          "<strong>Usage pattern</strong><br>",
+          "&#8226; Commonly used as a <em>pre-reader</em> inside other plugins (e.g., pynxtools-xps reads Scienta <code>.ibw</code> via igor-reader)<br>",
+          "&#8226; Stand-alone: map waves to any NeXus definition via config JSON",
+          "<br><br>",
+          "<strong>NeXus output:</strong> configurable — NXmpes, NXxps, NXxrd, NXroot, or custom definitions via <code>--nxdl</code>",
+          "<br><br>",
+          "<strong>Install:</strong> <code>pip install pynxtools[igor]</code><br>",
+          "Docs: <a href='https://fairmat-nfdi.github.io/pynxtools-igor/' target='_blank' rel='noopener noreferrer'>pynxtools-igor</a> &nbsp;|&nbsp; <a href='https://github.com/FAIRmat-NFDI/pynxtools-igor' target='_blank' rel='noopener noreferrer'>GitHub</a>"
+        ].join(""),
+        tags: ["Igor Pro", "WaveMetrics", ".ibw", ".pxp", "NXmpes", "NXxrd", "NXxps"]
+      },
     ],
   },
 
   /* ── EXPLORE PYNXTOOLS ECOSYSTEM ── */
   explore: {
     page: {
-      name: "Explore pynxtools ecosystem",
-      detail: "Pynxtools is a framework for converting experimental raw data files into standardised NeXus/HDF5 files. This page walks you through finding or building a plugin for your technique, and how to run plugins either as a standalone CLI tool or integrated with the NOMAD research data management system.",
+      name: "Explore pynxtools framework",
+      detail: [
+        "pynxtools is a framework for converting experimental raw data files into standardized NeXus/HDF5 files, making scientific data FAIR (Findable, Accessible, Interoperable, Reusable).",
+        "This page walks you through finding or building a plugin for your experimental technique, and how to run plugins either as a standalone CLI tool or integrated with the NOMAD research data management system.",
+        "Full documentation: <a href='https://fairmat-nfdi.github.io/pynxtools/' target='_blank' rel='noopener noreferrer'>pynxtools documentation</a> | GitHub org: <a href='https://github.com/FAIRmat-NFDI' target='_blank' rel='noopener noreferrer'>FAIRmat-NFDI</a>."
+      ].join(" "),
       tags: ["pynxtools", "NeXus", "HDF5", "FAIR", "FAIRmat"]
     },
     utilize: {
       name: "Utilize or build a plugin",
-      detail: "The starting point is always the same: does a NeXus datamodel and a pynxtools plugin already exist for your experimental technique? Browse the FAIRmat-NFDI organisation on GitHub and search for pynxtools-<your-technique> to find out. The answer determines your path.",
+      detail: [
+        "The starting point is always the same: does a NeXus datamodel and a pynxtools plugin already exist for your experimental technique?",
+        "Browse the <a href='https://github.com/FAIRmat-NFDI' target='_blank' rel='noopener noreferrer'>FAIRmat-NFDI organisation on GitHub</a> and search for <code>pynxtools-&lt;your-technique&gt;</code> to find out. The answer determines your path.",
+        "Learn more: <a href='https://fairmat-nfdi.github.io/pynxtools/reference/plugins.html' target='_blank' rel='noopener noreferrer'>FAIRmat-supported pynxtools plugins</a>."
+      ].join(" "),
       tags: ["plugins", "NeXus", "FAIRmat-NFDI", "GitHub"],
       yesPath: {
         name: "Use an existing plugin",
-        detail: "A plugin already exists for your technique. Each FAIRmat plugin ships with full documentation covering its code design, CLI usage, ELN schema, config file format, and connection to NOMAD. For example, pynxtools-spm covers scanning probe microscopy data from Nanonis and Bruker instruments.",
+        detail: [
+          "A plugin already exists for your technique. Each FAIRmat plugin ships with full documentation covering its code design, CLI usage, ELN schema, config file format, and connection to NOMAD.",
+          "For example, <a href='https://fairmat-nfdi.github.io/pynxtools-spm/' target='_blank' rel='noopener noreferrer'>pynxtools-spm</a> covers scanning probe microscopy data from Nanonis and Bruker instruments, and <a href='https://fairmat-nfdi.github.io/pynxtools-xps/' target='_blank' rel='noopener noreferrer'>pynxtools-xps</a> covers X-ray photoelectron spectroscopy.",
+          "Full list of plugins: <a href='https://fairmat-nfdi.github.io/pynxtools/reference/plugins.html' target='_blank' rel='noopener noreferrer'>FAIRmat-supported pynxtools plugins</a>."
+        ].join(" "),
         tags: ["documentation", "CLI", "pynxtools-spm", "pynxtools-xps"],
         link: "https://github.com/FAIRmat-NFDI"
       },
       noPath: {
         name: "Build your own plugin",
-        detail: "No plugin exists for your technique yet. You will need to design a NeXus datamodel and build a reader plugin using the pynxtools-plugin-template repository as your scaffold.",
+        detail: [
+          "No plugin exists for your technique yet. You will need to design a NeXus datamodel and build a reader plugin using the <a href='https://github.com/FAIRmat-NFDI/pynxtools-plugin-template' target='_blank' rel='noopener noreferrer'>pynxtools-plugin-template</a> repository as your scaffold.",
+          "Learn more: <a href='https://fairmat-nfdi.github.io/pynxtools/how-tos/pynxtools/build-a-plugin.html' target='_blank' rel='noopener noreferrer'>Build a pynxtools plugin how-to guide</a>."
+        ].join(" "),
         tags: ["custom plugin", "NeXus datamodel", "plugin-template"],
         steps: [
           {
             name: "Write a NeXus datamodel",
-            detail: "Design application definitions and base classes for your experiment using NXDL (NeXus Definition Language). Application definitions specify the mandatory and optional groups, fields, and attributes a conformant NeXus file must contain for your technique.",
+            detail: [
+              "Design application definitions and base classes for your experiment using NXDL (NeXus Definition Language). Application definitions specify the mandatory and optional groups, fields, and attributes a conformant NeXus file must contain for your technique.",
+              "FAIRmat actively contributes new definitions to the NeXus standard. Learn more: <a href='https://fairmat-nfdi.github.io/pynxtools/tutorial/writing-an-application-definition.html' target='_blank' rel='noopener noreferrer'>Writing your first application definition</a>, <a href='https://fairmat-nfdi.github.io/pynxtools/how-tos/nexus/write-an-application-definition.html' target='_blank' rel='noopener noreferrer'>How-to: write an application definition</a>."
+            ].join(" "),
             tags: ["NXDL", "application definition", "base class", "NeXus"]
           },
           {
-            name: "Build from pynxtools-template",
-            detail: "Clone the pynxtools-plugin-template as your starting point. It provides the plugin scaffold, Python entrypoint registration, and a test harness. You fill in four components: a file parser, an ELN schema, a config mapping file, and a call to the multiformat reader.",
-            tags: ["pynxtools-plugin-template", "scaffold", "entrypoint", "pytest"],
+            name: "Build from pynxtools-plugin-template",
+            detail: [
+              "Clone the <a href='https://github.com/FAIRmat-NFDI/pynxtools-plugin-template' target='_blank' rel='noopener noreferrer'>pynxtools-plugin-template</a> as your starting point using cookiecutter/cruft. It provides the plugin scaffold, Python entrypoint registration, mkdocs documentation template, and a standardized test harness.",
+              "You fill in four components: a file parser, an ELN schema, a config mapping file, and a call to the MultiFormatReader. Learn more: <a href='https://fairmat-nfdi.github.io/pynxtools/how-tos/pynxtools/build-a-plugin.html' target='_blank' rel='noopener noreferrer'>Build a pynxtools plugin</a>."
+            ].join(" "),
+            tags: ["pynxtools-plugin-template", "scaffold", "cookiecutter", "entrypoint", "pytest"],
             link: "https://github.com/FAIRmat-NFDI/pynxtools-plugin-template",
             steps: [
               {
@@ -261,12 +665,15 @@ const DATA = {
               },
               {
                 name: "Write the config mapping file",
-                detail: "Create a JSON config file that maps raw data keys to pynxtools template paths. Each key is a slash-separated NeXus path such as /entry/instrument/detector/data and its value points to the corresponding field in your parsed data dictionary.",
+                detail: "Create a JSON config file that maps raw data keys to pynxtools template paths. Each key is a slash-separated NeXus path such as <code>/entry/instrument/detector/data</code> and its value points to the corresponding field in your parsed data dictionary.",
                 tags: ["config", "JSON", "path mapping", "template keys"]
               },
               {
-                name: "Use the multiformat reader",
-                detail: "Invoke the MultiFormatReader provided by pynxtools to read and merge your raw data file, ELN YAML, and config JSON into the pynxtools template dictionary. The framework then serialises this merged dictionary into a conformant NeXus HDF5 file.",
+                name: "Use the MultiFormatReader",
+                detail: [
+                  "Invoke the <code>MultiFormatReader</code> provided by pynxtools to read and merge your raw data file, ELN YAML, and config JSON into the pynxtools template dictionary. The framework then serializes the merged dictionary into a conformant NeXus HDF5 file.",
+                  "Learn more: <a href='https://fairmat-nfdi.github.io/pynxtools/learn/pynxtools/multi-format-reader.html' target='_blank' rel='noopener noreferrer'>MultiFormatReader explanation</a>."
+                ].join(" "),
                 tags: ["MultiFormatReader", "template", "HDF5", "merge"]
               }
             ]
@@ -276,45 +683,76 @@ const DATA = {
     },
     usages: {
       name: "Usages of pynxtools plugins",
-      detail: "Once a plugin is available, you can use it in two ways: as a standalone command-line tool running in any Python environment, or fully integrated into the NOMAD research data management system for storage, sharing, search, and publication.",
+      detail: [
+        "Once a plugin is available, you can use it in two ways: as a standalone command-line tool running in any Python environment, or fully integrated into the NOMAD research data management system for storage, sharing, search, and publication.",
+        "Both approaches use the same underlying pynxtools dataconverter framework."
+      ].join(" "),
       tags: ["CLI", "NOMAD", "workflow", "standalone"],
       tracks: [
         {
           name: "Standalone CLI",
-          detail: "Install pynxtools and the plugin in a Python environment. Use the CLI command provided by the plugin to convert raw files to NeXus locally. You are responsible for tracking your raw files, ELN YAML, config JSON, and output NeXus file per experiment.",
+          detail: [
+            "&#8226; <strong>Install</strong> — <code>pip install pynxtools[&lt;plugin&gt;]</code> in any Python environment<br>",
+            "&#8226; <strong>Convert</strong> — <code>pynx convert --reader &lt;reader&gt; --nxdl &lt;NXdef&gt; data.raw eln.yaml</code><br>",
+            "&#8226; <strong>Inputs</strong> — raw vendor file &nbsp;+&nbsp; ELN YAML (sample &amp; instrument metadata) &nbsp;+&nbsp; config JSON (field mapping)<br>",
+            "&#8226; <strong>Output</strong> — a single <code>.nxs</code> NeXus/HDF5 file per experiment<br>",
+            "&#8226; <strong>Validate</strong> — auto-runs during conversion; re-run anytime with <code>pynx validate out.nxs</code>"
+          ].join(""),
           tags: ["pip", "CLI", "Python environment", "local"],
           demos: [
             {
               name: "pynxtools-spm (CLI)",
-              detail: "Convert Nanonis .sxm scanning probe microscopy data to NXsts via command line.\n\nInstall: pip install pynxtools-spm\n\nRun: dataconverter --reader spm --nxdl NXsts --input scan.sxm eln.yaml config.json --output scan.nxs",
-              tags: ["pynxtools-spm", "STM", "Nanonis", "CLI"],
+              detail: [
+                "Convert Nanonis .sxm scanning probe microscopy data to NXsts via command line.\n\n",
+                "<strong>Install:</strong> <code>pip install pynxtools-spm</code>\n\n",
+                "<strong>Run:</strong> <code>dataconverter --reader spm --nxdl NXsts --input scan.sxm eln.yaml config.json --output scan.nxs</code>\n\n",
+                "Full tutorial: <a href='https://fairmat-nfdi.github.io/pynxtools-spm/reference/standalone-usages.html' target='_blank' rel='noopener noreferrer'>pynxtools-spm standalone usage reference</a>."
+              ].join(""),
+              tags: ["pynxtools-spm", "STM", "STS", "Nanonis", "CLI"],
               link: "https://github.com/FAIRmat-NFDI/pynxtools-spm"
             },
             {
               name: "pynxtools-xps (CLI)",
-              detail: "Convert SPECS or Kratos XPS spectra to NXxps via command line.\n\nInstall: pip install pynxtools-xps\n\nRun: dataconverter --reader xps --nxdl NXxps --input spectrum.xy eln.yaml config.json --output spectrum.nxs",
-              tags: ["pynxtools-xps", "XPS", "SPECS", "CLI"],
+              detail: [
+                "Convert SPECS or Kratos XPS spectra to NXxps via command line.\n\n",
+                "<strong>Install:</strong> <code>pip install pynxtools-xps</code>\n\n",
+                "<strong>Run:</strong> <code>dataconverter --reader xps --nxdl NXxps --input spectrum.xy eln.yaml --output spectrum.nxs</code>\n\n",
+                "Full tutorial: <a href='https://fairmat-nfdi.github.io/pynxtools-xps/tutorial/standalone.html' target='_blank' rel='noopener noreferrer'>pynxtools-xps standalone conversion tutorial</a>."
+              ].join(""),
+              tags: ["pynxtools-xps", "XPS", "SPECS", "Kratos", "CLI"],
               link: "https://github.com/FAIRmat-NFDI/pynxtools-xps"
             }
           ]
         },
         {
           name: "With NOMAD RDM",
-          detail: "Include pynxtools and the relevant plugin in a NOMAD Oasis deployment. Upload raw files and an ELN through the NOMAD interface. NOMAD automatically detects the format, runs the plugin reader, creates structured NeXus entries, and makes them searchable, shareable, and citable with a DOI.",
+          detail: [
+            "&#8226; <strong>Deploy</strong> — include pynxtools and the plugin in a NOMAD Oasis or use the public <a href='https://nomad-lab.eu' target='_blank' rel='noopener noreferrer'>nomad-lab.eu</a><br>",
+            "&#8226; <strong>Upload</strong> — drop raw vendor files and an ELN YAML through the NOMAD web interface<br>",
+            "&#8226; <strong>Auto-parse</strong> — NOMAD detects the format, runs the plugin reader, and creates structured NeXus entries automatically<br>",
+            "&#8226; <strong>Search &amp; share</strong> — all metadata is indexed and immediately searchable across datasets<br>",
+            "&#8226; <strong>Publish</strong> — assign a DOI and make data publicly citable with one click"
+          ].join(""),
           tags: ["NOMAD Oasis", "upload", "automated parsing", "DOI", "FAIR"],
           demos: [
             {
-              name: "pynxtools-spm in NOMAD",
-              detail: "Upload Nanonis .sxm files to a NOMAD instance with pynxtools-spm installed. NOMAD automatically detects the SPM format, runs the reader, creates a structured NXsts entry, indexes it, and makes it searchable and shareable. Full tutorial in the pynxtools-spm documentation.",
-              tags: ["pynxtools-spm", "NOMAD", "NXsts", "automated upload"],
-              link: "https://github.com/FAIRmat-NFDI/pynxtools-spm"
-            },
-            {
               name: "pynxtools-xps in NOMAD",
-              detail: "Upload XPS raw files to a NOMAD instance with pynxtools-xps installed. The plugin parses binding energy spectra into NXxps entries automatically. A full usage tutorial is available at the pynxtools-xps documentation site.",
+              detail: [
+                "Upload XPS raw files to a NOMAD instance with pynxtools-xps installed. The plugin parses binding energy spectra into NXxps entries automatically.\n\n",
+                "Full tutorial: <a href='https://fairmat-nfdi.github.io/pynxtools-xps/tutorial/nomad_usage.html' target='_blank' rel='noopener noreferrer'>pynxtools-xps usage in NOMAD</a>."
+              ].join(""),
               tags: ["pynxtools-xps", "NOMAD", "NXxps", "tutorial"],
               link: "https://fairmat-nfdi.github.io/pynxtools-xps/tutorial/nomad_usage.html"
-            }
+            },
+             {
+              name: "pynxtools-spm in NOMAD",
+              detail: [
+                "Upload Nanonis .sxm files to a NOMAD instance with pynxtools-spm installed. NOMAD automatically detects the SPM format, runs the reader, creates a structured NXsts entry, indexes it, and makes it searchable and shareable.\n\n",
+                "Full tutorial: <a href='https://fairmat-nfdi.github.io/pynxtools-spm/tutorials/use-reader-in-nomad.html' target='_blank' rel='noopener noreferrer'>Use pynxtools-spm reader in NOMAD</a>."
+              ].join(""),
+              tags: ["pynxtools-spm", "NOMAD", "NXsts", "automated upload"],
+              link: "https://github.com/FAIRmat-NFDI/pynxtools-spm"
+            },         
           ]
         }
       ]
@@ -392,9 +830,7 @@ function makeRail(label) {
 
 function makePluginCard(p, list, idx) {
   const card = document.createElement('div');
-  card.className = 'plugin-card' + (p.isPynx ? ' pynx-card' : '') + (p.isPynxSpm ? ' pynx-spm-card' : ''); // add 'plugin-card' class to both for consistent styling, and 'pynx-card' for any pynxtools-specific overrides within the
-  
-  // card.
+  card.className = 'plugin-card' + (p.isPynx ? ' pynx-card' : '') + (p.isPynxSpm ? ' pynx-spm-card' : '');
 
   const nameEl = document.createElement('div');
   nameEl.className = 'pcard-name';
@@ -407,15 +843,36 @@ function makePluginCard(p, list, idx) {
   const actions = document.createElement('div');
   actions.className = 'pcard-actions';
 
+  let plugTarget = actions;
+
   if (p.isPynx) {
     const btn = document.createElement('button');
     btn.className = 'btn-explore';
     btn.textContent = 'explore →';
     btn.onclick = () => showView('pynxtools');
     actions.appendChild(btn);
-  }  else {
+  } else if (p.isPynxSpm) {
+    actions.classList.add('pcard-actions-spm');
+    const modelRow = document.createElement('div');
+    modelRow.className = 'pcard-model-row';
+    const modelBtn = document.createElement('button');
+    modelBtn.className = 'btn-explore';
+    modelBtn.textContent = 'data model →';
+    modelBtn.onclick = () => showView('nexus-spm');
+    modelRow.appendChild(modelBtn);
+    actions.appendChild(modelRow);
+    const bottomRow = document.createElement('div');
+    bottomRow.className = 'pcard-actions-bottom';
+    const infoBtnEl = document.createElement('button');
+    infoBtnEl.className = 'btn-info';
+    infoBtnEl.textContent = 'ⓘ info';
+    infoBtnEl.onclick = () => openPanel('plugin', list, idx);
+    bottomRow.appendChild(infoBtnEl);
+    actions.appendChild(bottomRow);
+    plugTarget = bottomRow;
+  } else {
     const btn = document.createElement('button');
-    btn.className = 'btn-info'; // different styling for info button if it's a pynxtools plugin
+    btn.className = 'btn-info';
     btn.textContent = 'ⓘ info';
     btn.onclick = () => openPanel('plugin', list, idx);
     actions.appendChild(btn);
@@ -424,7 +881,7 @@ function makePluginCard(p, list, idx) {
   const plug = document.createElement('span');
   plug.className = 'plug-badge';
   plug.textContent = '⚡ (plugin)';
-  actions.appendChild(plug);
+  plugTarget.appendChild(plug);
 
   card.appendChild(nameEl);
   card.appendChild(descEl);
@@ -473,7 +930,7 @@ function makeCentralBox(cls, title, subtitle, features, featureList, standalone,
   if (onExplore) {
     const exploreBtn = document.createElement('button');
     exploreBtn.className = 'btn-explore-eco';
-    exploreBtn.textContent = 'explore ecosystem →';
+    exploreBtn.textContent = 'explore framework →';
     exploreBtn.onclick = onExplore;
     box.appendChild(exploreBtn);
   }
@@ -542,6 +999,7 @@ function buildNomad() {
 }
 
 function buildPynx() {
+  document.querySelector('#view-pynxtools .view-note p').innerHTML = DATA.pynxtools.overview;
   const plugins = DATA.pynxtools.pynxPlugins;
   const mid = Math.ceil(plugins.length / 2);
   const central = makeCentralBox(DATA.pynxtools.className, DATA.pynxtools.title, DATA.pynxtools.subtitle, DATA.pynxtools.pynxFeatures, DATA.pynxtools.pynxFeatures, true, () => showView('explore'));
@@ -555,6 +1013,249 @@ function infoBtn(item, type) {
   btn.textContent = 'ⓘ info';
   btn.onclick = () => openPanel(type, [item], 0);
   return btn;
+}
+
+/* ── MOTIVATION VIEW ── */
+function makeMSection(titleText) {
+  const sec = document.createElement('div');
+  sec.className = 'motiv-section';
+  const head = document.createElement('div');
+  head.className = 'motiv-section-head';
+  const title = document.createElement('span');
+  title.className = 'motiv-section-title';
+  title.textContent = titleText;
+  head.appendChild(title);
+  const body = document.createElement('div');
+  body.className = 'motiv-section-body';
+  sec.appendChild(head);
+  sec.appendChild(body);
+  return sec;
+}
+
+function buildMotivation() {
+  const content = document.getElementById('motivation-content');
+  content.innerHTML = '';
+
+  /* ── Section 1: The challenges ── */
+  const challengeItems = [
+    {
+      mark: '!',
+      name: 'No standard format',
+      detail: [
+        'Every vendor and lab uses different file types, naming conventions, and metadata fields.',
+        'A scanning tunneling microscopy file from Nanonis looks nothing like one from ScientaOmicron — even though both describe the same physical quantity.',
+        'Without a shared data model, each group must write custom parsers and converters, duplicating effort and introducing errors every time data moves between tools or people.',
+      ].join(' '),
+      tags: ['file formats', 'vendor lock-in', 'metadata', 'interoperability']
+    },
+    {
+      mark: '×',
+      name: 'Data gets siloed',
+      detail: [
+        'Raw files live on local lab computers or personal drives with no central index.',
+        'When a PhD student finishes, a postdoc moves institutions, or a hard drive fails, months or years of experimental measurements become permanently inaccessible — not because the data was deleted, but because the context and location are known only to the person who left.',
+        'There is no structural incentive or tooling to make data findable to the next researcher.',
+      ].join(' '),
+      tags: ['data loss', 'staff turnover', 'local storage', 'institutional knowledge']
+    },
+    {
+      mark: '?',
+      name: 'Cannot search across experiments',
+      detail: [
+        'Finding a specific measurement from two years ago requires opening folders one by one, reading filenames, and hoping that naming conventions were consistent.',
+        'There is no metadata index, no full-text search, and no way to filter by sample, technique, date, or result across the lab\'s entire dataset.',
+        'Cross-lab comparison — essential for reproducibility studies and collaborative projects — is effectively impossible without enormous manual effort.',
+      ].join(' '),
+      tags: ['findability', 'search', 'reproducibility', 'cross-lab']
+    },
+    {
+      mark: '~',
+      name: 'Sharing is manual and lossy',
+      detail: [
+        'Sending data to a collaborator or journal reviewer means manually zipping folders, writing a README, and emailing or uploading the archive.',
+        'Even with a README, there is no guarantee that physical units, calibration parameters, instrument settings, or sample provenance survive the transfer.',
+        'Each sharing event is a one-off act with no version history, no access control, and no record of who received what — making data management for multi-partner projects a constant source of friction.',
+      ].join(' '),
+      tags: ['collaboration', 'data transfer', 'provenance', 'access control']
+    }
+  ];
+
+  const sec1 = makeMSection('The challenges');
+  const body1 = sec1.querySelector('.motiv-section-body');
+  const grid = document.createElement('div');
+  grid.className = 'motiv-challenge-grid';
+  challengeItems.forEach(c => {
+    const card = document.createElement('div');
+    card.className = 'motiv-challenge-card';
+    const head = document.createElement('div');
+    head.className = 'motiv-challenge-head';
+    const mark = document.createElement('span');
+    mark.className = 'motiv-challenge-mark';
+    mark.textContent = c.mark;
+    const titleEl = document.createElement('span');
+    titleEl.className = 'motiv-challenge-title';
+    titleEl.textContent = c.name;
+    head.appendChild(mark);
+    head.appendChild(titleEl);
+    head.appendChild(infoBtn(c, 'challenge'));
+    card.appendChild(head);
+    grid.appendChild(card);
+  });
+  body1.appendChild(grid);
+
+  /* ── Section 2: In the lab ── */
+  const sec2 = makeMSection('In the lab');
+  const body2 = sec2.querySelector('.motiv-section-body');
+  const strip = document.createElement('div');
+  strip.className = 'motiv-image-strip';
+  [
+    {
+      src: 'assets/ExperimentInstrument.png',
+      num: '①',
+      name: 'Complex hardware',
+      detail: 'Each instrument generates data in a proprietary vendor format with instrument-specific metadata, calibration parameters, and acquisition settings. A single experiment may involve multiple instruments — each with its own file format, coordinate system, and unit convention — making a complete record of the measurement almost impossible to capture automatically.',
+      tags: ['instrument', 'proprietary format', 'hardware', 'calibration']
+    },
+    {
+      src: 'assets/InstrumentSetupWindow.png',
+      num: '②',
+      name: 'Vendor software',
+      detail: 'Dozens of settings, calibration parameters, and acquisition options are configured and saved inside proprietary control software. These settings are rarely exported in a machine-readable form, meaning critical experimental context — scan range, bias voltage, amplifier gain, lock-in frequency — exists only inside a closed software environment and is easily lost when software versions change or licenses expire.',
+      tags: ['vendor software', 'proprietary', 'settings', 'experimental context', 'lock-in']
+    },
+    {
+      src: 'assets/ExperimentMonitorSetup.png',
+      num: '③',
+      name: 'Data collection',
+      detail: 'Measurement output is captured on a lab computer alongside monitor readouts, live displays, and acquisition logs. The data produced in a single session spans the raw signal, instrument parameters, environmental conditions, and user-entered notes — rarely consolidated into one structured file and almost never linked to the sample record or the instrument configuration used.',
+      tags: ['data acquisition', 'session logs', 'instrument parameters', 'lab computer']
+    }
+  ].forEach(item => {
+    const card = document.createElement('div');
+    card.className = 'motiv-img-card';
+    const badge = document.createElement('span');
+    badge.className = 'motiv-num-badge';
+    badge.textContent = item.num;
+    const img = document.createElement('img');
+    img.src = item.src;
+    img.alt = item.name;
+    img.className = 'motiv-img';
+    img.loading = 'lazy';
+    const foot = document.createElement('div');
+    foot.className = 'motiv-img-foot';
+    const capTitle = document.createElement('div');
+    capTitle.className = 'motiv-cap-title';
+    capTitle.textContent = item.name;
+    foot.appendChild(capTitle);
+    foot.appendChild(infoBtn(item, 'lab setup'));
+    card.appendChild(badge);
+    card.appendChild(img);
+    card.appendChild(foot);
+    strip.appendChild(card);
+  });
+  body2.appendChild(strip);
+
+  /* ── Section 3: How data is stored today ── */
+  const folderItem = {
+    name: 'How data is stored today',
+    detail: [
+      'Labs manage experimental data manually in hand-crafted local folder trees — raw files, notes, sample records, and user logs stored with no shared structure or search index.',
+      ' Each lab invents its own folder hierarchy. Raw files, experiment notes, sample records, and user information are scattered across subfolders with no shared vocabulary, no search index, and no access control.',
+      ' Folder names like <em>test_experiments</em>, <em>raw_files</em>, and <em>other_data</em> carry meaning only to the person who created them.',
+      ' When staff leave or storage is reorganised, the structure — and the knowledge encoded in it — is permanently lost.'
+    ].join(''),
+    tags: ['folder structure', 'local storage', 'naming conventions', 'data loss', 'no index']
+  };
+
+  const sec3 = makeMSection('How data is stored today');
+  const body3 = sec3.querySelector('.motiv-section-body');
+  const folderImg = document.createElement('img');
+  folderImg.src = 'assets/FoderStructureOfExperimentalDataFilesNotesSampleData.png';
+  folderImg.alt = 'Folder structure of experimental data files, notes, and sample data';
+  folderImg.className = 'motiv-folder-img';
+  body3.appendChild(folderImg);
+  const folderSummary = document.createElement('div');
+  folderSummary.className = 'motiv-folder-summary';
+  folderSummary.appendChild(infoBtn(folderItem, 'storage'));
+  body3.appendChild(folderSummary);
+
+  content.appendChild(sec2);
+  content.appendChild(sec3);
+  content.appendChild(sec1);
+
+  /* ── Section 4: The solution ── */
+  const sec4 = makeMSection('The solution: a shared data model');
+  const body4 = sec4.querySelector('.motiv-section-body');
+
+  const lead = document.createElement('ul');
+  lead.className = 'motiv-solution-lead';
+  [
+    '<strong>NeXus</strong> — a standardised, hierarchical data model where every concept has a machine-readable place.',
+    '<strong>pynxtools</strong> — converts raw vendor files from any instrument into compliant NeXus/HDF5.',
+    '<strong>NOMAD</strong> — stores, indexes, and shares the result across labs, institutions, and the open community.'
+  ].forEach(text => {
+    const li = document.createElement('li');
+    li.innerHTML = text;
+    lead.appendChild(li);
+  });
+  body4.appendChild(lead);
+
+  /* inline SVG — uses CSS custom properties via class-based fill/stroke */
+  const svgWrap = document.createElement('div');
+  svgWrap.innerHTML = `<svg class="motiv-svg" viewBox="0 0 580 200" xmlns="http://www.w3.org/2000/svg" aria-label="Data flow diagram: labs through pynxtools and NOMAD to search, sharing, and publication">
+  <!-- Lab boxes -->
+  <rect x="8" y="18" width="116" height="44" rx="6" class="svg-lab-rect"/>
+  <text x="16" y="33" class="svg-small-label">raw files · notes</text>
+  <text x="16" y="51" class="svg-main-label">Lab A</text>
+  <rect x="8" y="78" width="116" height="44" rx="6" class="svg-lab-rect"/>
+  <text x="16" y="93" class="svg-small-label">samples · users</text>
+  <text x="16" y="111" class="svg-main-label">Lab B</text>
+  <rect x="8" y="138" width="116" height="44" rx="6" class="svg-lab-rect"/>
+  <text x="16" y="153" class="svg-small-label">experiment data</text>
+  <text x="16" y="171" class="svg-main-label">Lab C</text>
+  <!-- Flow lines: labs → NOMAD -->
+  <line x1="124" y1="40" x2="209" y2="97" class="svg-flow-line"/>
+  <line x1="124" y1="100" x2="209" y2="100" class="svg-flow-line"/>
+  <line x1="124" y1="160" x2="209" y2="103" class="svg-flow-line"/>
+  <!-- pynxtools bridge label (drawn after lines so it paints over them) -->
+  <rect x="128" y="90" width="78" height="18" rx="4" class="svg-pynx-rect"/>
+  <text x="167" y="99" class="svg-pynx-label" dominant-baseline="middle">pynxtools</text>
+  <!-- NOMAD box -->
+  <rect x="209" y="62" width="152" height="76" rx="8" class="svg-nomad-rect"/>
+  <text x="285" y="91" class="svg-nomad-title">NOMAD</text>
+  <text x="285" y="109" class="svg-nomad-sub">research data platform</text>
+  <text x="285" y="124" class="svg-nomad-sub">NeXus · HDF5 · FAIR</text>
+  <!-- Flow lines: NOMAD → outcomes -->
+  <line x1="361" y1="88" x2="432" y2="43" class="svg-flow-line"/>
+  <line x1="361" y1="100" x2="432" y2="100" class="svg-flow-line"/>
+  <line x1="361" y1="112" x2="432" y2="157" class="svg-flow-line"/>
+  <!-- Outcome boxes -->
+  <rect x="432" y="18" width="140" height="50" rx="6" class="svg-outcome-rect"/>
+  <text x="502" y="39" class="svg-outcome-title">Search &amp; filter</text>
+  <text x="502" y="55" class="svg-outcome-sub">by material, method, date</text>
+  <rect x="432" y="75" width="140" height="50" rx="6" class="svg-outcome-rect"/>
+  <text x="502" y="96" class="svg-outcome-title">Share with teams</text>
+  <text x="502" y="112" class="svg-outcome-sub">private · group · open</text>
+  <rect x="432" y="132" width="140" height="50" rx="6" class="svg-outcome-rect"/>
+  <text x="502" y="153" class="svg-outcome-title">Publish &amp; cite</text>
+  <text x="502" y="169" class="svg-outcome-sub">DOI · FAIR · open data</text>
+</svg>`;
+  body4.appendChild(svgWrap.firstElementChild);
+
+  const ctaRow = document.createElement('div');
+  ctaRow.className = 'motiv-cta-row';
+  const btn1 = document.createElement('button');
+  btn1.className = 'motiv-btn motiv-btn-nomad';
+  btn1.textContent = 'discover NOMAD →';
+  btn1.onclick = () => showView('nomad');
+  const btn2 = document.createElement('button');
+  btn2.className = 'motiv-btn motiv-btn-pynx';
+  btn2.textContent = 'explore pynxtools →';
+  btn2.onclick = () => showView('pynxtools');
+  ctaRow.appendChild(btn1);
+  ctaRow.appendChild(btn2);
+  body4.appendChild(ctaRow);
+  content.appendChild(sec4);
 }
 
 /* ── EXPLORE ECOSYSTEM VIEW ── */
@@ -602,9 +1303,11 @@ function buildExplore() {
   const yesBranch = document.createElement('div');
   yesBranch.className = 'branch branch-yes';
   const yesTag = document.createElement('span');
-  yesTag.className = 'branch-label branch-label-yes';
-  yesTag.textContent = '✓ YES';
+  yesTag.className = 'branch-label branch-label-yes branch-toggle';
+  yesTag.innerHTML = '<span class="collapse-indicator">▸</span> ✓ YES';
   yesBranch.appendChild(yesTag);
+  const yesBody = document.createElement('div');
+  yesBody.className = 'branch-body collapsed';
   const yesCard = document.createElement('div');
   yesCard.className = 'step-card';
   const yesCardName = document.createElement('span');
@@ -612,16 +1315,27 @@ function buildExplore() {
   yesCardName.textContent = DATA.explore.utilize.yesPath.name;
   yesCard.appendChild(yesCardName);
   yesCard.appendChild(infoBtn(DATA.explore.utilize.yesPath, 'step'));
-  yesBranch.appendChild(yesCard);
+  yesBody.appendChild(yesCard);
+  yesBranch.appendChild(yesBody);
+  yesTag.onclick = () => {
+    const collapsed = yesBody.classList.toggle('collapsed');
+    yesTag.querySelector('.collapse-indicator').textContent = collapsed ? '▸' : '▾';
+  };
   branches.appendChild(yesBranch);
 
   /* NO branch */
   const noBranch = document.createElement('div');
   noBranch.className = 'branch branch-no';
   const noTag = document.createElement('span');
-  noTag.className = 'branch-label branch-label-no';
-  noTag.textContent = '✗ NO';
+  noTag.className = 'branch-label branch-label-no branch-toggle';
+  noTag.innerHTML = '<span class="collapse-indicator">▸</span> ✗ NO';
   noBranch.appendChild(noTag);
+  const noBody = document.createElement('div');
+  noBody.className = 'branch-body collapsed';
+  noTag.onclick = () => {
+    const collapsed = noBody.classList.toggle('collapsed');
+    noTag.querySelector('.collapse-indicator').textContent = collapsed ? '▸' : '▾';
+  };
 
   DATA.explore.utilize.noPath.steps.forEach((step, si) => {
     const stepNum = ['A', 'B'][si];
@@ -639,7 +1353,7 @@ function buildExplore() {
     labelWrap.appendChild(infoBtn(step, 'step'));
     stepRow.appendChild(circle);
     stepRow.appendChild(labelWrap);
-    noBranch.appendChild(stepRow);
+    noBody.appendChild(stepRow);
 
     if (step.steps && step.steps.length) {
       const subWrap = document.createElement('div');
@@ -658,10 +1372,18 @@ function buildExplore() {
         subRow.appendChild(infoBtn(sub, 'step'));
         subWrap.appendChild(subRow);
       });
-      noBranch.appendChild(subWrap);
+      noBody.appendChild(subWrap);
+      subWrap.classList.add('collapsed');
+      lbl.classList.add('step-toggle');
+      lbl.innerHTML = '<span class="collapse-indicator">▸</span> ' + step.name;
+      lbl.onclick = () => {
+        const collapsed = subWrap.classList.toggle('collapsed');
+        lbl.querySelector('.collapse-indicator').textContent = collapsed ? '▸' : '▾';
+      };
     }
   });
 
+  noBranch.appendChild(noBody);
   branches.appendChild(noBranch);
   stepper.appendChild(branches);
   sectionA.appendChild(stepper);
@@ -698,7 +1420,7 @@ function buildExplore() {
 
     const trackDesc = document.createElement('p');
     trackDesc.className = 'track-desc';
-    trackDesc.textContent = track.detail;
+    trackDesc.innerHTML = track.detail;
     trackEl.appendChild(trackDesc);
 
     track.demos.forEach(demo => {
@@ -722,38 +1444,524 @@ function buildExplore() {
 }
 
 /* ============================================================
+   NXSPM DATA MODEL TREE
+   ============================================================ */
+const NXSPM_TREE = {
+  kind: 'definition',
+  name: 'NXspm',
+  extends: 'NXsensor_scan',
+  subtypes: ['NXsts', 'NXstm', 'NXafm'],
+  doc: 'Scanning Probe Microscopy application definition. Shared structural framework for STM, STS, and AFM experiments, inherited from NXsensor_scan.',
+  children: [
+    {
+      kind: 'group', name: 'NXentry', nxclass: 'NXentry', opt: 'required',
+      doc: 'Root entry of the NeXus file. All experiment data is organized under this group.',
+      children: [
+        { kind: 'field', name: 'definition', nxtype: 'NX_CHAR', opt: 'required', doc: 'Name of the application definition. Must be set to NXspm.', enum: ['NXspm'] },
+        { kind: 'field', name: 'experiment_technique', nxtype: 'NX_CHAR', opt: 'required', doc: 'The technique of the experiment.', enum: ['STM', 'STS', 'AFM'] },
+        { kind: 'field', name: 'scan_mode', nxtype: 'NX_CHAR', opt: 'optional', doc: 'The mode of the scan.', enum: ['constant height', 'constant current', 'contact mode', 'tapping mode', 'peak force tapping mode', 'non-contact mode'] },
+        { kind: 'field', name: 'scan_type', nxtype: 'NX_CHAR', opt: 'recommended', doc: 'Describes how the probe moves in the scan region, e.g. forward, backward, or both.' },
+        { kind: 'field', name: 'identifier_experiment', nxtype: 'NX_CHAR', opt: 'recommended', doc: 'Unique identifier for the experiment within the lab.' },
+        {
+          kind: 'group', name: 'NXprocess', nxclass: 'NXprocess', opt: 'optional',
+          doc: 'Defines data-processing programs, associated workflows, software, and results.',
+          children: []
+        },
+        {
+          kind: 'group', name: 'NXinstrument', nxclass: 'NXinstrument', opt: 'required',
+          doc: 'Groups all instrument-related sub-components: hardware, software, sensors, scan environment, and piezo actuators.',
+          children: [
+            {
+              kind: 'group', name: 'hardware', nxclass: 'NXfabrication', opt: 'required',
+              doc: 'Hardware description. Usually the complete instrument is supplied by one manufacturer.',
+              children: [
+                { kind: 'field', name: 'name',   nxtype: 'NX_CHAR', opt: 'recommended', doc: 'Name of the hardware.' },
+                { kind: 'field', name: 'vendor',  nxtype: 'NX_CHAR', opt: 'required',    doc: 'Company name of the manufacturer.' },
+                { kind: 'field', name: 'model',   nxtype: 'NX_CHAR', opt: 'recommended', doc: 'Version or model of the hardware setup.' }
+              ]
+            },
+            {
+              kind: 'group', name: 'software', nxclass: 'NXfabrication', opt: 'required',
+              doc: 'Software description of the instrument setup.',
+              children: [
+                { kind: 'field', name: 'name',   nxtype: 'NX_CHAR', opt: 'optional',    doc: 'Name of the software.' },
+                { kind: 'field', name: 'vendor',  nxtype: 'NX_CHAR', opt: 'required',    doc: 'Company name of the software manufacturer.' },
+                { kind: 'field', name: 'model',   nxtype: 'NX_CHAR', opt: 'recommended', doc: 'Version or model of the software.' }
+              ]
+            },
+            {
+              kind: 'group', name: 'real_time_controller', nxclass: 'NXrcs', opt: 'recommended',
+              doc: 'Real-time control system (RCS) information.',
+              children: []
+            },
+            {
+              kind: 'group', name: 'lockin_amplifier', nxclass: 'NXlockin', opt: 'optional',
+              doc: 'Lock-in amplifier for phase-sensitive detection in STS and AFM experiments.',
+              children: [
+                { kind: 'field', name: 'flip_sign',      nxtype: 'NX_NUMBER', opt: 'optional',    doc: 'Sign (+1 or −1) to render lock-in current values positive. Determined by calibration with retracted tip.' },
+                { kind: 'field', name: 'active_channel', nxtype: 'NX_CHAR',   opt: 'recommended', doc: 'Name of the active channel of the lock-in amplifier.' }
+              ]
+            },
+            {
+              kind: 'group', name: 'SCAN_ENVIRONMENT', nxclass: 'NXenvironment', nameType: 'any', opt: 'required',
+              doc: 'Scan environment: temperature, setpoint, scan area, and scan data. At least one temperature field (head, cryo_bottom, or cryo_shield) must be present.',
+              children: [
+                { kind: 'field', name: 'head_temperature',        nxtype: 'NX_NUMBER', units: 'NX_TEMPERATURE', opt: 'recommended', doc: 'Stabilized or target temperature of the STM head.' },
+                { kind: 'field', name: 'identifier_environment',  nxtype: 'NX_CHAR',   opt: 'recommended',                          doc: 'Unique identifier for the scan environment, to differentiate scans under the same conditions.' },
+                { kind: 'field', name: 'cryo_bottom_temperature', nxtype: 'NX_NUMBER', units: 'NX_TEMPERATURE', opt: 'recommended', doc: 'Temperature of the cold tail of the cryostat.' },
+                { kind: 'field', name: 'cryo_shield_temperature', nxtype: 'NX_NUMBER', units: 'NX_TEMPERATURE', opt: 'recommended', doc: 'Temperature of the liquid-nitrogen shield.' },
+                { kind: 'group', name: 'current_sensorTAG', nxclass: 'NXsensor',           nameType: 'partial', opt: 'optional', doc: 'Link to /entry/instrument/current_sensorTAG.', children: [] },
+                { kind: 'group', name: 'voltage_sensorTAG', nxclass: 'NXsensor',           nameType: 'partial', opt: 'optional', doc: 'Link to /entry/instrument/voltage_sensorTAG.', children: [] },
+                { kind: 'group', name: 'piezo_sensor',       nxclass: 'NXspm_piezo_sensor', opt: 'optional',                     doc: 'Link to /entry/instrument/piezo_sensor.',       children: [] },
+                {
+                  kind: 'group', name: 'NXspm_scan_control', nxclass: 'NXspm_scan_control', opt: 'required',
+                  doc: 'Scan control: scan region, pattern type, and speed.',
+                  children: [
+                    { kind: 'field', name: 'scanTAG', nxtype: 'NX_CHAR', nameType: 'partial', opt: 'recommended', doc: 'Differentiates among multiple scans under the same environment.' },
+                    {
+                      kind: 'group', name: 'scan_region', nxclass: 'NXspm_scan_region', opt: 'required',
+                      doc: 'The phase space (or sub-space) in which the scan is performed.',
+                      children: [
+                        { kind: 'field', name: 'scan_range_x',        nxtype: 'NX_NUMBER', units: 'NX_LENGTH', opt: 'recommended', doc: 'Scan range in the x direction.' },
+                        { kind: 'field', name: 'scan_range_y',        nxtype: 'NX_NUMBER', units: 'NX_LENGTH', opt: 'recommended', doc: 'Scan range in the y direction.' },
+                        { kind: 'field', name: 'scan_offset_value_x', nxtype: 'NX_NUMBER', units: 'NX_LENGTH', opt: 'recommended', doc: 'Scan offset in the x direction.' },
+                        { kind: 'field', name: 'scan_offset_value_y', nxtype: 'NX_NUMBER', units: 'NX_LENGTH', opt: 'recommended', doc: 'Scan offset in the y direction.' },
+                        { kind: 'field', name: 'scan_angle_x',        nxtype: 'NX_NUMBER', units: 'NX_ANGLE',  opt: 'recommended', doc: 'Rotation angle of the scan region around the x axis.' },
+                        { kind: 'field', name: 'scan_angle_y',        nxtype: 'NX_NUMBER', units: 'NX_ANGLE',  opt: 'recommended', doc: 'Rotation angle of the scan region around the y axis.' },
+                        { kind: 'field', name: 'scan_start_x',        nxtype: 'NX_NUMBER', units: 'NX_LENGTH', opt: 'required',    doc: 'Start position of the scan in the x direction.' },
+                        { kind: 'field', name: 'scan_start_y',        nxtype: 'NX_NUMBER', units: 'NX_LENGTH', opt: 'required',    doc: 'Start position of the scan in the y direction.' },
+                        { kind: 'field', name: 'scan_end_x',          nxtype: 'NX_NUMBER', units: 'NX_LENGTH', opt: 'required',    doc: 'End position of the scan in the x direction.' },
+                        { kind: 'field', name: 'scan_end_y',          nxtype: 'NX_NUMBER', units: 'NX_LENGTH', opt: 'required',    doc: 'End position of the scan in the y direction.' }
+                      ]
+                    },
+                    {
+                      kind: 'group', name: 'meshSCAN', nxclass: 'NXspm_scan_pattern', nameType: 'partial', opt: 'required',
+                      doc: 'Mesh scan: scans the surface in a grid pattern.',
+                      children: [
+                        { kind: 'field', name: 'scan_points_x', nxtype: 'NX_NUMBER', opt: 'required',    doc: 'Number of scan points in the x direction.' },
+                        { kind: 'field', name: 'scan_points_y', nxtype: 'NX_NUMBER', opt: 'required',    doc: 'Number of scan points in the y direction.' },
+                        { kind: 'field', name: 'step_size_x',   nxtype: 'NX_NUMBER', units: 'NX_LENGTH', opt: 'recommended', doc: 'Step size in the x direction.' },
+                        { kind: 'field', name: 'step_size_y',   nxtype: 'NX_NUMBER', units: 'NX_LENGTH', opt: 'recommended', doc: 'Step size in the y direction.' }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              kind: 'group', name: 'current_sensorTAG', nxclass: 'NXsensor', nameType: 'partial', opt: 'optional',
+              doc: 'Any current sensor (e.g. transimpedance amplifier) involved in the experiment. Replace TAG with the specific sensor name or ID.',
+              children: [
+                { kind: 'field', name: 'NAMEcurrent',  nxtype: 'NX_CHAR',   nameType: 'partial', opt: 'optional', doc: 'Display name of the current sensor.' },
+                { kind: 'field', name: 'current',       nxtype: 'NX_NUMBER', units: 'NX_CURRENT', opt: 'required', doc: 'Tunneling current measured (e.g. tip_current for current at the tip).' },
+                { kind: 'field', name: 'offset_value',  nxtype: 'NX_NUMBER', units: 'NX_CURRENT', opt: 'optional', doc: 'Offset in the tunneling current between tip and sample.' },
+                {
+                  kind: 'group', name: 'calibration', nxclass: 'NXcalibration', opt: 'optional',
+                  doc: 'Calibration data for the current sensor.',
+                  children: [
+                    { kind: 'group', name: 'calibration_parameters', nxclass: 'NXparameters', opt: 'optional', doc: 'Calibration parameters.', children: [
+                      { kind: 'field', name: 'coefficient', nxtype: 'NX_NUMBER', units: 'NX_ANY', opt: 'optional', doc: 'Calibration coefficient.' }
+                    ]}
+                  ]
+                },
+                {
+                  kind: 'group', name: 'NXamplifier', nxclass: 'NXamplifier', opt: 'optional',
+                  doc: 'Amplifier that amplifies the current signal.',
+                  children: [
+                    { kind: 'field', name: 'current_gain', nxtype: 'NX_NUMBER', units: 'NX_UNITLESS', opt: 'optional', doc: 'Gain of the current-sensor amplifier.' }
+                  ]
+                }
+              ]
+            },
+            {
+              kind: 'group', name: 'voltage_sensorTAG', nxclass: 'NXsensor', nameType: 'partial', opt: 'optional',
+              doc: 'Any voltage sensor involved in the experiment. Replace TAG with the sensor name or ID. Do NOT use for sample DC bias voltage — use sample_bias_voltage for that.',
+              children: [
+                { kind: 'field', name: 'NAMEvoltage',  nxtype: 'NX_CHAR',   nameType: 'partial', opt: 'optional', doc: 'Display name of the voltage sensor.' },
+                { kind: 'field', name: 'voltage',       nxtype: 'NX_NUMBER', units: 'NX_VOLTAGE', opt: 'optional', doc: 'Voltage measured by the sensor.' },
+                { kind: 'field', name: 'offset_value',  nxtype: 'NX_NUMBER', units: 'NX_VOLTAGE', opt: 'optional', doc: 'Offset voltage. Real voltage = voltage + offset_value.' },
+                {
+                  kind: 'group', name: 'calibration', nxclass: 'NXcalibration', opt: 'optional',
+                  doc: 'Calibration data for the voltage sensor.',
+                  children: [
+                    { kind: 'group', name: 'calibration_parameters', nxclass: 'NXparameters', opt: 'optional', doc: 'Calibration parameters.', children: [
+                      { kind: 'field', name: 'coefficient', nxtype: 'NX_NUMBER', units: 'NX_ANY', opt: 'optional', doc: 'Calibration coefficient.' }
+                    ]}
+                  ]
+                },
+                {
+                  kind: 'group', name: 'NXamplifier', nxclass: 'NXamplifier', opt: 'optional',
+                  doc: 'Amplifier that amplifies the voltage signal.',
+                  children: [
+                    { kind: 'field', name: 'voltage_gain', nxtype: 'NX_NUMBER', units: 'NX_UNITLESS', opt: 'optional', doc: 'Gain of the voltage-sensor amplifier.' }
+                  ]
+                }
+              ]
+            },
+            {
+              kind: 'group', name: 'piezo_sensor', nxclass: 'NXspm_piezo_sensor', opt: 'optional',
+              doc: 'Combined XYZ piezo sensor reference.',
+              children: [
+                { kind: 'field', name: 'x', nxtype: 'NX_NUMBER', units: 'NX_LENGTH', opt: 'recommended', doc: 'X position of the piezo.' },
+                { kind: 'field', name: 'y', nxtype: 'NX_NUMBER', units: 'NX_LENGTH', opt: 'recommended', doc: 'Y position of the piezo.' },
+                { kind: 'field', name: 'z', nxtype: 'NX_NUMBER', units: 'NX_LENGTH', opt: 'recommended', doc: 'Z position of the piezo.' }
+              ]
+            },
+            { kind: 'group', name: 'height_piezo_sensor',         nxclass: 'NXspm_piezo_sensor',      opt: 'recommended', doc: 'Sensor information for the height (Z-axis) piezo actuator.', children: [] },
+            { kind: 'group', name: 'XYZpiezo_sensor',             nxclass: 'NXspm_piezo_sensor',      nameType: 'partial', opt: 'optional', doc: 'Separate piezo sensors per axis (X, Y, Z). Use when each axis has its own sensor.', children: [] },
+            { kind: 'group', name: 'head_temperature_sensor',      nxclass: 'NXspm_temperature_sensor', opt: 'recommended', doc: 'Temperature near the sample or tip. Intended for array / time-series data.', children: [] },
+            { kind: 'group', name: 'cryo_bottom_temperature_sensor', nxclass: 'NXspm_temperature_sensor', opt: 'optional', doc: 'Temperature at the cold tail of the cryostat. Intended for array / time-series data.', children: [] },
+            { kind: 'group', name: 'cryo_shield_temperature_sensor', nxclass: 'NXspm_temperature_sensor', opt: 'optional', doc: 'Temperature of the liquid-nitrogen shield. Intended for array / time-series data.', children: [] },
+            { kind: 'group', name: 'sample_temperature_sensor',   nxclass: 'NXspm_temperature_sensor', opt: 'optional', doc: 'Temperature of the sample. Intended for array / time-series data.', children: [] },
+            {
+              kind: 'group', name: 'bias_spectroscopy_environment', nxclass: 'NXenvironment', opt: 'optional',
+              doc: 'Bias and current behavior due to voltage applied to the sample (sweep measurement). Primarily used for STS but may also appear in STM setups.',
+              children: [
+                {
+                  kind: 'group', name: 'NXspm_bias_spectroscopy', nxclass: 'NXspm_bias_spectroscopy', opt: 'required',
+                  doc: 'Setup and scan data for continuous measurement of bias voltage vs. tunneling current.',
+                  children: [
+                    {
+                      kind: 'group', name: 'NXspm_positioner', nxclass: 'NXspm_positioner', opt: 'recommended',
+                      doc: 'PID positioner used in STS scan settings. Can be reused for positioners at multiple sample points.',
+                      children: [
+                        { kind: 'group', name: 'z_controller', nxclass: 'NXpid_controller', opt: 'recommended', doc: 'PID controller for the Z-axis positioner.', children: [] }
+                      ]
+                    },
+                    {
+                      kind: 'group', name: 'BIAS_SWEEP', nxclass: 'NXspm_scan_control', nameType: 'any', opt: 'required',
+                      doc: 'Bias voltage sweep: scans the applied voltage while measuring the tunneling current.',
+                      children: [
+                        {
+                          kind: 'group', name: 'scan_region', nxclass: 'NXspm_scan_region', opt: 'required',
+                          doc: 'Bias voltage scan range.',
+                          children: [
+                            { kind: 'field', name: 'scan_start_bias',  nxtype: 'NX_NUMBER', units: 'NX_VOLTAGE', opt: 'required',    doc: 'Start voltage of the bias sweep.' },
+                            { kind: 'field', name: 'scan_end_bias',    nxtype: 'NX_NUMBER', units: 'NX_VOLTAGE', opt: 'required',    doc: 'End voltage of the bias sweep.' },
+                            { kind: 'field', name: 'scan_offset_bias', nxtype: 'NX_NUMBER', units: 'NX_VOLTAGE', opt: 'required',    doc: 'Offset of the bias scan voltage.' },
+                            { kind: 'field', name: 'scan_range_bias',  nxtype: 'NX_NUMBER', units: 'NX_VOLTAGE', opt: 'recommended', doc: 'Total range of the bias scan.' }
+                          ]
+                        },
+                        {
+                          kind: 'group', name: 'linear_sweep', nxclass: 'NXspm_scan_pattern', opt: 'required',
+                          doc: 'Linear sweep: measures sample response as bias voltage increases linearly.',
+                          children: [
+                            { kind: 'field', name: 'scan_points_bias', nxtype: 'NX_NUMBER', opt: 'required', doc: 'Number of bias scan points.' },
+                            { kind: 'field', name: 'step_size_bias',   nxtype: 'NX_NUMBER', opt: 'required', doc: 'Step size of the bias scan.' }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              kind: 'group', name: 'sample_bias_voltage', nxclass: 'NXsensor', opt: 'optional',
+              doc: 'DC bias voltage applied to the sample (e.g. in constant-current STM mode).',
+              children: [
+                { kind: 'field', name: 'bias_voltage',       nxtype: 'NX_NUMBER', units: 'NX_VOLTAGE', opt: 'required', doc: 'The DC bias voltage applied to the sample.' },
+                { kind: 'field', name: 'bias_offset_value',  nxtype: 'NX_NUMBER', units: 'NX_VOLTAGE', opt: 'optional', doc: 'Offset value of the bias voltage.' },
+                {
+                  kind: 'group', name: 'calibration', nxclass: 'NXcalibration', opt: 'optional',
+                  doc: 'Calibration of the bias voltage measurement (V/V).',
+                  children: [
+                    { kind: 'group', name: 'calibration_parameters', nxclass: 'NXparameters', opt: 'optional', doc: 'Calibration parameters.', children: [
+                      { kind: 'field', name: 'coefficient', nxtype: 'NX_NUMBER', units: 'NX_ANY', opt: 'optional', doc: 'Calibration coefficient.' }
+                    ]}
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          kind: 'group', name: 'NXsample', nxclass: 'NXsample', opt: 'optional',
+          doc: 'Sample information including preparation history and environmental conditions during measurement.',
+          children: [
+            { kind: 'group', name: 'history', nxclass: 'NXhistory', opt: 'recommended', doc: 'Physical processes that occurred to the sample prior to or during the experiment.', children: [] },
+            {
+              kind: 'group', name: 'sample_environment', nxclass: 'NXenvironment', opt: 'optional',
+              doc: 'Environmental conditions around the sample during measurement.',
+              children: [
+                { kind: 'field', name: 'temperature', nxtype: 'NX_NUMBER', units: 'NX_TEMPERATURE', opt: 'recommended', doc: 'Single-valued temperature of the sample (also the tip temperature when in contact or proximity).' },
+                { kind: 'group', name: 'sample_bias_voltage',       nxclass: 'NXsensor',              opt: 'optional', doc: 'Link to /entry/instrument/sample_bias_voltage.',       children: [] },
+                { kind: 'group', name: 'sample_temperature_sensor', nxclass: 'NXspm_temperature_sensor', opt: 'optional', doc: 'Link to /entry/instrument/sample_temperature_sensor.', children: [] }
+              ]
+            }
+          ]
+        },
+        {
+          kind: 'group', name: 'NXdata', nxclass: 'NXdata', opt: 'required',
+          doc: 'Primary data group. Contains the measured signal and its corresponding axes.',
+          children: [
+            { kind: 'field', name: 'DATA',     nxtype: 'NX_NUMBER',          units: 'NX_ANY', nameType: 'any', opt: 'required', doc: 'Measured data (e.g. current, voltage, topography) that can be plotted against the axes.' },
+            { kind: 'field', name: 'AXISNAME', nxtype: 'NX_CHAR_OR_NUMBER',  units: 'NX_ANY', nameType: 'any', opt: 'required', doc: 'Axis values corresponding to the DATA field.' }
+          ]
+        },
+        {
+          kind: 'group', name: 'reproducibility_indicators', nxclass: 'NXcollection', opt: 'optional',
+          doc: 'Collection of links to fields or groups that quantify experiment reproducibility.',
+          children: [
+            { kind: 'group', name: 'LINK_TO_GROUP', nxclass: 'NXcollection', nameType: 'any', opt: 'optional', doc: 'Link to any group relevant as a reproducibility indicator.', children: [] },
+            { kind: 'field', name: 'LINK_TO_FIELD', nxtype: 'NX_CHAR', nameType: 'any', opt: 'optional', doc: 'Link to any field relevant as a reproducibility indicator.' }
+          ]
+        },
+        {
+          kind: 'group', name: 'resolution_indicators', nxclass: 'NXcollection', opt: 'optional',
+          doc: 'Collection of links to fields or groups that quantify the resolution of the experimental results.',
+          children: [
+            { kind: 'group', name: 'LINK_TO_GROUP', nxclass: 'NXcollection', nameType: 'any', opt: 'optional', doc: 'Link to any group relevant as a resolution indicator.', children: [] },
+            { kind: 'field', name: 'LINK_TO_FIELD', nxtype: 'NX_CHAR', nameType: 'any', opt: 'optional', doc: 'Link to any field relevant as a resolution indicator.' }
+          ]
+        }
+      ]
+    }
+  ]
+};
+
+function renderNXNode(node, parentEl, depth) {
+  const nodeEl = document.createElement('div');
+  nodeEl.className = 'nxtree-node';
+
+  const row = document.createElement('div');
+  row.className = 'nxtree-row';
+
+  if (node.kind === 'group') {
+    const hasChildren = node.children && node.children.length > 0;
+
+    const toggleBtn = document.createElement('button');
+    toggleBtn.className = 'nxtree-toggle' + (hasChildren ? '' : ' nxtree-toggle-spacer');
+    toggleBtn.textContent = depth === 0 ? '▼' : '▶';
+    if (!hasChildren) { toggleBtn.style.visibility = 'hidden'; toggleBtn.disabled = true; }
+
+    const childrenEl = document.createElement('div');
+    childrenEl.className = 'nxtree-children';
+    childrenEl.style.display = depth === 0 ? 'block' : 'none';
+
+    let expanded = depth === 0;
+    toggleBtn.onclick = () => {
+      expanded = !expanded;
+      toggleBtn.textContent = expanded ? '▼' : '▶';
+      childrenEl.style.display = expanded ? 'block' : 'none';
+    };
+
+    row.appendChild(toggleBtn);
+
+    const icon = document.createElement('span');
+    icon.className = 'nxtree-group-icon';
+    icon.textContent = '▣';
+    row.appendChild(icon);
+
+    const nameEl = document.createElement('span');
+    nameEl.className = 'nxtree-name';
+    nameEl.textContent = node.name;
+    row.appendChild(nameEl);
+
+    if (node.nxclass) {
+      const classTag = document.createElement('span');
+      classTag.className = 'nxtree-class';
+      classTag.textContent = node.nxclass;
+      row.appendChild(classTag);
+    }
+
+    if (node.nameType && node.nameType !== 'specified') {
+      const ntTag = document.createElement('span');
+      ntTag.className = 'nxtree-nametype';
+      ntTag.textContent = node.nameType === 'any' ? 'any name' : 'partial name';
+      row.appendChild(ntTag);
+    }
+
+    const optEl = document.createElement('span');
+    optEl.className = 'nxtree-opt nxtree-opt-' + (node.opt || 'required');
+    optEl.textContent = node.opt || 'required';
+    row.appendChild(optEl);
+
+    if (node.doc) {
+      const tags = [node.nxclass || 'group', node.opt || 'required'];
+      if (node.nameType) tags.push(node.nameType + ' nameType');
+      row.appendChild(infoBtn({ name: node.name, detail: node.doc, tags }, 'group'));
+    }
+
+    nodeEl.appendChild(row);
+
+    if (hasChildren) {
+      node.children.forEach(child => renderNXNode(child, childrenEl, depth + 1));
+      nodeEl.appendChild(childrenEl);
+    }
+
+  } else if (node.kind === 'field') {
+    const spacer = document.createElement('span');
+    spacer.className = 'nxtree-toggle nxtree-toggle-spacer';
+    row.appendChild(spacer);
+
+    const icon = document.createElement('span');
+    icon.className = 'nxtree-field-icon';
+    icon.textContent = '◈';
+    row.appendChild(icon);
+
+    const nameEl = document.createElement('span');
+    nameEl.className = 'nxtree-name nxtree-field-name';
+    nameEl.textContent = node.name;
+    row.appendChild(nameEl);
+
+    if (node.nxtype) {
+      const typeTag = document.createElement('span');
+      typeTag.className = 'nxtree-type';
+      typeTag.textContent = node.nxtype;
+      row.appendChild(typeTag);
+    }
+
+    if (node.units) {
+      const unitsTag = document.createElement('span');
+      unitsTag.className = 'nxtree-units';
+      unitsTag.textContent = node.units;
+      row.appendChild(unitsTag);
+    }
+
+    if (node.nameType && node.nameType !== 'specified') {
+      const ntTag = document.createElement('span');
+      ntTag.className = 'nxtree-nametype';
+      ntTag.textContent = node.nameType === 'any' ? 'any name' : 'partial name';
+      row.appendChild(ntTag);
+    }
+
+    const optEl = document.createElement('span');
+    optEl.className = 'nxtree-opt nxtree-opt-' + (node.opt || 'required');
+    optEl.textContent = node.opt || 'required';
+    row.appendChild(optEl);
+
+    if (node.doc) {
+      let detail = node.doc;
+      if (node.enum) {
+        detail += '<br><br><strong>Allowed values:</strong> ' + node.enum.map(e => `<code>${e}</code>`).join(', ');
+      }
+      const tags = [node.nxtype || 'field', node.opt || 'required'];
+      if (node.units) tags.push(node.units);
+      if (node.enum) tags.push('enumeration');
+      row.appendChild(infoBtn({ name: node.name, detail, tags }, 'field'));
+    }
+
+    nodeEl.appendChild(row);
+  }
+
+  parentEl.appendChild(nodeEl);
+}
+
+function buildNXspmModel() {
+  const content = document.getElementById('nexusspm-content');
+  content.innerHTML = '';
+
+  /* inheritance banner */
+  const banner = document.createElement('div');
+  banner.className = 'nxtree-banner';
+
+  const bannerRow = document.createElement('div');
+  bannerRow.className = 'nxtree-banner-row';
+
+  const defBadge = document.createElement('span');
+  defBadge.className = 'nxtree-def-badge';
+  defBadge.textContent = 'application definition';
+
+  const defName = document.createElement('span');
+  defName.className = 'nxtree-def-name';
+  defName.textContent = NXSPM_TREE.name;
+
+  const extendsLabel = document.createElement('span');
+  extendsLabel.className = 'nxtree-extends-label';
+  extendsLabel.textContent = 'extends';
+
+  const parentName = document.createElement('span');
+  parentName.className = 'nxtree-parent';
+  parentName.textContent = NXSPM_TREE.extends;
+
+  bannerRow.appendChild(defBadge);
+  bannerRow.appendChild(defName);
+  bannerRow.appendChild(extendsLabel);
+  bannerRow.appendChild(parentName);
+  banner.appendChild(bannerRow);
+
+  const subtypesRow = document.createElement('div');
+  subtypesRow.className = 'nxtree-subtypes-row';
+
+  const subtypesLabel = document.createElement('span');
+  subtypesLabel.className = 'nxtree-subtypes-label';
+  subtypesLabel.textContent = 'sub-techniques:';
+  subtypesRow.appendChild(subtypesLabel);
+
+  (NXSPM_TREE.subtypes || []).forEach(st => {
+    const stEl = document.createElement('span');
+    stEl.className = 'nxtree-subtype';
+    stEl.textContent = st;
+    subtypesRow.appendChild(stEl);
+  });
+  banner.appendChild(subtypesRow);
+  content.appendChild(banner);
+
+  /* tree */
+  const tree = document.createElement('div');
+  tree.className = 'nxtree';
+  (NXSPM_TREE.children || []).forEach(child => renderNXNode(child, tree, 0));
+  content.appendChild(tree);
+}
+
+/* ============================================================
    NAVIGATION
    ============================================================ */
 function showView(name) {
   closePanel();
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-  const viewMap = { nomad: 'view-nomad', pynxtools: 'view-pynxtools', explore: 'view-explore' };
+  const viewMap = { motivation: 'view-motivation', nomad: 'view-nomad', pynxtools: 'view-pynxtools', explore: 'view-explore', 'nexus-spm': 'view-nexus-spm' };
   document.getElementById(viewMap[name]).classList.add('active');
 
+  const isMoti    = name === 'motivation';
   const isNomad   = name === 'nomad';
   const isPynx    = name === 'pynxtools';
   const isExplore = name === 'explore';
+  const isNXspm   = name === 'nexus-spm';
 
-  document.getElementById('crumb-sep').style.display     = (isPynx || isExplore) ? 'inline' : 'none';
-  document.getElementById('crumb-pyn').style.display     = (isPynx || isExplore) ? 'inline' : 'none';
-  document.getElementById('crumb-sep2').style.display    = isExplore ? 'inline' : 'none';
-  document.getElementById('crumb-explore').style.display = isExplore ? 'inline' : 'none';
+  /* breadcrumb */
+  document.getElementById('crumb-sep0').style.display     = (isNomad || isPynx || isExplore || isNXspm) ? '' : 'none';
+  document.getElementById('crumb-nomad').style.display    = (isNomad || isPynx || isExplore || isNXspm) ? '' : 'none';
+  document.getElementById('crumb-sep').style.display      = (isPynx  || isExplore || isNXspm) ? '' : 'none';
+  document.getElementById('crumb-pyn').style.display      = (isPynx  || isExplore || isNXspm) ? '' : 'none';
+  document.getElementById('crumb-sep2').style.display     = isExplore ? '' : 'none';
+  document.getElementById('crumb-explore').style.display  = isExplore ? '' : 'none';
+  document.getElementById('crumb-sep3').style.display     = isNXspm ? '' : 'none';
+  document.getElementById('crumb-nexusspm').style.display = isNXspm ? '' : 'none';
 
+  document.getElementById('crumb-overview').classList.toggle('active', isMoti);
   document.getElementById('crumb-nomad').classList.toggle('active', isNomad);
   document.getElementById('crumb-pyn').classList.toggle('active', isPynx);
   document.getElementById('crumb-explore').classList.toggle('active', isExplore);
+  document.getElementById('crumb-nexusspm').classList.toggle('active', isNXspm);
 
+  /* back button */
   const backBtn = document.getElementById('back-btn');
-  backBtn.classList.toggle('visible', isPynx || isExplore);
-  backBtn.onclick = isExplore ? () => showView('pynxtools') : () => showView('nomad');
+  backBtn.classList.toggle('visible', !isMoti);
+  if (isNomad) {
+    backBtn.textContent = '← Motivation';
+    backBtn.onclick = () => showView('motivation');
+  } else if (isPynx) {
+    backBtn.textContent = '← back to NOMAD';
+    backBtn.onclick = () => showView('nomad');
+  } else if (isExplore) {
+    backBtn.textContent = '← back to pynxtools';
+    backBtn.onclick = () => showView('pynxtools');
+  } else if (isNXspm) {
+    backBtn.textContent = '← back to pynxtools';
+    backBtn.onclick = () => showView('pynxtools');
+  }
 
-  if (!isExplore) requestAnimationFrame(equalizeVisibleSatelliteColumns);
+  if (!isExplore && !isMoti && !isNXspm) requestAnimationFrame(equalizeVisibleSatelliteColumns);
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 /* ── INIT ── */
+buildMotivation();
 buildNomad();
 buildPynx();
 buildExplore();
+buildNXspmModel();
 requestAnimationFrame(equalizeVisibleSatelliteColumns);
 window.addEventListener('resize', equalizeVisibleSatelliteColumns);
